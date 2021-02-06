@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
+const mongoose = require("mongoose")
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -20,7 +21,7 @@ app.get("*", (req, res) => {
 });
 
 mongoose.connect(process.env.MONGODB_URI , 
-{ useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true,useFindAndModify: false })
+{ useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
