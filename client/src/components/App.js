@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
+import PrivateRoute from '../wrappers/PrivateRoute'
 
 
 import Dashboard from './Dashboard'
