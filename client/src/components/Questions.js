@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Medication() {
+export default function Questions() {
     return (
         <div>
             
