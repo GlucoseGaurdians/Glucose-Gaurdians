@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { Card, Button, Alert } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'
+import NavbarComponent from './SharedComponents/Navbar'
+import DataRangeCard from './SharedComponents/DataRangeCard'
+import BottomMenuList from './SharedComponents/BottomMenuList'
 
 export default function Dashboard() {
     const history = useHistory()
@@ -20,18 +23,15 @@ export default function Dashboard() {
     }
 
     return (
-        <>
-            <Card>
-                <Card.Body>
-                    <h2 className="text-center mb-4">Profile</h2>
-                    {error && <Alert variant="danger">Error</Alert>}
-                    <strong>Email:</strong> {currentUser.email}
-                    <Link to="/update-profile" className="btn btn-primary w-100 mt-3">Update Profile</Link>
-                </Card.Body>
-            </Card>
-            <div className="w'100 text-center mt-2">
-                <Button variant="link" onClick={handleLogout}>Log Out</Button>
-            </div>
-        </>
+        <div>
+            <NavbarComponent />
+            <Container className="justify-content-around align-items-center">
+                <Row>
+                    <Col><DataRangeCard /></Col>
+                    <Col><DataRangeCard /></Col>
+                </Row>
+                <Row><BottomMenuList/></Row>
+            </Container>
+        </div>
     )
 }
