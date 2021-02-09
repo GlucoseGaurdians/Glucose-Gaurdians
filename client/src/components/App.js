@@ -9,6 +9,7 @@ import Medication from './Medication'
 import Questions from './Questions'
 import Signup from './Signup'
 import Login from './Login'
+import BloodSugarGraph from './bloodSugSubComps/BloodSugGraph'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/signup' component={Signup} />
                     <PrivateRoute exact path='/bloodsugar' component={BloodSugarPage} />
+                    <PrivateRoute exact path='/bloodsugargraph' component={BloodSugarGraph} />
                     <PrivateRoute exact path='/medication' component={Medication} />
                     <PrivateRoute exact path='/questions' component={Questions} />
                 </Switch>
