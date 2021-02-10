@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Button, Alert, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
+import logo from "../logo";
 
 export default function NavbarComponent() {
     return (
@@ -7,7 +8,7 @@ export default function NavbarComponent() {
                 <Navbar.Brand href="#home">
                     <img
                         alt=""
-                        src="/logo.svg"
+                        src={logo}
                         width="30"
                         height="30"
                         className="d-inline-block align-top"

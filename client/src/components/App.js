@@ -11,6 +11,7 @@ import Signup from './Signup'
 import Login from './Login'
 import Navbar from "./Navbar"
 
+
 function App() {
   return (
       <AuthProvider>
