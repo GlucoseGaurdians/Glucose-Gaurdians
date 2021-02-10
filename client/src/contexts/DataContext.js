@@ -21,8 +21,8 @@ export default function DataContext({children}) {
     }
     return (
         
-            <DataContext.Provider value={values}>
-                {children}
-            </DataContext.Provider>
+        <DataContext.Provider value={values}>
+            {children}
+        </DataContext.Provider>
     )
 }
