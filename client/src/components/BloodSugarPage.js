@@ -18,6 +18,10 @@ export default function BloodSugarPage() {
 
     function addBloodSugar(e) {
         e.preventDefault()
+        fetch("",{
+          method: "POST",
+          body: "Hello"
+        })
     }
 
     const stylings = {

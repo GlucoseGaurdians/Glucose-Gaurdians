@@ -6,6 +6,8 @@ mongoose.connect("mongodb://localhost/blood_sugar", {
     useFindAndModify: false
 });
 
+
+
 let bloodSugarSeed = [
     {
         test: [
