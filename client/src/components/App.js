@@ -14,9 +14,12 @@ import Login from './Login'
 import BloodSugarGraph from './bloodSugSubComps/BloodSugGraph'
 
 function App() {
+
+    console.log(<DataContext />)
   return (
       <AuthProvider>
-            <ScreenSize>
+        <ScreenSize>
+        <DataContext>
                 <Router>
                     <Switch>
                         <Route exact path='/login' component={Login} />
@@ -28,7 +31,8 @@ function App() {
                         <PrivateRoute exact path='/questions' component={Questions} />
                     </Switch>
                 </Router>
-            </ScreenSize>
+        </DataContext>
+        </ScreenSize>
       </AuthProvider>
   );
 }

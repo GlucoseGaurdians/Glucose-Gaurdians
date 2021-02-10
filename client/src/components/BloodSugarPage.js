@@ -3,17 +3,21 @@ import DataRangeCard from './SharedComponents/DataRangeCard'
 import BottomMenuList from './SharedComponents/BottomMenuList'
 import { Container, Row, Col, Button, Form, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
+import { useAuth } from '../contexts/AuthContext'
 
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
 export default function BloodSugarPage() {
+    const auth = useAuth()
+    console.log(auth)
+    console.log(auth.currentUser.uid)
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    function addBloodSugar() {
-
+    function addBloodSugar(e) {
+        e.preventDefault()
     }
 
     const stylings = {

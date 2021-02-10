@@ -1,20 +1,14 @@
-import React, {useContext, useState } from 'react'
+import React, {useContext, useState, useEffect } from 'react'
 
 const DataInfoContext = React.createContext()
 
-export function useData() {
+export function UseData() {
     return useContext(DataInfoContext)
 }
 
 export default function DataContext({children}) {
+    const [bloodSugars, setBloodSugars] = useState(false)
 
-    const [bloodSugars, setBloodSugars] = useState({
-        bloodSugar: [1,2]
-    })
-
-    function AddNewBloodSugar(bs) {
-        
-    }
 
 
     const values = {
@@ -22,12 +16,9 @@ export default function DataContext({children}) {
 
     }
 
-    console.log('about to return from datacontext : ', values)
-
     return (
-        
-        <DataContext.Provider value={values}>
+        <DataInfoContext.Provider value={bloodSugars}>
             {children}
-        </DataContext.Provider>
+        </DataInfoContext.Provider>
     )
 }
