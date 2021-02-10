@@ -8,7 +8,6 @@ import { useAuth } from '../contexts/AuthContext'
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
 export default function BloodSugarPage() {
     const auth = useAuth()
-    console.log(auth)
     console.log(auth.currentUser.uid)
 
     const [show, setShow] = useState(false);
@@ -29,6 +28,9 @@ export default function BloodSugarPage() {
             width: '80vw'
         }
     }
+
+    
+
 
     return (
         <div>
