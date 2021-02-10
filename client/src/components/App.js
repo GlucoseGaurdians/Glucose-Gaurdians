@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import PrivateRoute from '../wrappers/PrivateRoute'
 import { AuthProvider } from '../contexts/AuthContext'
 import DataContext from '../contexts/DataContext'
+import ScreenSize from '../contexts/ScreenSizeContext'
 
 import Dashboard from './Dashboard'
 import BloodSugarPage from './BloodSugarPage'
@@ -15,7 +16,7 @@ import BloodSugarGraph from './bloodSugSubComps/BloodSugGraph'
 function App() {
   return (
       <AuthProvider>
-            <DataContext>
+            <ScreenSize>
                 <Router>
                     <Switch>
                         <Route exact path='/login' component={Login} />
@@ -27,7 +28,7 @@ function App() {
                         <PrivateRoute exact path='/questions' component={Questions} />
                     </Switch>
                 </Router>
-            </DataContext>
+            </ScreenSize>
       </AuthProvider>
   );
 }
