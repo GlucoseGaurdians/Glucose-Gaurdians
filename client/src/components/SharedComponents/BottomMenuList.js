@@ -4,15 +4,13 @@ import { Card, ListGroup } from 'react-bootstrap'
 
 export default function BottomMenuList() {
     return (
-        <div>
-            <Card>
-                <ListGroup variant="flush">
-                    <ListGroup.Item> <Link to="/bloodsugar">My Blood Sugar</Link>  </ListGroup.Item>
-                    <ListGroup.Item><Link to="/medication">Manage My Medications</Link></ListGroup.Item>
-                    <ListGroup.Item><Link to="/questions">Questions?</Link></ListGroup.Item>
-                    <ListGroup.Item><Link to="/"></Link>Home</ListGroup.Item>
-                </ListGroup>
-            </Card>
-        </div>
+        <Card className="mt-5"> 
+            <ListGroup variant="flush">
+                <ListGroup.Item> <Link to="/bloodsugar">My Blood Sugar</Link>  </ListGroup.Item>
+                <ListGroup.Item><Link to="/medication">Manage My Medications</Link></ListGroup.Item>
+                <ListGroup.Item><Link to="/questions">Questions?</Link></ListGroup.Item>
+                <ListGroup.Item><Link to="/"></Link>Home</ListGroup.Item>
+            </ListGroup>
+        </Card>
     )
 }
