@@ -16,7 +16,6 @@ import Login from './Login'
 
 function App() {
 
-    console.log(<DataContext />)
   return (
       <AuthProvider>
         <ScreenSize>
