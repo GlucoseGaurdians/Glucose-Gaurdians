@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom'
 import NavbarComponent from './SharedComponents/Navbar'
 import DataRangeCard from './SharedComponents/DataRangeCard'
 import BottomMenuList from './SharedComponents/BottomMenuList'
+import logo from './logo';
 
 export default function Dashboard() {
     const history = useHistory()

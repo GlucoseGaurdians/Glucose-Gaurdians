@@ -4,6 +4,7 @@ import BottomMenuList from './SharedComponents/BottomMenuList'
 import { Container, Row, Col, Button, Form, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import NavbarComponent from "./SharedComponents/Navbar";
 
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
 export default function BloodSugarPage() {
@@ -38,6 +39,8 @@ export default function BloodSugarPage() {
 
     return (
         <div>
+            <NavbarComponent />
+            <br />
             <Container>
                 <Row>
                     <Col>Add Blood Sugar</Col>
