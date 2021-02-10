@@ -7,11 +7,12 @@ import ScreenSize from '../contexts/ScreenSizeContext'
 
 import Dashboard from './Dashboard'
 import BloodSugarPage from './BloodSugarPage'
+import BloodSugGraph from './bloodSugSubComps/BloodSugGraph'
 import Medication from './Medication'
 import Questions from './Questions'
 import Signup from './Signup'
 import Login from './Login'
-import BloodSugarGraph from './bloodSugSubComps/BloodSugGraph'
+
 
 function App() {
 
@@ -26,7 +27,7 @@ function App() {
                         <Route exact path='/signup' component={Signup} />
                         <PrivateRoute exact path='/' component={Dashboard} />
                         <PrivateRoute exact path='/bloodsugar' component={BloodSugarPage} />
-                        <PrivateRoute exact path='/bloodsugargraph' component={BloodSugarGraph} />
+                        <PrivateRoute exact path='/bloodsugar/graph' component={BloodSugGraph} />
                         <PrivateRoute exact path='/medication' component={Medication} />
                         <PrivateRoute exact path='/questions' component={Questions} />
                     </Switch>

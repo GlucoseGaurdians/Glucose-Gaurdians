@@ -5,7 +5,9 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
+    "@reactchartjs/react-chart.js": "^1.0.0-rc.3",
     "bootstrap": "^4.6.0",
+    "chart.js": "^2.9.4",
     "firebase": "^8.2.6",
     "react": "^16.13.1",
     "react-bootstrap": "^1.4.3",
