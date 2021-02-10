@@ -44,7 +44,6 @@ export function AuthProvider({ children }) {
         logout
     }
 
-    console.log("about to return from authcontext :", value)
     return (
         <AuthContext.Provider value={value}>
             {!loading && children}
