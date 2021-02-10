@@ -3,8 +3,8 @@ db.collection('bloodsugar').aggregate
     // db.bloodsugar.aggregate
     ([
         {
-            totalTests: { $sum: "$tests" };
-            totalBloodSugar: {$sum: "$bloodSugar"};
+            totalTests: { $sum: "$tests" },
+            totalBloodSugar: {$sum: "$bloodSugar"},
             $addFields: {
                 avgBloodSugar: { $divide: totalBloodSugar, totalTests },
             }
