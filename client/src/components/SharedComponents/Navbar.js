@@ -33,7 +33,7 @@ export default function NavbarComponent() {
                         <NavDropdown.Item href="questions">Questions</NavDropdown.Item>
                     </NavDropdown>
                     <Form class="form-inline my-2 my-lg-0 justify-content-right">
-      <Button class="btn btn-danger my-2 my-sm-0" type="logout">Logout</Button>
+      <Button class="btn btn-danger my-2 my-sm-0" type="logout">Logout </Button>
     </Form>
                 
                 </Nav>
