@@ -3,6 +3,10 @@ import { Card, Button, Alert, Navbar, Nav, NavDropdown, Form, FormControl } from
 import img from "../Images/logo.png";
 
 
+
+
+
+
 export default function NavbarComponent() {
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
@@ -26,7 +30,7 @@ export default function NavbarComponent() {
                         <NavDropdown.Item href="logout">Logout</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="contact">Contact Us</NavDropdown.Item>
-                        <NavDropdown.Item href="about">About Us</NavDropdown.Item>
+                        <NavDropdown.Item href="questions">Questions</NavDropdown.Item>
                     </NavDropdown>
                     <Form class="form-inline my-2 my-lg-0 justify-content-right">
       <Button class="btn btn-danger my-2 my-sm-0" type="logout">Logout</Button>
