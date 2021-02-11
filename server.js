@@ -19,6 +19,7 @@ app.post('/api/bloodsugar', (req, res) => {
   res.send("hello")
 })
 
+
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {
