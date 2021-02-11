@@ -1,7 +1,11 @@
 import React from 'react'
 import { Card, Button, Alert, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
 
+import { useAuth } from '../../contexts/AuthContext'
+
 export default function NavbarComponent() {
+    const them = useAuth()
+
     return (
             <Navbar bg="light" expand="lg">
                 <Navbar.Brand href="#home">
@@ -18,7 +22,7 @@ export default function NavbarComponent() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Logout</Nav.Link>
+                        <Nav.Link onClick={() => them.logout} >Logout</Nav.Link>
                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

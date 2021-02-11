@@ -17,6 +17,15 @@ export default function BloodSugarPage() {
 
     function addBloodSugar(e) {
         e.preventDefault()
+        console.log('making a call')
+        fetch('/api/bloodsugar',{
+            method: "POST",
+            body: 'hello'
+        }).then((res)=> {
+            console.log(res)
+        } )
+
+
     }
 
     const stylings = {

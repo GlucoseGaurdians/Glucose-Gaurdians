@@ -33,9 +33,12 @@ export default function Signup() {
         
         try {
             const id = currentUser.uid
-            fetch('api/',{
+
+            fetch('https://api.glucose-guardians.herokuapp.com/api/bloodsugar',{
             method: 'POST',
             body: id
+            }).then((res)=> {
+                console.log(res)
             })
             history.push('/')
         } catch {
