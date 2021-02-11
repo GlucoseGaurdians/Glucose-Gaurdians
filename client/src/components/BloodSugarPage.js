@@ -25,20 +25,26 @@ export default function BloodSugarPage() {
     function addBloodSugar(e) {
         e.preventDefault()
         console.log('making a call')
+        
 
+        const payload = {
+            bloodSugar: bsRef.current.value,
+            comment: commentsRef.current.value
+        }
+
+        console.log(payload)
 
         fetch('http://localhost:3001/api/bloodsugar',{
             method: "POST",
-            credentials: 'include',
-            body: {
-                bloodSugar: bsRef.current.value,
-                comment: commentsRef.current.value
-            }
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(payload)
         }).then((res)=> {
             // data.setBloodSugars(...data.bloodSugars, res)
             console.log(res)
-            console.log(data)
-            console.log(data.bloodSugars)
+            console.log(JSON.parse(res))
             bsRef.current.value = ''
             commentsRef.current.value = ''
         } )
