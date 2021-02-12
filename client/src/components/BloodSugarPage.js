@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
 import { UseData } from '../contexts/DataContext'
+import { addNewBloodSugar} from '../utils/API'
 
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
 export default function BloodSugarPage() {
@@ -30,22 +31,7 @@ export default function BloodSugarPage() {
             id: currentUser.uid
         }
 
-        console.log(payload)
-        console.log(data.bloodSugars)
-        fetch('http://localhost:3001/api/bloodsugar',{
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-            body: JSON.stringify(payload)
-        }).then((res)=> res.json()).then((theData) => {
-            data.setBloodSugars([...data.bloodSugars, theData])
-        })
-        
-        // fetch('http://localhost:3001/api/bloodsugar')
-        //     .then((res)=> res.json())
-        //     .then((stuff) => console.log(stuff))
+        addNewBloodSugar(payload)
     }
 
     const stylings = {

@@ -6,11 +6,16 @@ import { UseData } from '../contexts/DataContext'
 // ? we are sending a test object 
 export function addNewBloodSugar(test) {
 
-    fetch('/api/addtest',{
+    fetch('http://localhost:3001/api/bloodsugar',{
         method: "POST",
-        body: test
-    }).then((res) => {
-        console.log(res)
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify(test)
+    }).then((res)=> res.json()).then((theData) => {
+        const { bloodSugars, setBloodSugars } = UseData()
+        setBloodSugars([...bloodSugars, theData])
     })
 
 }
