@@ -8,11 +8,22 @@ export default function Signup() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const confirmPasswordRef = useRef()
-    const {signup, currentUser} = useAuth()
+    const {signup, currentUser, signInWithGoogle} = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
+    async function googleX(){
+        try {
+            setError('')
+            setLoading(true)
+            await signInWithGoogle()
+            history.push('/')
+        } catch {
+            setError('Failed to create an account')
+        }
+
+    }
 
     async function handleSubmit(event) {
         event.preventDefault()
@@ -72,6 +83,10 @@ export default function Signup() {
                         </Form.Group>
                         <Button disabled={loading} className="w-100" type="submit">Sign Up</Button>
                     </Form>
+                    <br></br>
+                    <div className="w-100 text-center mt-3">
+                        Or sign in with Google <Button onClick={googleX}>Sign In</Button>
+                    </div>
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">
