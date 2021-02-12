@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
-import LoginSignupContainer from './LoginSignupComp/LoginSignupContainer'
+import LoginSignupContainer from '../LoginSignupComp/LoginSignupContainer'
 
 export default function Signup() {
     const emailRef = useRef()
@@ -16,6 +16,10 @@ export default function Signup() {
 
     async function handleSubmit(event) {
         event.preventDefault()
+
+        if (passwordRef.current.value.length < 6) {
+            return setError('password must be at least 6 characters long')
+        }
 
         if (passwordRef.current.value !== confirmPasswordRef.current.value) {
             return setError('passwords do not match')
