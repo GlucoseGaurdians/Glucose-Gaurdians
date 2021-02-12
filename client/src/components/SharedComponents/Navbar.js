@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, Navbar, Nav, NavDropdown, Form } from 'react-bootstrap'
 import img from "../Images/logo.png";
-
 import { useAuth } from '../../contexts/AuthContext'
 
 export default function NavbarComponent() {
@@ -30,7 +29,7 @@ export default function NavbarComponent() {
                     <Nav.Link href="medication">Manage My Medication</Nav.Link>
                     <NavDropdown title="More" id="basic-nav-dropdown">
                         
-                        <NavDropdown.Item href="logout">Logout</NavDropdown.Item>
+                        <NavDropdown.Item href="update-profile">Update Profile</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="contact">Contact Us</NavDropdown.Item>
                         <NavDropdown.Item href="questions">Questions</NavDropdown.Item>
