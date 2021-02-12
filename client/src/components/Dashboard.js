@@ -6,6 +6,7 @@ import NavbarComponent from './SharedComponents/Navbar'
 import DataRangeCard from './SharedComponents/DataRangeCard'
 import BottomMenuList from './SharedComponents/BottomMenuList'
 import { UseData } from '../contexts/DataContext'
+import { getBloodSugar } from '../utils/API'
 
 
 export default function Dashboard() {
@@ -17,14 +18,9 @@ export default function Dashboard() {
     // this doesn't work yet
     useEffect(()=> {
         const id = currentUser.uid
+        getBloodSugar(id)
 
-        fetch("http://localhost:3001/api/bloodsugar/"+id)
-        .then(res => res.json())
-        .then((data) => {
-            setBloodSugars(data)
-        })
-        .catch(err => console.log(err))
-    },[])
+    },[currentUser])
 
     return (
         <div>

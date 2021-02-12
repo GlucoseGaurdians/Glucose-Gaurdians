@@ -21,7 +21,6 @@ let allowCrossDomain = function(req, res, next) {
   next();
 }
 
-
 app.use(allowCrossDomain);
 
 

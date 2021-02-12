@@ -33,11 +33,13 @@ export function addNewMedication(med) {
 
 // thi will get alll the user's blood sugars in an object
 
-export function getBloodSugar() {
-    fetch('/api/gettests')
-    .then((res) => {
-        console.log(res)
-        UseData().setBloodSugars(res)
+export function getBloodSugar(id) {
+    fetch("http://localhost:3001/api/bloodsugar/"+id)
+    .then(res => res.json())
+    .then((data) => {
+        const { setBloodSugars } = UseData()
+        setBloodSugars(data)
     })
+    .catch(err => console.log(err))
 }
 
