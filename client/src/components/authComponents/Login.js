@@ -7,11 +7,22 @@ import LoginSignupContainer from '../LoginSignupComp/LoginSignupContainer'
 export default function Login() {
     const emailRef = useRef()
     const passwordRef = useRef()
-    const { login } = useAuth()
+    const { login, signInWithGoogle } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
+    async function googleX(){
+        try {
+            setError('')
+            setLoading(true)
+            await signInWithGoogle()
+            history.push('/')
+        } catch {
+            setError('Failed to login')
+        }
+
+    }
 
     async function handleSubmit(event) {
         console.log("handleSubmit is running")
@@ -50,6 +61,10 @@ export default function Login() {
                     </Form>
                     <div className="w-1000 text-center mt-3">
                         <Link to="/reset-password">Forgot Password?</Link>
+                    </div>
+                    <br></br>
+                    <div className="w-100 text-center mt-3">
+                        Or sign in with Google <Button onClick={googleX}>Sign In</Button>
                     </div>
                 </Card.Body>
             </Card>
