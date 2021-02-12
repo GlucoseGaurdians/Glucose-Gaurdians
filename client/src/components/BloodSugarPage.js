@@ -10,30 +10,28 @@ import { UseData } from '../contexts/DataContext'
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
 export default function BloodSugarPage() {
 
-    // console.log(auth.currentUser.uid)
-
     const [show, setShow] = useState(false);
 
     const bsRef = useRef()
     const commentsRef = useRef()
 
     const data = UseData()
+    const { currentUser } = useAuth()
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     function addBloodSugar(e) {
         e.preventDefault()
-        console.log('making a call')
-        
 
         const payload = {
             bloodSugar: bsRef.current.value,
-            comment: commentsRef.current.value
+            comment: commentsRef.current.value,
+            id: currentUser.uid
         }
 
         console.log(payload)
-
+        console.log(data.bloodSugars)
         fetch('http://localhost:3001/api/bloodsugar',{
             method: "POST",
             headers: {
@@ -41,13 +39,13 @@ export default function BloodSugarPage() {
                 'Content-Type': 'application/json'
               },
             body: JSON.stringify(payload)
-        }).then((res)=> {
-            // data.setBloodSugars(...data.bloodSugars, res)
-            console.log(res)
-            console.log(JSON.parse(res))
-            bsRef.current.value = ''
-            commentsRef.current.value = ''
-        } )
+        }).then((res)=> res.json()).then((theData) => {
+            data.setBloodSugars([...data.bloodSugars, theData])
+        })
+        
+        // fetch('http://localhost:3001/api/bloodsugar')
+        //     .then((res)=> res.json())
+        //     .then((stuff) => console.log(stuff))
     }
 
     const stylings = {

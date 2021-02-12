@@ -2,15 +2,14 @@ import React from 'react'
 import { Card, Button, Alert, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
 import img from "../Images/logo.png";
 
-
-
-
-
-
 import { useAuth } from '../../contexts/AuthContext'
 
 export default function NavbarComponent() {
     const them = useAuth()
+
+    function handleLogOut() {
+        them.logout()
+    }
 
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
@@ -37,7 +36,7 @@ export default function NavbarComponent() {
                         <NavDropdown.Item href="questions">Questions</NavDropdown.Item>
                     </NavDropdown>
                     <Form className="form-inline my-2 my-lg-0 justify-content-right">
-      <Button className="btn btn-danger my-2 my-sm-0" type="logout">Logout </Button>
+      <Button className="btn btn-danger my-2 my-sm-0" type="logout" onClick={handleLogOut}>Logout</Button>
     </Form>
                 
                 </Nav>

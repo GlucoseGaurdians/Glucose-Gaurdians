@@ -13,16 +13,8 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// if (process.env.NODE_ENV === 'develop') {
-//   console.log("this is going twice")
-//   let allowCrossDomain = function(req, res, next) {
-//     res.header('Access-Control-Allow-Origin', "*");
-//     res.header('Access-Control-Allow-Headers', "*");
-//     next();
-//   }
-//   app.use(allowCrossDomain);
-// }
 
+// dont use this in production at all it will allow anyone into our db
 let allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', "*");
   res.header('Access-Control-Allow-Headers', "*");
@@ -32,16 +24,19 @@ let allowCrossDomain = function(req, res, next) {
 
 app.use(allowCrossDomain);
 
-console.log("cosole is logging")
 
 // Define API routes here
 app.post('/api/bloodsugar', (req, res) => {
-  console.log('request succeded')
   console.log(req.body)
-  console.log(req.body.bloodSugar)
-  res.json(req.body)
+  res.send(req.body)
 })
 
+app.get('/api/bloodsugar', (req, res) => {
+  console.log("get route working")
+  res.json({
+    bloodSugars: [12,13,3]
+  })
+})
 
 // Send every other request to the React app
 // Define any API routes before this runs

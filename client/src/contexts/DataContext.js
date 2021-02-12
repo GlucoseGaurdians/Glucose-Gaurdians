@@ -8,7 +8,7 @@ export function UseData() {
 }
 
 export default function DataContext({children}) {
-    const [bloodSugars, setBloodSugars] = useState(false)
+    const [bloodSugars, setBloodSugars] = useState([])
 
 
     const values = {
