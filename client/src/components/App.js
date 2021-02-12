@@ -10,8 +10,10 @@ import BloodSugarPage from './BloodSugarPage'
 import BloodSugGraph from './bloodSugSubComps/BloodSugGraph'
 import Medication from './Medication'
 import Questions from './Questions'
-import Signup from './Signup'
-import Login from './Login'
+import Signup from './authComponents/Signup'
+import Login from './authComponents/Login'
+import ResetPassword from './authComponents/ResetPassword'
+import UpdateProfile from './authComponents/UpdateProfile'
 
 
 
@@ -26,6 +28,8 @@ function App() {
                     <Switch>
                         <Route exact path='/login' component={Login} />
                         <Route exact path='/signup' component={Signup} />
+                        <Route exact path='/update-profile' component={UpdateProfile} />
+                        <Route exact path='/reset-password' component={ResetPassword} />
                         <PrivateRoute exact path='/' component={Dashboard} />
                         <PrivateRoute exact path='/bloodsugar' component={BloodSugarPage} />
                         <PrivateRoute exact path='/bloodsugar/graph' component={BloodSugGraph} />
