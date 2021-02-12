@@ -5,10 +5,10 @@ import img from "../Images/logo.png";
 import { useAuth } from '../../contexts/AuthContext'
 
 export default function NavbarComponent() {
-    const them = useAuth()
+    const { logout } = useAuth()
 
     function handleLogOut() {
-        them.logout()
+        logout()
     }
 
     return (
