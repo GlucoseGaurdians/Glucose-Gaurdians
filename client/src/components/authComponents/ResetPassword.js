@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext'
 import { Link } from 'react-router-dom'
 
 export default function ResetPassword() {
@@ -16,7 +16,7 @@ export default function ResetPassword() {
         event.preventDefault()
 
         try {
-            setMess
+            setMessage('')
             setError('')
             setLoading(true)
             await resetPassword(emailRef.current.value)

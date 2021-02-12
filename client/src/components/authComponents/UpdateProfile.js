@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 
 export default function UpdateProfile() {
@@ -45,15 +45,6 @@ export default function UpdateProfile() {
         }).finally(() => {
             setLoading(false)
         })
-
-        try {
-            setError('')
-            setLoading(true)
-            await signup(emailRef.current.value, passwordRef.current.value )
-            history.push('/')
-        } catch {
-            setError('Failed to create an account')
-        }
 
         setLoading(false)
     }
