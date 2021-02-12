@@ -23,3 +23,4 @@ export default function DataContext({children}) {
         </DataInfoContext.Provider>
     )
 }
+
