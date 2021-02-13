@@ -4,6 +4,8 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require("mongoose")
 require('dotenv').config()
+const routes = require("./routes")
+const glucoseController = require("./controller/glucoseController")
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -22,20 +24,21 @@ if (process.env.NODE_ENV === "production") {
 // }
 
 // app.use(allowCrossDomain);
-
+// app.use(routes);
 
 // Define API routes here
-app.post('/api/bloodsugar', (req, res) => {
+app.post('/api/blood_sugar', (req, res) => {
   console.log(req.body)
+  glucoseController.create(req.body)
   res.send(req.body)
 })
 
-app.get('/api/bloodsugar', (req, res) => {
-  console.log("get route working")
-  res.json({
-    bloodSugars: [12,13,3]
-  })
-})
+// app.get('/api/blood_sugar', (req, res) => {
+//   console.log("get route working")
+//   // res.json({
+//   //   bloodSugars: [12,13,3]
+//   // })
+// })
 
 // Send every other request to the React app
 // Define any API routes before this runs
@@ -44,7 +47,7 @@ app.get("*", (req, res) => {
 });
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/blood_sugar", 
-{ useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
+{ useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
