@@ -7,6 +7,7 @@ import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
 import API from "./utils/API";
 
+
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
 export default function BloodSugarPage() {
 
@@ -36,17 +37,20 @@ export default function BloodSugarPage() {
         }
     }
     function addBloodSugar(event) {
+        console.log("Button Clicked")
+        console.log(glucose)
         event.preventDefault();
-        if (glucose) {
-          API.saveBloodSugar({
-            
-            glucose: glucose,
-            comment: comment
-          })
-            // .then(res => loadBloodSugar())
+        if (glucose)  {
+            API.saveBloodSugar({
+              
+              glucose: glucose,
+              comment: comment
+            })
+          
+            // .then(res => BloodSugarPage())
             .catch(err => console.log(err));
         }
-      };
+      }
 
     
 
