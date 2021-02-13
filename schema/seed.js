@@ -6,11 +6,13 @@ mongoose.connect("mongodb://localhost/blood_sugar", {
     useFindAndModify: false
 });
 
+
+
 let bloodSugarSeed = [
     {
         test: [
             {
-                day: new Date().setDate(new Date().getDate() - 9),
+                date: new Date().setDate(new Date().getDate() - 9),
                 glucose: 120,
                 comment: "After Dinner test"
 
@@ -20,18 +22,18 @@ let bloodSugarSeed = [
     {
         test: [
             {
-                day: new Date().setDate(new Date().getDate() - 8),
+                date: new Date().setDate(new Date().getDate() - 8),
                 glucose: 75,
                 comment: "Feeling light headed"
 
             }
         ]
     },
-    
+
     {
         test: [
             {
-                day: new Date().setDate(new Date().getDate() - 7),
+                date: new Date().setDate(new Date().getDate() - 7),
                 glucose: 155,
                 comment: "After breakfast test"
 
@@ -41,7 +43,7 @@ let bloodSugarSeed = [
     {
         test: [
             {
-                day: new Date().setDate(new Date().getDate() - 6),
+                date: new Date().setDate(new Date().getDate() - 6),
                 glucose: 200,
                 comment: "Had a big lunch, going to take insulin"
 
@@ -51,9 +53,9 @@ let bloodSugarSeed = [
     {
         test: [
             {
-                day: new Date().setDate(new Date().getDate() - 5),
+                date: new Date().setDate(new Date().getDate() - 5),
                 glucose: 100,
-                comment: "First test of the day"
+                comment: "First test of the date"
 
             }
         ]
@@ -61,7 +63,7 @@ let bloodSugarSeed = [
     {
         test: [
             {
-                day: new Date().setDate(new Date().getDate() - 4),
+                date: new Date().setDate(new Date().getDate() - 4),
                 glucose: 210,
                 comment: "Last test before bed"
 
@@ -71,7 +73,7 @@ let bloodSugarSeed = [
     {
         test: [
             {
-                day: new Date().setDate(new Date().getDate() - 3),
+                date: new Date().setDate(new Date().getDate() - 3),
                 glucose: 90,
                 comment: "Before lunch test"
 
@@ -81,7 +83,7 @@ let bloodSugarSeed = [
     {
         test: [
             {
-                day: new Date().setDate(new Date().getDate() - 2),
+                date: new Date().setDate(new Date().getDate() - 2),
                 glucose: 135,
                 comment: "Had a snack, took insulin"
 
@@ -90,8 +92,9 @@ let bloodSugarSeed = [
     }
 ];
 
-db.BloodSugar.deleteMany({})
-    .then(() => db.BloodSugar.collection.insertMany(bloodSugarSeed))
+db.BloodSugarTest
+    .remove({})
+    .then(() => db.BloodSugarTest.collection.insertMany(bloodSugarSeed))
     .then(data => {
         console.log(data.result.n + " records inserted!");
         process.exit(0);

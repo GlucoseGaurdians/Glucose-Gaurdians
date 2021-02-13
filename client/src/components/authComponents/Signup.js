@@ -1,21 +1,37 @@
 import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
-import LoginSignupContainer from './LoginSignupComp/LoginSignupContainer'
+import LoginSignupContainer from '../LoginSignupComp/LoginSignupContainer'
+import ThirdPartyBtns from './ThirdPartyBtns'
 
 export default function Signup() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const confirmPasswordRef = useRef()
-    const {signup, currentUser} = useAuth()
+    const {signup, currentUser, signInWithGoogle} = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
+    async function googleX(){
+        try {
+            setError('')
+            setLoading(true)
+            await signInWithGoogle()
+            history.push('/')
+        } catch {
+            setError('Failed to create an account')
+        }
+
+    }
 
     async function handleSubmit(event) {
         event.preventDefault()
+
+        if (passwordRef.current.value.length < 6) {
+            return setError('password must be at least 6 characters long')
+        }
 
         if (passwordRef.current.value !== confirmPasswordRef.current.value) {
             return setError('passwords do not match')
@@ -33,9 +49,12 @@ export default function Signup() {
         
         try {
             const id = currentUser.uid
-            fetch('api/',{
+
+            fetch('https://api.glucose-guardians.herokuapp.com/api/bloodsugar',{
             method: 'POST',
             body: id
+            }).then((res)=> {
+                console.log(res)
             })
             history.push('/')
         } catch {
@@ -65,6 +84,11 @@ export default function Signup() {
                         </Form.Group>
                         <Button disabled={loading} className="w-100" type="submit">Sign Up</Button>
                     </Form>
+                    <br></br>
+                    <div className="w-100 text-center mt-3">
+                        Or sign in with Google <Button onClick={googleX}>Sign In</Button>
+                    </div>
+                    <ThirdPartyBtns />
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">

@@ -1,23 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import DataRangeCard from './SharedComponents/DataRangeCard'
 import BottomMenuList from './SharedComponents/BottomMenuList'
 import { Container, Row, Col, Button, Form, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
+// import { UseData } from '../contexts/DataContext'
+import { addNewBloodSugar} from '../utils/API'
+import API from "./utils/API";
+
 
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
 export default function BloodSugarPage() {
 
-    // console.log(auth.currentUser.uid)
-
     const [show, setShow] = useState(false);
+
+    const bsRef = useRef()
+    const commentsRef = useRef()
+
+    // const data = UseData()
+    const { currentUser } = useAuth()
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     function addBloodSugar(e) {
         e.preventDefault()
+
+        const payload = {
+            bloodSugar: bsRef.current.value,
+            comment: commentsRef.current.value,
+            id: currentUser.uid
+        }
+
+        addNewBloodSugar(payload)
     }
 
     const stylings = {
@@ -29,6 +45,21 @@ export default function BloodSugarPage() {
             width: '80vw'
         }
     }
+    // function addBloodSugar(event) {
+    //     console.log("Button Clicked")
+    //     console.log(glucose)
+    //     event.preventDefault();
+    //     if (glucose)  {
+    //         API.saveBloodSugar({
+              
+    //           glucose: glucose,
+    //           comment: comment
+    //         })
+          
+    //         // .then(res => BloodSugarPage())
+    //         .catch(err => console.log(err));
+    //     }
+    //   }
 
     
 
@@ -92,11 +123,11 @@ export default function BloodSugarPage() {
                     <Form>
                         <Form.Group>
                             <Form.Label>Blood Sugar Reading</Form.Label>
-                            <Form.Control type='text' placeholder='Blood Sugar' />
+                            <Form.Control type='text' placeholder='Blood Sugar' ref={bsRef} />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Comments</Form.Label>
-                            <Form.Control type='text' placeholder='Blood Sugar' maxLength='180'/>
+                            <Form.Control type='text' placeholder='Comments' maxLength='180'ref={commentsRef} />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
