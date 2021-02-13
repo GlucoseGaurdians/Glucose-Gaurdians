@@ -5,8 +5,10 @@ import { Container, Row, Col, Button, Form, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
-import { UseData } from '../contexts/DataContext'
+// import { UseData } from '../contexts/DataContext'
 import { addNewBloodSugar} from '../utils/API'
+import API from "./utils/API";
+
 
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
 export default function BloodSugarPage() {
@@ -16,7 +18,7 @@ export default function BloodSugarPage() {
     const bsRef = useRef()
     const commentsRef = useRef()
 
-    const data = UseData()
+    // const data = UseData()
     const { currentUser } = useAuth()
 
     const handleClose = () => setShow(false);
@@ -43,6 +45,21 @@ export default function BloodSugarPage() {
             width: '80vw'
         }
     }
+    function addBloodSugar(event) {
+        console.log("Button Clicked")
+        console.log(glucose)
+        event.preventDefault();
+        if (glucose)  {
+            API.saveBloodSugar({
+              
+              glucose: glucose,
+              comment: comment
+            })
+          
+            // .then(res => BloodSugarPage())
+            .catch(err => console.log(err));
+        }
+      }
 
     
 
@@ -110,7 +127,7 @@ export default function BloodSugarPage() {
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Comments</Form.Label>
-                            <Form.Control type='text' placeholder='Blood Sugar' maxLength='180'ref={commentsRef} />
+                            <Form.Control type='text' placeholder='Comments' maxLength='180'ref={commentsRef} />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
