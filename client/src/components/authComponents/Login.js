@@ -63,8 +63,8 @@ export default function Login() {
                         <Link to="/reset-password">Forgot Password?</Link>
                     </div>
                     <br></br>
-                    <div className="w-100 text-center mt-3">
-                        Or sign in with Google <Button onClick={googleX}>Sign In</Button>
+                    <div className="g-signin2">
+                        Or sign in with Google <Button onClick={googleX}></Button>
                     </div>
                 </Card.Body>
             </Card>
