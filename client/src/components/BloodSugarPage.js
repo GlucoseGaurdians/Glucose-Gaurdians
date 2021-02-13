@@ -5,6 +5,8 @@ import { Container, Row, Col, Button, Form, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
+import API from "./utils/API";
+
 
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
 export default function BloodSugarPage() {
@@ -15,14 +17,15 @@ export default function BloodSugarPage() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-    function addBloodSugar(e) {
-        e.preventDefault()
-        fetch("",{
-          method: "POST",
-          body: "Hello"
-        })
-    }
+    let glucose ="";
+    let comment ="";
+    // function addBloodSugar(e) {
+    //     e.preventDefault()
+    //     fetch("",{
+    //       method: "POST",
+    //       body: "Hello"
+    //     })
+    // }
 
     const stylings = {
         mainBtnDiv: {
@@ -33,6 +36,21 @@ export default function BloodSugarPage() {
             width: '80vw'
         }
     }
+    function addBloodSugar(event) {
+        console.log("Button Clicked")
+        console.log(glucose)
+        event.preventDefault();
+        if (glucose)  {
+            API.saveBloodSugar({
+              
+              glucose: glucose,
+              comment: comment
+            })
+          
+            // .then(res => BloodSugarPage())
+            .catch(err => console.log(err));
+        }
+      }
 
     
 
@@ -96,11 +114,11 @@ export default function BloodSugarPage() {
                     <Form>
                         <Form.Group>
                             <Form.Label>Blood Sugar Reading</Form.Label>
-                            <Form.Control type='text' placeholder='Blood Sugar' />
+                            <Form.Control type='text' name='glucose' placeholder='Blood Sugar' />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Comments</Form.Label>
-                            <Form.Control type='text' placeholder='Blood Sugar' maxLength='180'/>
+                            <Form.Control type='text' name='comment' placeholder='Comment about blood sugar test' maxLength='180'/>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
