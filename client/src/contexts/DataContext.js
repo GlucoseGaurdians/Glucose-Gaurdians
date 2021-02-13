@@ -1,4 +1,5 @@
 import React, {useContext, useState, useEffect } from 'react'
+// import API from '../utils/API'
 
 const DataInfoContext = React.createContext()
 
@@ -7,18 +8,20 @@ export function UseData() {
 }
 
 export default function DataContext({children}) {
-    const [bloodSugars, setBloodSugars] = useState(false)
-
+    // set any data state you'd like and export it
+    const [bloodSugars, setBloodSugars] = useState([])
 
 
     const values = {
         bloodSugars,
+        setBloodSugars
 
     }
 
     return (
-        <DataInfoContext.Provider value={bloodSugars}>
+        <DataInfoContext.Provider value={values}>
             {children}
         </DataInfoContext.Provider>
     )
 }
+
