@@ -1,4 +1,4 @@
-# Create React Express App
+# The Glucose Guardian Application
 
 ## About This Boilerplate
 

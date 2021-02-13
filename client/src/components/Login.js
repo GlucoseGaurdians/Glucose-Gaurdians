@@ -32,6 +32,10 @@ export default function Login() {
     }
 
     return (
+        <div className="container">
+              <div className="row py-5 mt-4 align-items-center">
+                 
+    
         <LoginSignupContainer>
             <Card>
                 <Card.Body>
@@ -54,5 +58,7 @@ export default function Login() {
                 Need an account? <Link to='/signup'>Sign Up Here</Link>
             </div>
         </LoginSignupContainer>
+        </div>
+        </div>
     )
 }
