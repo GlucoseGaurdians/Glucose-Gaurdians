@@ -3,6 +3,7 @@ import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import LoginSignupContainer from '../LoginSignupComp/LoginSignupContainer'
+import ThirdPartyBtns from './ThirdPartyBtns'
 
 export default function Signup() {
     const emailRef = useRef()
@@ -87,6 +88,7 @@ export default function Signup() {
                     <div className="w-100 text-center mt-3">
                         Or sign in with Google <Button onClick={googleX}>Sign In</Button>
                     </div>
+                    <ThirdPartyBtns />
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">

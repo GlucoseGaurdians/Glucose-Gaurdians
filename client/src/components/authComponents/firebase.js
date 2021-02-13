@@ -10,6 +10,15 @@ const app = firebase.initializeApp({
     appId: process.env.REACT_APP_appId
 })
 
+export const uiConfig = {
+    signInFlow: 'popup',
+    signInSuccessUrl: '/',
+    signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.FacebookAuthProvider.PROVIDER_ID
+    ]
+}
+
 export const auth = app.auth()
 export const googleProvider = new firebase.auth.GoogleAuthProvider()
 export default app
