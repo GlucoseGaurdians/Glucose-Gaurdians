@@ -15,13 +15,13 @@ if (process.env.NODE_ENV === "production") {
 
 
 // dont use this in production at all it will allow anyone into our db
-let allowCrossDomain = function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', "*");
-  res.header('Access-Control-Allow-Headers', "*");
-  next();
-}
+// let allowCrossDomain = function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', "*");
+//   res.header('Access-Control-Allow-Headers', "*");
+//   next();
+// }
 
-app.use(allowCrossDomain);
+// app.use(allowCrossDomain);
 
 
 // Define API routes here
