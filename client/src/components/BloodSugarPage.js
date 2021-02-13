@@ -45,21 +45,21 @@ export default function BloodSugarPage() {
             width: '80vw'
         }
     }
-    function addBloodSugar(event) {
-        console.log("Button Clicked")
-        console.log(glucose)
-        event.preventDefault();
-        if (glucose)  {
-            API.saveBloodSugar({
+    // function addBloodSugar(event) {
+    //     console.log("Button Clicked")
+    //     console.log(glucose)
+    //     event.preventDefault();
+    //     if (glucose)  {
+    //         API.saveBloodSugar({
               
-              glucose: glucose,
-              comment: comment
-            })
+    //           glucose: glucose,
+    //           comment: comment
+    //         })
           
-            // .then(res => BloodSugarPage())
-            .catch(err => console.log(err));
-        }
-      }
+    //         // .then(res => BloodSugarPage())
+    //         .catch(err => console.log(err));
+    //     }
+    //   }
 
     
 
