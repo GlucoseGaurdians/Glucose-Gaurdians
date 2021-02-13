@@ -3,6 +3,7 @@ import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import LoginSignupContainer from './LoginSignupComp/LoginSignupContainer'
+import fullLoginpage from './LoginSignupComp/fullLoginpage'
 
 export default function Login() {
     const emailRef = useRef()
@@ -32,6 +33,7 @@ export default function Login() {
     }
 
     return (
+        <fullLoginpage>
         <LoginSignupContainer>
             <Card>
                 <Card.Body>
@@ -54,5 +56,6 @@ export default function Login() {
                 Need an account? <Link to='/signup'>Sign Up Here</Link>
             </div>
         </LoginSignupContainer>
+        </fullLoginpage>
     )
 }
