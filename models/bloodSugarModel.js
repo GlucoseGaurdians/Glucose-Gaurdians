@@ -11,7 +11,8 @@ const BloodSugarSchema = new Schema({
             },
             glucose: {
                 type: Number,
-                required: "Blood sugar reading is Required"
+                // required: "Blood sugar reading is Required"
+                required: true
             },
 
             comment: {

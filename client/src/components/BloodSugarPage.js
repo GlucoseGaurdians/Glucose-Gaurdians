@@ -26,11 +26,18 @@ export default function BloodSugarPage() {
 
     function addBloodSugar(e) {
         e.preventDefault()
+        const bs = parseInt(bsRef.current.value)
 
+        if(bs === NaN) {
+            return console.log("blood sugar must be a number")
+        }
 
         const payload = {
-            bloodSugar: bsRef.current.value,
-            comment: commentsRef.current.value,
+            test: [{
+                glucose: bs,
+                comment: commentsRef.current.value
+
+            }]
             // id: currentUser.uid
         }
 

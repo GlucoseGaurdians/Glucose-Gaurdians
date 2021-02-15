@@ -17,6 +17,7 @@ module.exports = {
   },
   create: function(req, res) {
     console.log("server has recived post request")
+    console.log(req.body)
     db.BloodSugarTest
       .create(req.body)
       .then(dbModel => res.json(dbModel))
