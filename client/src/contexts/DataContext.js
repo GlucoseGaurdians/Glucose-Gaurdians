@@ -8,12 +8,15 @@ export function UseData() {
 
 export default function DataContext({children}) {
     // set any data state you'd like and export it
-    const [bloodSugars, setBloodSugars] = useState([])
+    const [testsArr, setTestsArr] = useState([])
+    const [medsArr, setMedsArr] = useState([])
+    const [fname, setFname] = useState('')
+    const [lname, setLname] = useState('')
 
 
     const values = {
-        bloodSugars,
-        setBloodSugars
+        testsArr,
+        setTestsArr
 
     }
 

@@ -25,3 +25,32 @@ const BloodSugarTest = mongoose.model("BloodSugarTest", BloodSugarSchema);
 
 module.exports = BloodSugarTest;
 
+
+const UsersSchema = new Schema({
+    fname: String,
+    lname: String,
+    email: String,
+    tests: [{
+        date: {
+            type: Date,
+            default: Date.now
+        },
+        glucose: {
+            type: Number,
+        },
+        comment: {
+            type: String,
+        }
+    }],
+    meds: [{
+        name: String,
+        doses: [{
+            date: {
+                type: Date,
+                default: Date.now
+            },
+            amount: String
+        }]
+    }]
+
+})

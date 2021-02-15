@@ -24,7 +24,6 @@ export default function BloodSugarPage() {
     const stylings = {
         mainBtnDiv: {
             backgroundColor: 'blue',
-
         },
         btn: {
             width: '80vw'
