@@ -14,31 +14,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-
-// // dont use this in production at all it will allow anyone into our db
-// let allowCrossDomain = function(req, res, next) {
-//   res.header('Access-Control-Allow-Origin', "*");
-//   res.header('Access-Control-Allow-Headers', "*");
-//   next();
-// }
-
-
 app.use(routes);
-// app.use(allowCrossDomain);
-
-
-// Define API routes here
-// app.post('/api/bloodsugar', (req, res) => {
-//   console.log(req.body)
-//   res.send(req.body)
-// })
-
-// app.get('/api/bloodsugar', (req, res) => {
-//   console.log("get route working")
-//   res.json({
-//     bloodSugars: [12,13,3]
-//   })
-// })
 
 // Send every other request to the React app
 // Define any API routes before this runs
@@ -52,6 +28,5 @@ mongoose.connect(process.env.MONGODB_URI ,
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
-
 
 // || "mongodb://localhost/blood_sugar"
