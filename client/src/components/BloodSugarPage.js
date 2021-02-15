@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react'
 import DataRangeCard from './SharedComponents/DataRangeCard'
 import BottomMenuList from './SharedComponents/BottomMenuList'
-import { Container, Row, Col, Button, Form, Modal } from 'react-bootstrap'
+import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
 // import { UseData } from '../contexts/DataContext'
-// import { addNewBloodSugar} from '../utils/API'
+
 import API from "./utils/API";
 
 
@@ -14,22 +14,34 @@ import API from "./utils/API";
 export default function BloodSugarPage() {
 
     const [show, setShow] = useState(false);
+    const [error, setError] = useState('')
 
     const bsRef = useRef()
     const commentsRef = useRef()
-
     // const data = UseData()
     const { currentUser } = useAuth()
+
+    const stylings = {
+        mainBtnDiv: {
+            backgroundColor: 'blue',
+
+        },
+        btn: {
+            width: '80vw'
+        }
+    }  
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     function addBloodSugar(e) {
         e.preventDefault()
+
+        setError('')
         const bs = parseInt(bsRef.current.value)
 
-        if(bs === NaN) {
-            return console.log("blood sugar must be a number")
+        if( isNaN(bs) ) {
+            return setError("blood sugar must be a number")
         }
 
         const payload = {
@@ -45,32 +57,7 @@ export default function BloodSugarPage() {
         API.saveBloodSugar(payload)
     }
 
-    const stylings = {
-        mainBtnDiv: {
-            backgroundColor: 'blue',
-
-        },
-        btn: {
-            width: '80vw'
-        }
-    }
-    // function addBloodSugar(event) {
-    //     console.log("Button Clicked")
-    //     console.log(glucose)
-    //     event.preventDefault();
-    //     if (glucose)  {
-    //         API.saveBloodSugar({
-              
-    //           glucose: glucose,
-    //           comment: comment
-    //         })
-          
-    //         // .then(res => BloodSugarPage())
-    //         .catch(err => console.log(err));
-    //     }
-    //   }
-
-    
+ 
 
 
     return (
@@ -126,8 +113,9 @@ export default function BloodSugarPage() {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>Add Blood Sugar Reading</Modal.Title>
                 </Modal.Header>
+                {error && <Alert variant="danger">{error}</Alert>}
                 <Modal.Body>
                     <Form>
                         <Form.Group>
