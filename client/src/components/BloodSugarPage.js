@@ -38,8 +38,12 @@ export default function BloodSugarPage() {
         e.preventDefault()
 
         setError('')
-        const bs = parseInt(bsRef.current.value)
 
+        if(!(bsRef.current.value)){
+            return setError("must input blood sugar reading")
+        }
+
+        const bs = parseInt(bsRef.current.value)
         if( isNaN(bs) ) {
             return setError("blood sugar must be a number")
         }
