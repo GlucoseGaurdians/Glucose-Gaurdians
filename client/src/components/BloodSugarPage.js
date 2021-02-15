@@ -14,7 +14,7 @@ import API from "./utils/API";
 export default function BloodSugarPage() {
 
     const [show, setShow] = useState(false);
-    const [error, setError] = useState('')
+    const [modalError, setModalError] = useState('')
 
     const bsRef = useRef()
     const commentsRef = useRef()
@@ -31,21 +31,26 @@ export default function BloodSugarPage() {
         }
     }  
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        bsRef.current.value = ''
+        commentsRef.current.value = ''
+        setModalError('')
+        setShow(false)
+    }
     const handleShow = () => setShow(true);
 
     function addBloodSugar(e) {
         e.preventDefault()
 
-        setError('')
+        setModalError('')
 
         if(!(bsRef.current.value)){
-            return setError("must input blood sugar reading")
+            return setModalError("Must input blood sugar reading")
         }
 
         const bs = parseInt(bsRef.current.value)
         if( isNaN(bs) ) {
-            return setError("blood sugar must be a number")
+            return setModalError("Blood sugar must be a number")
         }
 
         const payload = {
@@ -59,6 +64,11 @@ export default function BloodSugarPage() {
 
         console.log(payload)
         API.saveBloodSugar(payload)
+        .then(handleClose)
+        .catch(err => {
+            console.log(err)
+            setModalError("Unable to save blood sugar")
+        })
     }
 
  
@@ -119,7 +129,7 @@ export default function BloodSugarPage() {
                 <Modal.Header closeButton>
                     <Modal.Title>Add Blood Sugar Reading</Modal.Title>
                 </Modal.Header>
-                {error && <Alert variant="danger">{error}</Alert>}
+                {modalError && <Alert variant="danger">{modalError}</Alert>}
                 <Modal.Body>
                     <Form>
                         <Form.Group>
@@ -136,7 +146,7 @@ export default function BloodSugarPage() {
                     <Button variant="secondary" onClick={handleClose}>
                     Close
                     </Button>
-                    <Button variant="primary" onClick={addBloodSugar}>Understood</Button>
+                    <Button variant="primary" onClick={addBloodSugar}>Enter</Button>
                 </Modal.Footer>
             </Modal>
 
