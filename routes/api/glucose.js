@@ -11,10 +11,10 @@ router
   .route("/:id")
   .get(glucoseController.findById)
   .put(glucoseController.update)
-  .delete(glucoseController.remove);
+  // .delete(glucoseController.remove);
 
-router.route("/BloodSugarPage")
+router.route("/bloodsugarpage")
 .get(glucoseController.findAll)
-console.log(id)
+// console.log(id)
 
 module.exports = router;

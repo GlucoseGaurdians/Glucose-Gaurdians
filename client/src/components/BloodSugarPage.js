@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
 // import { UseData } from '../contexts/DataContext'
-import { addNewBloodSugar} from '../utils/API'
+// import { addNewBloodSugar} from '../utils/API'
 import API from "./utils/API";
 
 
@@ -27,13 +27,15 @@ export default function BloodSugarPage() {
     function addBloodSugar(e) {
         e.preventDefault()
 
+
         const payload = {
             bloodSugar: bsRef.current.value,
             comment: commentsRef.current.value,
-            id: currentUser.uid
+            // id: currentUser.uid
         }
 
-        addNewBloodSugar(payload)
+        console.log(payload)
+        API.saveBloodSugar(payload)
     }
 
     const stylings = {
