@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const BloodSugarSchema = new Schema({
+const bloodSugarSchema = new Schema({
 
     test: [
         {
@@ -20,7 +20,7 @@ const BloodSugarSchema = new Schema({
         }]
 });
 
-const BloodSugarTest = mongoose.model("BloodSugarTest", BloodSugarSchema);
+const BloodSugarTest = mongoose.model("BloodSugarTest", bloodSugarSchema);
 
 module.exports = BloodSugarTest;
 

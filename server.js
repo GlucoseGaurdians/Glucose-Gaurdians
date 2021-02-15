@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === "production") {
 // Define API routes here
 app.post('/api/blood_sugar', (req, res) => {
   console.log(req.body)
-  glucoseController.create(req.body)
+  // glucoseController.create(req.body)
   res.send(req.body)
 })
 

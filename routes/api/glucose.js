@@ -15,6 +15,7 @@ router.route("/")
 
 router.route("/BloodSugarPage")
 .get(glucoseController.findAll)
+.post(glucoseController.create);
 // console.log(id)
 
 module.exports = router;
