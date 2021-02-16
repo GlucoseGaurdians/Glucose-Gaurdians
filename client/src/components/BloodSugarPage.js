@@ -1,28 +1,41 @@
 import React, { useState, useRef } from 'react'
 import DataRangeCard from './SharedComponents/DataRangeCard'
 import BottomMenuList from './SharedComponents/BottomMenuList'
-import { Container, Row, Col, Button, Form, Modal } from 'react-bootstrap'
+import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
-import { UseData } from '../contexts/DataContext'
-// import { addNewBloodSugar } from '../utils/API'
-import API from './utils/API'
-// import API from "./utils/API";
+// import { UseData } from '../contexts/DataContext'
+
+import API from "../utils/API";
 
 
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
 export default function BloodSugarPage() {
 
     const [show, setShow] = useState(false);
+    const [modalError, setModalError] = useState('')
 
     const bsRef = useRef()
     const commentsRef = useRef()
-
-    const data = UseData()
+    // const data = UseData()
     const { currentUser } = useAuth()
 
-    const handleClose = () => setShow(false);
+    const stylings = {
+        mainBtnDiv: {
+            backgroundColor: 'blue',
+        },
+        btn: {
+            width: '80vw'
+        }
+    }  
+
+    const handleClose = () => {
+        bsRef.current.value = ''
+        commentsRef.current.value = ''
+        setModalError('')
+        setShow(false)
+    }
     const handleShow = () => setShow(true);
 
     function addBloodSugar(e) {
@@ -41,35 +54,36 @@ export default function BloodSugarPage() {
                 console.log(bsRef)
                 console.log(commentsRef)
 
+        setModalError('')
+
+        if(!(bsRef.current.value)){
+            return setModalError("Must input blood sugar reading")
         }
+
+        const bs = parseInt(bsRef.current.value)
+        if( isNaN(bs) ) {
+            return setModalError("Blood sugar must be a number")
+        }
+
+        const payload = {
+            test: [{
+                glucose: bs,
+                comment: commentsRef.current.value
+
+            }]
+            // id: currentUser.uid
+        }
+
+        console.log(payload)
+        API.saveBloodSugar(payload)
+        .then(handleClose)
+        .catch(err => {
+            console.log(err)
+            setModalError("Unable to save blood sugar")
+        })
     }
 
-    const stylings = {
-        mainBtnDiv: {
-            backgroundColor: 'blue',
-
-        },
-        btn: {
-            width: '80vw'
-        }
-    }
-    // function addBloodSugar(event) {
-    //     console.log("Button Clicked")
-    //     console.log(glucose)
-    //     event.preventDefault();
-    //     if (glucose)  {
-    //         API.saveBloodSugar({
-
-    //           glucose: glucose,
-    //           comment: comment
-    //         })
-
-    //         // .then(res => BloodSugarPage())
-    //         .catch(err => console.log(err));
-    //     }
-    //   }
-
-
+ 
 
 
     return (
@@ -125,8 +139,9 @@ export default function BloodSugarPage() {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>Add Blood Sugar Reading</Modal.Title>
                 </Modal.Header>
+                {modalError && <Alert variant="danger">{modalError}</Alert>}
                 <Modal.Body>
                     <Form>
                         <Form.Group>
@@ -143,7 +158,7 @@ export default function BloodSugarPage() {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={addBloodSugar}>Understood</Button>
+                    <Button variant="primary" onClick={addBloodSugar}>Enter</Button>
                 </Modal.Footer>
             </Modal>
 

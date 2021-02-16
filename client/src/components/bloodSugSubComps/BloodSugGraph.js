@@ -11,8 +11,10 @@ export default function BloodSugGraph() {
     return (
         <div>
             <Navbar />
+            <Container>
             <LineChart/>
             <BottomMenuList/>
+            </Container>
         </div>
     )
 }
