@@ -14,6 +14,7 @@ import Signup from './authComponents/Signup'
 import Login from './authComponents/Login'
 import ResetPassword from './authComponents/ResetPassword'
 import UpdateProfile from './authComponents/UpdateProfile'
+import MedsChart from "./medsSubComps/MedsChart"
 
 
 
@@ -35,6 +36,7 @@ function App() {
                         <PrivateRoute exact path='/bloodsugar/graph' component={BloodSugGraph} />
                         <PrivateRoute exact path='/medication' component={Medication} />
                         <PrivateRoute exact path='/questions' component={Questions} />
+                        <PrivateRoute exact path='/medschart' component={MedsChart} />
                     </Switch>
                 </Router>
         </DataContext>
