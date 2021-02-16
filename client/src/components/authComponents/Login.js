@@ -3,6 +3,7 @@ import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import LoginSignupContainer from '../LoginSignupComp/LoginSignupContainer'
+import ThirdPartyBtns from './ThirdPartyBtns'
 
 export default function Login() {
     const emailRef = useRef()
@@ -43,10 +44,6 @@ export default function Login() {
     }
 
     return (
-        <div className="container">
-              <div className="row py-5 mt-4 align-items-center">
-                 
-    
         <LoginSignupContainer>
             <Card>
                 <Card.Body>
@@ -67,16 +64,12 @@ export default function Login() {
                         <Link to="/reset-password">Forgot Password?</Link>
                     </div>
                     <br></br>
-                    <div className="g-signin2">
-                        Or sign in with Google <Button onClick={googleX}></Button>
-                    </div>
+                    <ThirdPartyBtns />
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">
                 Need an account? <Link to='/signup'>Sign Up Here</Link>
             </div>
         </LoginSignupContainer>
-        </div>
-        </div>
     )
 }

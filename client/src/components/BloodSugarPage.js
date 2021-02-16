@@ -7,7 +7,7 @@ import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
 // import { UseData } from '../contexts/DataContext'
 
-import API from "./utils/API";
+import API from "../utils/API";
 
 
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
