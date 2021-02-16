@@ -36,12 +36,19 @@ module.exports = {
   },
   create: function(req, res) {
     console.log("server has recived post request")
-    console.log(sample)
     console.log(req.body)
-    db
-      .create(sample)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+
+    db.findByIdAndUpdate(
+      req.body.id,
+      { $push: { tests: req.body.test } }
+    ).then(info => {
+      res.json(info)
+    }).catch(err => {
+      console.log(err)
+    })
+      // .create(req.body)
+      // .then(dbModel => res.json(dbModel))
+      // .catch(err => res.status(422).json(err));
   },
 
   // update: function(req, res) {

@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const glucoseRoutes = require("./types/glucose");
 const Users = require("../../models/Users");
-const { json } = require("express");
 
 // Bloodsugar routes
 router.use("/bloodsugar", glucoseRoutes);

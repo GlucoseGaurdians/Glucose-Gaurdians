@@ -16,7 +16,13 @@ export default function DataContext({children}) {
 
     const values = {
         testsArr,
-        setTestsArr
+        setTestsArr,
+        medsArr,
+        setMedsArr,
+        fname,
+        setFname,
+        lname,
+        setLname
 
     }
 

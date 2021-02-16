@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Container, Row, Col } from 'react-bootstrap'
-import { Link, useHistory } from 'react-router-dom'
 import NavbarComponent from './SharedComponents/Navbar'
 import DataRangeCard from './SharedComponents/DataRangeCard'
 import BottomMenuList from './SharedComponents/BottomMenuList'
@@ -10,23 +9,42 @@ import API from '../utils/API'
 
 
 export default function Dashboard() {
-    const history = useHistory()
+
     const [error, setError] = useState("")
     const { currentUser } = useAuth()
-    const { bloodSugars, setBloodSugars } = UseData()
+    const {
+        testsArr,
+        setTestsArr,
+        medsArr,
+        setMedsArr,
+        fname,
+        setFname,
+        lname,
+        setLname
+    } = UseData()
 
-    // this doesn't work yet
     useEffect(()=> {
-        let person
+        
         const id = currentUser.uid
         const email = currentUser.email
-        API.userLookUp(id).then((res) => {
-            person = res.data
-            console.log(person)
-            if(!person) {
+        API.userLookUp(id).then(({data}) => {
+            
+            if(!data) {
                 console.log("person not in data base")
                 API.newUserCreate(id, email)
+                .then(() => {return setError('')})
+                .catch(err => {
+                    console.log(err)
+                    setError('Unable to create new account')
+                })
             }
+
+            setTestsArr(data.tests)
+            setMedsArr(data.meds)
+            setLname(data.lname)
+            setFname(data.fname)
+
+
         })
 
 

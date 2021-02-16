@@ -23,7 +23,7 @@ export default {
   },
   
   // Saves a blood sugar to the database
-  saveBloodSugar: function(bloodSugarData) {
-    return axios.post("/api/bloodsugar/", bloodSugarData);
+  saveBloodSugar: function(bloodSugarData, id) {
+    return axios.post("/api/bloodsugar/", {test: bloodSugarData, id: id});
   }
 };

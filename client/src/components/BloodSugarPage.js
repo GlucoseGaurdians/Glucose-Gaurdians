@@ -3,7 +3,7 @@ import DataRangeCard from './SharedComponents/DataRangeCard'
 import BottomMenuList from './SharedComponents/BottomMenuList'
 import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-// import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
 import { UseData } from '../contexts/DataContext'
 import API from "../utils/API";
@@ -18,6 +18,7 @@ export default function BloodSugarPage() {
     const bsRef = useRef()
     const commentsRef = useRef()
     const data = UseData()
+    const { currentUser } = useAuth()
 
     const stylings = {
         mainBtnDiv: {
@@ -56,15 +57,13 @@ export default function BloodSugarPage() {
         }
 
         console.log(payload)
-        API.saveBloodSugar(payload)
+        API.saveBloodSugar(payload, currentUser.uid)
         .then(handleClose)
         .catch(err => {
             console.log(err)
             setModalError("Unable to save blood sugar")
         })
     }
-
- 
 
 
     return (
