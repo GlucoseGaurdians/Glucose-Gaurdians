@@ -4,24 +4,25 @@ import { Container, Row, Col } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
 import DataRangeCard from './SharedComponents/DataRangeCard'
 import BottomMenuList from './SharedComponents/BottomMenuList'
-import { UseData } from '../contexts/DataContext'
+// import { UseData } from '../contexts/DataContext'
 import API from '../utils/API'
+import Local from "../utils/localStorage"
 
 
 export default function Dashboard() {
 
     const [error, setError] = useState("")
     const { currentUser } = useAuth()
-    const {
-        testsArr,
-        setTestsArr,
-        medsArr,
-        setMedsArr,
-        fname,
-        setFname,
-        lname,
-        setLname
-    } = UseData()
+    // const {
+    //     testsArr,
+    //     setTestsArr,
+    //     medsArr,
+    //     setMedsArr,
+    //     fname,
+    //     setFname,
+    //     lname,
+    //     setLname
+    // } = UseData()
 
     useEffect(()=> {
         
@@ -39,10 +40,10 @@ export default function Dashboard() {
                 })
             }
 
-            setTestsArr(data.tests)
-            setMedsArr(data.meds)
-            setLname(data.lname)
-            setFname(data.fname)
+            Local.setTestsArr(data.tests)
+            // setMedsArr(data.meds)
+            // setLname(data.lname)
+            // setFname(data.fname)
 
 
         })
