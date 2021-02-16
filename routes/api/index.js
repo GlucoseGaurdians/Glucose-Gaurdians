@@ -11,7 +11,7 @@ router.route("/user")
         (req, res) => {
             console.log(req.body)
             console.log(req.body.id)
-            Users.create({_id: req.body})
+            Users.create(req.body)
                 .then(res => console.log(res))
                 .catch(err => console.log(err))
 

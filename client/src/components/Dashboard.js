@@ -19,12 +19,15 @@ export default function Dashboard() {
     useEffect(()=> {
         let person
         const id = currentUser.uid
-        API.userLookUp(id).then((res) => person = res)
-        // console.log(user)
-        if(!person) {
-            console.log("person not in data base")
-            API.newUserCreate(id)
-        }
+        const email = currentUser.email
+        API.userLookUp(id).then((res) => {
+            person = res.data
+            console.log(person)
+            if(!person) {
+                console.log("person not in data base")
+                API.newUserCreate(id, email)
+            }
+        })
 
 
     },[currentUser])

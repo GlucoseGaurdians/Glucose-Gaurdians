@@ -6,9 +6,10 @@ export default {
     return axios.get("/api/user/"+id)
   },
 
-  newUserCreate: function(id) {
+  newUserCreate: function(id, email) {
     return axios.post("/api/user", {
-      _id: id
+      _id: id,
+      email: email
     })
   },
 
