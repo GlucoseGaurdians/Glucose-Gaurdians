@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button, Navbar, Nav, NavDropdown, Form } from 'react-bootstrap'
-import img from "../Images/logo.png";
 import { useAuth } from '../../contexts/AuthContext'
 
 export default function NavbarComponent() {
@@ -13,7 +12,7 @@ export default function NavbarComponent() {
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Navbar.Brand href="/">
-                <img src={img}
+                <img src="./Images/logo.png"
                  alt ="logo"
                     width="40"
                     height="40"

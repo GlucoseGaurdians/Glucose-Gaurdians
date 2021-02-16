@@ -24,6 +24,19 @@ export default function Medication() {
                             <Card.Body>
                                 <Link to='/addnewmeds'>
                                     <Button style={styles.button}>
+                                        Log Medication Dose
+                                    </Button>
+                                </Link>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+                <Row style={styles.row}>
+                    <Col>
+                        <Card>
+                            <Card.Body>
+                                <Link to='/addnewmeds'>
+                                    <Button style={styles.button}>
                                         Add new medication
                                     </Button>
                                 </Link>

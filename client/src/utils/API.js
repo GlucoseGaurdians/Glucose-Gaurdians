@@ -1,45 +1,17 @@
-import { UseData } from '../contexts/DataContext'
+import axios from "axios";
 
-// const data = UseData()
-
-// adds a new blood sugar
-// ? we are sending a test object 
-export function addNewBloodSugar(test) {
-
-    fetch('http://localhost:3001/api/bloodsugar',{
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-        body: JSON.stringify(test)
-    }).then((res)=> res.json()).then((theData) => {
-        const { bloodSugars, setBloodSugars } = UseData()
-        setBloodSugars([...bloodSugars, theData])
-    })
-
-}
-
-export function addNewMedication(med) {
-
-    fetch('/api/addmed', {
-        method: "POST",
-        body: med
-    }).then((res)=> {
-        console.log(res)
-    })
-}
-
-
-// thi will get alll the user's blood sugars in an object
-
-export function getBloodSugar(id) {
-    fetch("http://localhost:3001/api/bloodsugar/"+id)
-    .then(res => res.json())
-    .then((data) => {
-        const { setBloodSugars } = UseData()
-        setBloodSugars(data)
-    })
-    .catch(err => console.log(err))
-}
-
+export default {
+  // Gets all blood sugars
+  getBloodSugars: function() {
+    return axios.get("/api/bloodsugar");
+  },
+  // Gets the blood sugar with the given id
+  getBloodSugar: function(id) {
+    return axios.get("/api/blood_sugar/" + id);
+  },
+  
+  // Saves a blood sugar to the database
+  saveBloodSugar: function(bloodSugarData) {
+    return axios.post("/api/bloodsugar/", bloodSugarData);
+  }
+};
