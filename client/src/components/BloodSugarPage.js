@@ -53,12 +53,8 @@ export default function BloodSugarPage() {
         }
 
         const payload = {
-            test: [{
-                glucose: bs,
-                comment: commentsRef.current.value
-
-            }]
-            // id: currentUser.uid
+            glucose: bs,
+            comment: commentsRef.current.value
         }
 
         console.log(payload)

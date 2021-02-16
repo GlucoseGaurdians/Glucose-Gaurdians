@@ -1,35 +1,55 @@
-const db = require("../models/index");
+const db = require("../models/Users");
+
+
+// const sample = {
+//   _id: 'test1',
+//   fname: 'John',
+//   lname: 'Smith',
+//   email: 'john@john.com',
+//   tests: [{
+//       glucose: 120,
+//       comment: 'Hello world'
+//   }],
+//   meds: [{
+//       name: 'insulin',
+//       type: 'prescribed',
+//       doses: [{
+//           amount: '50mg'
+//       }]
+//   }]
+// }
 
 // Defining methods for the booksController
 module.exports = {
   findAll: function(req, res) {
-    db.test
+    db
       .find(req.query)
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-    db.test
+    db
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
     console.log("server has recived post request")
+    console.log(sample)
     console.log(req.body)
-    db.BloodSugarTest
-      .create(req.body)
+    db
+      .create(sample)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
 
-  update: function(req, res) {
-    db.test
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  }
+  // update: function(req, res) {
+  //   db.test
+  //     .findOneAndUpdate({ _id: req.params.id }, req.body)
+  //     .then(dbModel => res.json(dbModel))
+  //     .catch(err => res.status(422).json(err));
+  // }
 
 
 //   remove: function(req, res) {

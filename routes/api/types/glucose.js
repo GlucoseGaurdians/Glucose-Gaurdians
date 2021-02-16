@@ -10,7 +10,7 @@ router.route("/")
 router
   .route("/:id")
   .get(glucoseController.findById)
-  .put(glucoseController.update)
+  // .put(glucoseController.update)
   // .delete(glucoseController.remove);
 
 router.route("/bloodsugarpage")
