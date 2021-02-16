@@ -67,14 +67,10 @@ export default function Login() {
                         <Link to="/reset-password">Forgot Password?</Link>
                     </div>
                     <br></br>
-<<<<<<< .merge_file_MUYgqZ
                     <div className="g-signin2">
                         Or sign in with Google <Button className="btn-danger" onClick={googleX}></Button>
                     </div>
 
-=======
-                    <ThirdPartyBtns />
->>>>>>> .merge_file_jV3eL3
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">
