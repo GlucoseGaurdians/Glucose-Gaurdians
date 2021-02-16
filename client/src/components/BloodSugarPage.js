@@ -3,10 +3,9 @@ import DataRangeCard from './SharedComponents/DataRangeCard'
 import BottomMenuList from './SharedComponents/BottomMenuList'
 import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext'
+// import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
-// import { UseData } from '../contexts/DataContext'
-
+import { UseData } from '../contexts/DataContext'
 import API from "../utils/API";
 
 
@@ -18,8 +17,7 @@ export default function BloodSugarPage() {
 
     const bsRef = useRef()
     const commentsRef = useRef()
-    // const data = UseData()
-    const { currentUser } = useAuth()
+    const data = UseData()
 
     const stylings = {
         mainBtnDiv: {

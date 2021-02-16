@@ -59,11 +59,11 @@ module.exports = {
 //       .then(dbModel => res.json(dbModel))
 //       .catch(err => res.status(422).json(err));
 //   }
-};
+// };
 
 
 // add a test
 // addTest: function (req, res) {
 //   db.User
 //     .updated({_id: req.body.id},{ $push: { tests: req.body.payload } })
-// }
+}

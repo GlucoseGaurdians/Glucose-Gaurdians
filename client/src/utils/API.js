@@ -1,6 +1,17 @@
 import axios from "axios";
 
 export default {
+
+  userLookUp: function(id) {
+    return axios.get("/api/user/"+id)
+  },
+
+  newUserCreate: function(id) {
+    return axios.post("/api/user", {
+      _id: id
+    })
+  },
+
   // Gets all blood sugars
   getBloodSugars: function() {
     return axios.get("/api/bloodsugar");
