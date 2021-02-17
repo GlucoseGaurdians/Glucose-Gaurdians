@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import PrivateRoute from '../wrappers/PrivateRoute'
 import { AuthProvider } from '../contexts/AuthContext'
-import DataContext from '../contexts/DataContext'
 import ScreenSize from '../contexts/ScreenSizeContext'
 
 import Dashboard from './Dashboard'
@@ -24,6 +23,7 @@ function App() {
   return (
       <AuthProvider>
         <ScreenSize>
+
         <DataContext>
                 <Router>
                     <Switch>
