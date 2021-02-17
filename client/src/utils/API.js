@@ -13,6 +13,19 @@ export default {
     })
   },
 
+  addNewMed: function(id, med) {
+    return axios.post("/api/meds/new", {
+      id: id,
+      med: med
+    })
+  },
+
+  takeMedDose: function(id, dose) {
+    return axios.post("/api/meds/dose", {
+      id: id,
+      dose: dose
+    })
+  }
   // Gets all blood sugars
   getBloodSugars: function() {
     return axios.get("/api/bloodsugar");
