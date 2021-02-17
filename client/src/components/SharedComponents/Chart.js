@@ -1,26 +1,32 @@
 import React from 'react'
 import { Line } from '@reactchartjs/react-chart.js'
 import { useAuth } from '../../contexts/AuthContext.js'
-import { UseData } from '../../contexts/DataContext'
+// import { UseData } from '../../contexts/DataContext'
+import Local from "../../utils/localStorage"
 
 
 
 export default function LineChart() {
 
     const user = useAuth()
-    const userData = UseData()
+    // const userData = UseData()
 
     // const testsBSArry = userData.bloodSugars
     // const testsDates = userData.dateArr
+    const testsArr = Local.getTestsArr()
+    console.log(testsArr)
+
+    const tests = testsArr.map(test => test.glucose )
+    const dates = testsArr.map(test => test.date)
 
     const data = {
         // dates = lables
-        labels: ['1', '2', '3', '4', '5', '6'],
+        labels: dates,
         datasets: [
             {
-                label: '# of Votes',
+                label: 'Blood Sugar Level',
                 // put in the blood sugars 
-                data: [12, 19, 3, 5, 2, 3],
+                data: tests,
                 fill: false,
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgba(255, 99, 132, 0.2)',

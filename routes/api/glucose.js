@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const glucoseController = require("../../../controller/glucoseController");
+const glucoseController = require("../../controller/glucoseController");
 
 // Matches with "/api/bloodsugar"
 router.route("/")
@@ -10,7 +10,7 @@ router.route("/")
 router
   .route("/:id")
   .get(glucoseController.findById)
-  .put(glucoseController.update)
+  // .put(glucoseController.update)
   // .delete(glucoseController.remove);
 
 router.route("/bloodsugarpage")
