@@ -16,8 +16,6 @@ export default function Signup({children}) {
                     className="img-fluid mb-3 d-none d-md-block"
                 />{' '}
                 
-            
-                    {/* <img src="https://res.cloudinary.com/mhmd/image/upload/v1569543678/form_d9sh6m.svg" alt="" className="img-fluid mb-3 d-none d-md-block" /> */}
                     <h1>Create an Account</h1>
                     <p>Track your blood sugar and medication with the Glucose Guardians App!</p>
                    
