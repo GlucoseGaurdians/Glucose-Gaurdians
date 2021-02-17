@@ -8,5 +8,9 @@ module.exports = {
 
     takeMedication: function() {
         
+    },
+
+    removeMed: function() {
+        
     }
 }

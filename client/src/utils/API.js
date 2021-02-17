@@ -14,7 +14,7 @@ export default {
   },
 
   addNewMed: function(id, med) {
-    return axios.post("/api/meds/new", {
+    return axios.post("/api/meds/", {
       id: id,
       med: med
     })
@@ -26,7 +26,10 @@ export default {
       dose: dose
     })
   },
-  
+
+  removeMed: function(id, med) {
+    return axios.delete("api/med/")
+  }
   // Gets all blood sugars
   getBloodSugars: function() {
     return axios.get("/api/bloodsugar");
