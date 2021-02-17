@@ -25,7 +25,8 @@ export default {
       id: id,
       dose: dose
     })
-  }
+  },
+  
   // Gets all blood sugars
   getBloodSugars: function() {
     return axios.get("/api/bloodsugar");
