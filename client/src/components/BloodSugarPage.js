@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import DataRangeCard from './SharedComponents/DataRangeCard'
-import BottomMenuList from './SharedComponents/BottomMenuList'
+
 import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
@@ -148,7 +148,7 @@ export default function BloodSugarPage() {
 
 
 
-            <BottomMenuList />
+           
         </div>
     )
 }
