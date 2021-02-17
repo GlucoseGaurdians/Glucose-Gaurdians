@@ -14,15 +14,17 @@ export default function LineChart() {
     // const testsBSArry = userData.bloodSugars
     // const testsDates = userData.dateArr
     const testsArr = Local.getTestsArr()
+    console.log(testsArr)
 
     const tests = testsArr.map(test => test.glucose )
+    const dates = testsArr.map(test => test.date)
 
     const data = {
         // dates = lables
-        labels: ['1', '2', '3', '4', '5', '6'],
+        labels: dates,
         datasets: [
             {
-                label: '# of Votes',
+                label: 'Blood Sugar Level',
                 // put in the blood sugars 
                 data: tests,
                 fill: false,
