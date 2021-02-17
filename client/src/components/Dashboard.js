@@ -13,20 +13,20 @@ export default function Dashboard() {
     const [error, setError] = useState("")
     const { currentUser } = useAuth()
 
-    useEffect(()=> {
-        
+    useEffect(() => {
+
         const id = currentUser.uid
         const email = currentUser.email
-        API.userLookUp(id).then(({data}) => {
-            
-            if(!data) {
+        API.userLookUp(id).then(({ data }) => {
+
+            if (!data) {
                 console.log("person not in data base")
                 API.newUserCreate(id, email)
-                .then(() => {return setError('')})
-                .catch(err => {
-                    console.log(err)
-                    setError('Unable to create new account')
-                })
+                    .then(() => { return setError('') })
+                    .catch(err => {
+                        console.log(err)
+                        setError('Unable to create new account')
+                    })
             }
 
             Local.setTestsArr(data.tests)
@@ -34,22 +34,23 @@ export default function Dashboard() {
         })
 
 
-    },[currentUser])
+    }, [currentUser])
 
     const testArr = Local.getTestsArr()
     console.log(testArr)
-    const lastBS = testArr[(testArr.length -1)].glucose
+    const lastBS = testArr[(testArr.length - 1)].glucose
     console.log(lastBS)
 
     return (
         <div>
             <NavbarComponent />
-            <Container className="justify-content-around align-items-center">
-                <Row>
-                    <Col><DataRangeCard title="Last Blood Sugar" value={lastBS}/></Col>
-                    <Col><DataRangeCard /></Col>
+            <Container>
+                <Row style={{textAlign: "center"}}>
+                    <Col style= {{paddingTop: '50px'}}>
+                    <DataRangeCard  style={{width: '100%'}} title="Last Blood Sugar" value={lastBS} />
+                    <DataRangeCard/>
+                    </Col>
                 </Row>
-                <Row><BottomMenuList/></Row>
             </Container>
         </div>
     )
