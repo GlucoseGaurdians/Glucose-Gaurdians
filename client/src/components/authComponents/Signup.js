@@ -1,7 +1,6 @@
 import React from 'react'
 import { Container, Row } from 'react-bootstrap'
 import SignupComp from "../authComponents/SignupComp"
-import loginlogo from "../loginlogo"
 import img from "../Images/loginlogo.png"
 
 export default function Signup({children}) {
