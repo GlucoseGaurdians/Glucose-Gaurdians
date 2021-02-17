@@ -5,7 +5,6 @@ import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
-// import { UseData } from '../contexts/DataContext'
 import API from "../utils/API";
 import Local from "../utils/localStorage"
 
@@ -18,7 +17,6 @@ export default function BloodSugarPage() {
 
     const bsRef = useRef()
     const commentsRef = useRef()
-    // const { testsArr, setTestsArr } = UseData()
 
     const { currentUser } = useAuth()
 
@@ -39,7 +37,6 @@ export default function BloodSugarPage() {
     }
     const handleShow = () => setShow(true);
 
-    // console.log(testsArr)
 
     function addBloodSugar(e) {
         e.preventDefault()

@@ -14,18 +14,6 @@ export default function Signup() {
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
-    async function googleX(){
-        try {
-            setError('')
-            setLoading(true)
-            await signInWithGoogle()
-            history.push('/')
-        } catch {
-            setError('Failed to create an account')
-        }
-
-    }
-
     async function handleSubmit(event) {
         event.preventDefault()
 
