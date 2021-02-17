@@ -36,14 +36,16 @@ export default function Dashboard() {
 
     },[currentUser])
 
-
+    let lastBS
     const testArr = Local.getTestsArr()
     if(testArr.length > 0){
-        const lastBS = testArr[(testArr.length -1)].glucose
+        lastBS = testArr[(testArr.length -1)].glucose
     } else {
-        const lastBS = "No Blood Sugars Entered Yet"
+        lastBS = "No Blood Sugars Entered Yet"
     }
     console.log(testArr)
+
+
     console.log(lastBS)
 
     return (
