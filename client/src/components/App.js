@@ -23,23 +23,20 @@ function App() {
   return (
       <AuthProvider>
         <ScreenSize>
-
-        <DataContext>
-                <Router>
-                    <Switch>
-                        <Route exact path='/login' component={Login} />
-                        <Route exact path='/signup' component={Signup} />
-                        <Route exact path='/update-profile' component={UpdateProfile} />
-                        <Route exact path='/reset-password' component={ResetPassword} />
-                        <PrivateRoute exact path='/' component={Dashboard} />
-                        <PrivateRoute exact path='/bloodsugar' component={BloodSugarPage} />
-                        <PrivateRoute exact path='/bloodsugar/graph' component={BloodSugGraph} />
-                        <PrivateRoute exact path='/medication' component={Medication} />
-                        <PrivateRoute exact path='/questions' component={Questions} />
-                        <PrivateRoute exact path='/medschart' component={MedsChart} />
-                    </Switch>
-                </Router>
-        </DataContext>
+          <Router>
+              <Switch>
+                  <Route exact path='/login' component={Login} />
+                  <Route exact path='/signup' component={Signup} />
+                  <Route exact path='/update-profile' component={UpdateProfile} />
+                  <Route exact path='/reset-password' component={ResetPassword} />
+                  <PrivateRoute exact path='/' component={Dashboard} />
+                  <PrivateRoute exact path='/bloodsugar' component={BloodSugarPage} />
+                  <PrivateRoute exact path='/bloodsugar/graph' component={BloodSugGraph} />
+                  <PrivateRoute exact path='/medication' component={Medication} />
+                  <PrivateRoute exact path='/questions' component={Questions} />
+                  <PrivateRoute exact path='/medschart' component={MedsChart} />
+              </Switch>
+          </Router>
         </ScreenSize>
       </AuthProvider>
   );
