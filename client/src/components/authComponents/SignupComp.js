@@ -8,10 +8,6 @@ import ThirdPartyBtns from './ThirdPartyBtns'
 
 
 
-
-
-
-
 export default function SignupComp() {
     const emailRef = useRef()
     const passwordRef = useRef()
@@ -89,7 +85,7 @@ export default function SignupComp() {
                             <Form.Label>Confirm Password</Form.Label>
                             <Form.Control type="password" ref={confirmPasswordRef} required />
                         </Form.Group>
-                        <Button disabled={loading} className="w-100" type="submit">Sign Up</Button>
+                        <Button disabled={loading} className="w-100 btn-danger" type="submit">Sign Up</Button>
                     </Form>
                     <br></br>
                     <ThirdPartyBtns />
