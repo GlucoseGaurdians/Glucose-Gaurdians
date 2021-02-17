@@ -29,24 +29,24 @@ export default function Dashboard() {
                 })
             }
 
-            Local.setTestsArr(data.tests)
-            Local.setMedsArr(data.meds)
+            // Local.setTestsArr(data.tests)
+            // Local.setMedsArr(data.meds)
         })
 
 
     },[currentUser])
 
-    const testArr = Local.getTestsArr()
-    console.log(testArr)
-    const lastBS = testArr[(testArr.length -1)].glucose
-    console.log(lastBS)
+    // const testArr = Local.getTestsArr()
+    // console.log(testArr)
+    // const lastBS = testArr[(testArr.length -1)].glucose
+    // console.log(lastBS)
 
     return (
         <div>
             <NavbarComponent />
             <Container className="justify-content-around align-items-center">
                 <Row>
-                    <Col><DataRangeCard title="Last Blood Sugar" value={lastBS}/></Col>
+                    {/* <Col><DataRangeCard title="Last Blood Sugar" value={lastBS}/></Col> */}
                     <Col><DataRangeCard /></Col>
                 </Row>
                 <Row><BottomMenuList/></Row>

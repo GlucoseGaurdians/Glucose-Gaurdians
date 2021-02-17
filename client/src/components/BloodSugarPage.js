@@ -29,7 +29,7 @@ export default function BloodSugarPage() {
         btn: {
             width: '80vw'
         }
-    }  
+    }
 
     const handleClose = () => {
         bsRef.current.value = ''
@@ -43,28 +43,15 @@ export default function BloodSugarPage() {
 
     function addBloodSugar(e) {
         e.preventDefault()
-        console.log("Button Clicked")
-        if (bsRef) {
-            API.saveBloodSugar({
-            // addNewBloodSugar({
-                glucose: bsRef.current.value,
-                comment: commentsRef.current.value,
-                // id: currentUser.uid
-            })
-            
-
-                .catch(err => console.log(err));
-                console.log(bsRef)
-                console.log(commentsRef)
 
         setModalError('')
 
-        if(!(bsRef.current.value)){
+        if (!(bsRef.current.value)) {
             return setModalError("Must input blood sugar reading")
         }
 
         const bs = parseInt(bsRef.current.value)
-        if( isNaN(bs) ) {
+        if (isNaN(bs)) {
             return setModalError("Blood sugar must be a number")
         }
 
@@ -74,15 +61,15 @@ export default function BloodSugarPage() {
         }
 
         API.saveBloodSugar(payload, currentUser.uid)
-        .then(({data}) => {
-            console.log(data.tests)
-            Local.setTestsArr(data.tests)
-            handleClose()
-        })
-        .catch(err => {
-            console.log(err)
-            setModalError("Unable to save blood sugar")
-        })
+            .then(({ data }) => {
+                console.log(data.tests)
+                Local.setTestsArr(data.tests)
+                handleClose()
+            })
+            .catch(err => {
+                console.log(err)
+                setModalError("Unable to save blood sugar")
+            })
     }
 
 
@@ -167,5 +154,4 @@ export default function BloodSugarPage() {
             <BottomMenuList />
         </div>
     )
-}
 }
