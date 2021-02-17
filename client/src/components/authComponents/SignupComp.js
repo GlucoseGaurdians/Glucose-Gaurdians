@@ -5,6 +5,13 @@ import { Link, useHistory } from 'react-router-dom'
 import LoginSignupContainer from '../LoginSignupComp/LoginSignupContainer'
 import ThirdPartyBtns from './ThirdPartyBtns'
 
+
+
+
+
+
+
+
 export default function SignupComp() {
     const emailRef = useRef()
     const passwordRef = useRef()
