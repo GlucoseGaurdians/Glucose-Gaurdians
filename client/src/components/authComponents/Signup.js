@@ -85,9 +85,6 @@ export default function Signup() {
                         <Button disabled={loading} className="w-100" type="submit">Sign Up</Button>
                     </Form>
                     <br></br>
-                    <div className="w-100 text-center mt-3">
-                        Or sign in with Google <Button onClick={googleX}>Sign In</Button>
-                    </div>
                     <ThirdPartyBtns />
                 </Card.Body>
             </Card>

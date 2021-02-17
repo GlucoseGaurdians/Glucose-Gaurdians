@@ -13,17 +13,17 @@ export default function Login() {
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
-    async function googleX(){
-        try {
-            setError('')
-            setLoading(true)
-            await signInWithGoogle()
-            history.push('/')
-        } catch {
-            setError('Failed to login')
-        }
+    // async function googleX(){
+    //     try {
+    //         setError('')
+    //         setLoading(true)
+    //         await signInWithGoogle()
+    //         history.push('/')
+    //     } catch {
+    //         setError('Failed to login')
+    //     }
 
-    }
+    // }
 
     async function handleSubmit(event) {
         console.log("handleSubmit is running")

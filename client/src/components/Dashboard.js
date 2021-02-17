@@ -1,26 +1,40 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Container, Row, Col } from 'react-bootstrap'
-import { Link, useHistory } from 'react-router-dom'
 import NavbarComponent from './SharedComponents/Navbar'
 import DataRangeCard from './SharedComponents/DataRangeCard'
 import BottomMenuList from './SharedComponents/BottomMenuList'
-import { UseData } from '../contexts/DataContext'
-// import { getBloodSugar } from '../utils/API'
+import API from '../utils/API'
+import Local from "../utils/localStorage"
 
 
 export default function Dashboard() {
-    const history = useHistory()
+
     const [error, setError] = useState("")
     const { currentUser } = useAuth()
-    const { bloodSugars, setBloodSugars } = UseData()
 
-    // this doesn't work yet
-    // useEffect(()=> {
-    //     const id = currentUser.uid
-    //     getBloodSugar(id)
+    useEffect(()=> {
+        
+        const id = currentUser.uid
+        const email = currentUser.email
+        API.userLookUp(id).then(({data}) => {
+            
+            if(!data) {
+                console.log("person not in data base")
+                API.newUserCreate(id, email)
+                .then(() => {return setError('')})
+                .catch(err => {
+                    console.log(err)
+                    setError('Unable to create new account')
+                })
+            }
 
-    // },[currentUser])
+            Local.setTestsArr(data.tests)
+            Local.setMedsArr(data.meds)
+        })
+
+
+    },[currentUser])
 
     return (
         <div>
