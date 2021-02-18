@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
-import DataRangeCard from './SharedComponents/DataRangeCard'
+import DataRangeCard from './SharedComponents/LastTestCard'
+import AverageTestCard from './SharedComponents/AverageTestCard'
 import BottomMenuList from './SharedComponents/BottomMenuList'
 import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -74,11 +75,11 @@ export default function BloodSugarPage() {
         <div>
             <NavbarComponent />
             <br />
-            <Container>
+            {/* <Container>
                 <Row>
                     <Col>Add Blood Sugar</Col>
                 </Row>
-            </Container>
+            </Container> */}
 
             <Container>
                 <Row>
@@ -86,7 +87,7 @@ export default function BloodSugarPage() {
                         <DataRangeCard />
                     </Col>
                     <Col>
-                        <DataRangeCard />
+                        <AverageTestCard />
                     </Col>
                 </Row>
             </Container>
