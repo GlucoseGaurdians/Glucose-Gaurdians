@@ -12,6 +12,7 @@ module.exports = {
             res.json(info)
         }).catch(err => {
         console.log(err)
+        res.status(503).end()
         })
     },
 
@@ -24,7 +25,7 @@ module.exports = {
             res.json(info)
         }).catch(err => {
         console.log(err)
-        res.status(300).end()
+        res.status(503).end()
         })
     },
 
@@ -37,6 +38,7 @@ module.exports = {
             res.json(info)
         }).catch(err => {
         console.log(err)
+        res.status(503).end()
         })
     }
 }
