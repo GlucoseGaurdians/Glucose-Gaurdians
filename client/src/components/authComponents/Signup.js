@@ -9,7 +9,8 @@ export default function Signup() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const confirmPasswordRef = useRef()
-    const {signup, currentUser, signInWithGoogle} = useAuth()
+    const userNameRef = useRef()
+    const {signup, currentUser} = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -28,26 +29,18 @@ export default function Signup() {
         try {
             setError('')
             setLoading(true)
-            await signup(emailRef.current.value, passwordRef.current.value )
+            signup(emailRef.current.value, passwordRef.current.value ).then((u) => {
+                console.log(u.user)
+                u.user.updateProfile({
+                    displayName: userNameRef.current.value
+                })
+            })
+            history.push("/")
             
         } catch {
             setError('Failed to create an account')
         }
 
-        
-        try {
-            const id = currentUser.uid
-
-            fetch('https://api.glucose-guardians.herokuapp.com/api/bloodsugar',{
-            method: 'POST',
-            body: id
-            }).then((res)=> {
-                console.log(res)
-            })
-            history.push('/')
-        } catch {
-            
-        }
         setLoading(false)
     }
 
@@ -58,6 +51,10 @@ export default function Signup() {
                     <h2 className="text-center mb-4">Sign Up</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form onSubmit={handleSubmit}>
+                        <Form.Group id="userName">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control type="text" ref={userNameRef} required />
+                        </Form.Group>
                         <Form.Group id="email">
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="email" ref={emailRef} required />

@@ -53,14 +53,8 @@ export default function Dashboard() {
                 getLastBS()
                 
             }
-            
-            
-
         })
-
-
     },[currentUser])
-
 
 
     return (
@@ -68,7 +62,7 @@ export default function Dashboard() {
             <NavbarComponent />
             <Container className="justify-content-around align-items-center">
                 <Row>
-                    <Col><DataRangeCard title="Last Blood Sugar" value={lastBS}/></Col>
+                    <Col><DataRangeCard title="Last Blood Sugar" value={lastBS} /></Col>
                     <Col><DataRangeCard /></Col>
                 </Row>
                 <Row><BottomMenuList/></Row>
