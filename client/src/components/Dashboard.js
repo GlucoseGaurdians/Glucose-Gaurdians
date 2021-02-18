@@ -11,42 +11,57 @@ import Local from "../utils/localStorage"
 export default function Dashboard() {
 
     const [error, setError] = useState("")
+    const [lastBS, setLastBS] = useState()
     const { currentUser } = useAuth()
 
-    useEffect(()=> {
+    function getLastBS() {
+
+        const testArr = Local.getTestsArr()
+
+        if(testArr.length > 0){
+           setLastBS(testArr[(testArr.length -1)].glucose)
+        } else {
+            setLastBS("No Blood Sugars Entered Yet")
+        }
         
-        const id = currentUser.uid
-        const email = currentUser.email
-        API.userLookUp(id).then(({data}) => {
+    }
+
+    useEffect(()=> {
+        console.log(currentUser.displayName)
+
+        API.userLookUp(currentUser.uid).then(({data}) => {
             
             if(!data) {
-                console.log("person not in data base")
-                API.newUserCreate(id, email)
-                .then(() => {return setError('')})
+
+                API.newUserCreate(currentUser.uid)
+                .then((info) => {
+
+                    Local.setTestsArr(info.data.tests)
+                    Local.setMedsArr(info.data.meds)
+
+                    getLastBS()
+                })
                 .catch(err => {
                     console.log(err)
                     setError('Unable to create new account')
                 })
-            }
+            } else{
 
-            Local.setTestsArr(data.tests)
-            Local.setMedsArr(data.meds)
+                Local.setTestsArr(data.tests)
+                Local.setMedsArr(data.meds)
+
+                getLastBS()
+                
+            }
+            
+            
+
         })
 
 
     },[currentUser])
 
-    let lastBS
-    const testArr = Local.getTestsArr()
-    if(testArr.length > 0){
-        lastBS = testArr[(testArr.length -1)].glucose
-    } else {
-        lastBS = "No Blood Sugars Entered Yet"
-    }
-    console.log(testArr)
 
-
-    console.log(lastBS)
 
     return (
         <div>
