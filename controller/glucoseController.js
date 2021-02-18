@@ -10,6 +10,7 @@ module.exports = {
       res.json(info)
     }).catch(err => {
       console.log(err)
+      res.status(503).end()
     })
   }
 }
