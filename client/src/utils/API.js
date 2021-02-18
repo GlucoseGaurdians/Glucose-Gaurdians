@@ -28,10 +28,10 @@ export default {
     })
   },
 
-  removeMed: function(id, med) {
+  removeMed: function(id, medName) {
     return axios.delete("api/med/", {
       id: id,
-      med: med
+      med: medName
     })
   },
 

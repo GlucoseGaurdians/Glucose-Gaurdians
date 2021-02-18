@@ -16,9 +16,6 @@ module.exports = {
     },
 
     takeMedication: function(req, res) {
-        console.log("adding new dose")
-        console.log(req.body)
-        console.log(req.body.medName)
         Users.updateOne(
             {"_id": req.body.id,
             "meds.name":req.body.medName},
@@ -29,20 +26,17 @@ module.exports = {
         console.log(err)
         res.status(300).end()
         })
-
-//         >db.nestedArrayDemo.update({"_id":ObjectId("5c6d73090c3d5054b766a76e"),
-//    "EmployeeDetails.EmployeeDepartment":"ComputerScience"}, {"$push":
-//    {"EmployeeDetails.$.EmployeeProject": {"Technology":"Python", "Duration":4 }}});
     },
 
-    // removeMed: function(req, res) {
-    //     Users.findByIdAndDelete(
-    //         req.body.id,
-    //         { meds: { name: req.body.med } }
-    //     ).then(info => {
-    //         res.json(info)
-    //     }).catch(err => {
-    //     console.log(err)
-    //     })
-    // }
+    removeMed: function(req, res) {
+        Users.updateOne(
+            {"_id": req.body.id,
+            "meds.name": req.body.medName },
+            {"$pull": {"meds": { "name": req.body.medName } } }
+        ).then(info => {
+            res.json(info)
+        }).catch(err => {
+        console.log(err)
+        })
+    }
 }
