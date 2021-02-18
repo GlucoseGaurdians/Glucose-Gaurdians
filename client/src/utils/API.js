@@ -20,24 +20,29 @@ export default {
     })
   },
 
-  takeMedDose: function(id, dose) {
+  takeMedDose: function(id, medName, dose) {
     return axios.post("/api/meds/dose", {
       id: id,
+      medName: medName,
       dose: dose
     })
   },
 
   removeMed: function(id, med) {
-    return axios.delete("api/med/")
-  }
-  // Gets all blood sugars
-  getBloodSugars: function() {
-    return axios.get("/api/bloodsugar");
+    return axios.delete("api/med/", {
+      id: id,
+      med: med
+    })
   },
-  // Gets the blood sugar with the given id
-  getBloodSugar: function(id) {
-    return axios.get("/api/blood_sugar/" + id);
-  },
+
+  // // Gets all blood sugars
+  // getBloodSugars: function() {
+  //   return axios.get("/api/bloodsugar");
+  // },
+  // // Gets the blood sugar with the given id
+  // getBloodSugar: function(id) {
+  //   return axios.get("/api/blood_sugar/" + id);
+  // },
   
   // Saves a blood sugar to the database
   saveBloodSugar: function(bloodSugarData, id) {
