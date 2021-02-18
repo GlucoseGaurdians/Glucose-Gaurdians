@@ -8,29 +8,15 @@ import ThirdPartyBtns from './ThirdPartyBtns'
 export default function Login() {
     const emailRef = useRef()
     const passwordRef = useRef()
-    const { login, signInWithGoogle } = useAuth()
+    const { login } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
-    // async function googleX(){
-    //     try {
-    //         setError('')
-    //         setLoading(true)
-    //         await signInWithGoogle()
-    //         history.push('/')
-    //     } catch {
-    //         setError('Failed to login')
-    //     }
-
-    // }
-
     async function handleSubmit(event) {
-        console.log("handleSubmit is running")
         event.preventDefault()
 
         try {
-            console.log("sending login request")
             setError('')
             setLoading(true)
             await login(emailRef.current.value, passwordRef.current.value )
