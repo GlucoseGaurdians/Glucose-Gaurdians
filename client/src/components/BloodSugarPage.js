@@ -59,7 +59,6 @@ export default function BloodSugarPage() {
 
         API.saveBloodSugar(payload, currentUser.uid)
         .then(({data}) => {
-            console.log(data.tests)
             Local.setTestsArr(data.tests)
             handleClose()
         })
