@@ -5,7 +5,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 export default function ThirdPartyBtns() {
     return (
         <div>
-            <p>Please sign-in:</p>
+            <p>Or sign-in through:</p>
             <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} /> 
         </div>
     )

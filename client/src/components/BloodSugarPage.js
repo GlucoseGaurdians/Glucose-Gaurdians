@@ -8,6 +8,7 @@ import NavbarComponent from "./SharedComponents/Navbar";
 import API from "../utils/API";
 import Local from "../utils/localStorage"
 import FooterComp from "../components/SharedComponents/Footer"
+import LineChart from './SharedComponents/Chart'
 
 
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
@@ -23,12 +24,18 @@ export default function BloodSugarPage() {
 
     const stylings = {
         mainBtnDiv: {
-            backgroundColor: 'blue',
+            backgroundColor: '#DC3545',
+            color: 'white',
+
         },
         btn: {
-            width: '80vw'
+            width: '80vw',
+            backgroundColor: '#DC3545',
+            color: 'white',
+            borderColor: '#DC3545',
+            fontWeight: 'bold'
         }
-    }  
+    }
 
     const handleClose = () => {
         bsRef.current.value = ''
@@ -44,12 +51,12 @@ export default function BloodSugarPage() {
 
         setModalError('')
 
-        if(!(bsRef.current.value)){
+        if (!(bsRef.current.value)) {
             return setModalError("Must input blood sugar reading")
         }
 
         const bs = parseInt(bsRef.current.value)
-        if( isNaN(bs) ) {
+        if (isNaN(bs)) {
             return setModalError("Blood sugar must be a number")
         }
 
@@ -60,7 +67,6 @@ export default function BloodSugarPage() {
 
         API.saveBloodSugar(payload, currentUser.uid)
         .then(({data}) => {
-            console.log(data.tests)
             Local.setTestsArr(data.tests)
             handleClose()
         })
@@ -77,41 +83,22 @@ export default function BloodSugarPage() {
             <br />
             <Container>
                 <Row>
-                    <Col>Add Blood Sugar</Col>
-                </Row>
-            </Container>
-
-            <Container>
-                <Row>
                     <Col>
-                        <DataRangeCard />
-                    </Col>
-                    <Col>
-                        <DataRangeCard />
-                    </Col>
-                </Row>
-            </Container>
-
-            <Container className='align-items-center justify-content-center' style={stylings.mainBtnDiv}>
-                <Row>
-                    <Col>
-                        <Button style={stylings.btn} onClick={handleShow}>
-                            Add Blood Sugar
+                        <LineChart />
+                        <Row style={{ padding: '50px', justifyContent: 'center', maxWidth: '510px' }}>
+                            <Col>
+                                <Button style={stylings.btn} onClick={handleShow}>
+                                    Add Blood Sugar
                         </Button>
-                    </Col>
-                    <Col>
-                        <Link to='/bloodsugar/graph'>
-                        <Button style={stylings.btn}>
-                            Blood Sugar Chart
+                            </Col>
+                            <Col>
+                                <Link to='/medication'>
+                                    <Button style={stylings.btn}>
+                                        Take Medication
                         </Button>
-                        </Link>
-                    </Col>
-                    <Col>
-                        <Link to='/medication'>
-                        <Button style={stylings.btn}>
-                            Take Medication
-                        </Button>
-                        </Link>
+                                </Link>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </Container>
@@ -135,22 +122,17 @@ export default function BloodSugarPage() {
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Comments</Form.Label>
-                            <Form.Control type='text' placeholder='Comments' maxLength='180'ref={commentsRef} />
+                            <Form.Control type='text' placeholder='Comments' maxLength='180' ref={commentsRef} />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                    Close
+                        Close
                     </Button>
                     <Button variant="primary" onClick={addBloodSugar}>Enter</Button>
                 </Modal.Footer>
             </Modal>
-           
-
-
-            <FooterComp />
-           
         </div>
         
     )
