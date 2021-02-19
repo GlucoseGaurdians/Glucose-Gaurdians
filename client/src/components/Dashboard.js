@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { Container, Row, Col } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
 import DataRangeCard from './SharedComponents/DataRangeCard'
+import FooterComp from "././SharedComponents/Footer"
 
 import API from '../utils/API'
 import Local from "../utils/localStorage"
@@ -60,14 +61,18 @@ export default function Dashboard() {
 
 
     return (
-        <div>
+        <div> 
             <NavbarComponent />
-            <Container className="justify-content-around align-items-center">
-                <Row>
-                    <Col><DataRangeCard title="Last Blood Sugar" value={lastBS} /></Col>
-                    <Col><DataRangeCard /></Col>
+            <Container>
+                <Row style={{textAlign: "center"}}>
+                    <Col style= {{paddingTop: '50px'}}>
+                    <DataRangeCard  style={{width: '100%'}} title="Last Blood Sugar" value={lastBS} />
+                    <DataRangeCard/>
+                    </Col>
                 </Row>
             </Container>
+           
+            <FooterComp />
         </div>
     )
 }
