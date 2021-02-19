@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+import {  Container, Row, Col, Card, Button } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
-import BottomMenuList from './SharedComponents/BottomMenuList'
 import Local from '../utils/localStorage'
 import API from '../utils/API'
 import { useAuth } from '../contexts/AuthContext'
@@ -15,6 +14,10 @@ const styles = {
         marginTop: "50px"
     }
 }
+
+  
+ 
+
 
 export default function Medication() {
 
@@ -106,16 +109,19 @@ export default function Medication() {
                         <Card>
                             <Card.Body>
                                 <Link to='/logmeds'>
+                                    
                                     <Button style={styles.button}>
                                         Log medication
                                     </Button>
                                 </Link>
+
+        
                             </Card.Body>
                         </Card>
                     </Col>
                 </Row>
             </Container>
-        <BottomMenuList/>
+     
         </div>
     )
 }

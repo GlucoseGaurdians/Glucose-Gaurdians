@@ -3,9 +3,10 @@ import { useAuth } from '../contexts/AuthContext'
 import { Container, Row, Col } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
 import DataRangeCard from './SharedComponents/DataRangeCard'
-import BottomMenuList from './SharedComponents/BottomMenuList'
+
 import API from '../utils/API'
 import Local from "../utils/localStorage"
+
 
 
 export default function Dashboard() {
@@ -65,7 +66,6 @@ export default function Dashboard() {
                     <Col><DataRangeCard title="Last Blood Sugar" value={lastBS} /></Col>
                     <Col><DataRangeCard /></Col>
                 </Row>
-                <Row><BottomMenuList/></Row>
             </Container>
         </div>
     )
