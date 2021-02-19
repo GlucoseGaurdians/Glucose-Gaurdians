@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
 import BottomMenuList from './SharedComponents/BottomMenuList'
+import Local from '../utils/localStorage'
+import API from '../utils/API'
+import { useAuth } from '../contexts/AuthContext'
 
 const styles = {
     button:{
@@ -14,6 +17,31 @@ const styles = {
 }
 
 export default function Medication() {
+
+    const { currentUser } = useAuth()
+    // grabs the meds array for user
+    const medsArr = Local.getMedsArr()
+
+    function handleAddMed(med) {
+        // med should be an object and should have a name key
+        // name: String,
+        // type: {
+        //     type: String,
+        // },
+        // doses: [{
+        //     date: {
+        //         type: Date,
+        //         default: Date.now
+        //     },
+        //     amount: String
+        // }]
+        API.addNewMed(currentUser.uid, med)
+            .then(({data}) => {
+                Local.setMedsArr(data.meds)
+            })
+            .catch(err => console.log(err))
+    }
+
     return (
         <div>
             <NavbarComponent />

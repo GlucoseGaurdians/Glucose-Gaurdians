@@ -7,7 +7,8 @@ module.exports = {
         console.log(req.body)
         Users.findByIdAndUpdate(
             req.body.id,
-            { $push: { meds: req.body.med } }
+            { $push: { meds: req.body.med } },
+            {new: true}
         ).then(info => {
             res.json(info)
         }).catch(err => {
@@ -20,7 +21,8 @@ module.exports = {
         Users.updateOne(
             {"_id": req.body.id,
             "meds.name":req.body.medName},
-            { "$push": { "meds.$.doses": req.body.dose } } 
+            { "$push": { "meds.$.doses": req.body.dose } },
+            // {new: true}
         ).then(info => {
             res.json(info)
         }).catch(err => {
@@ -33,7 +35,8 @@ module.exports = {
         Users.updateOne(
             {"_id": req.body.id,
             "meds.name": req.body.medName },
-            {"$pull": {"meds": { "name": req.body.medName } } }
+            {"$pull": {"meds": { "name": req.body.medName } } },
+            // {new: true}
         ).then(info => {
             res.json(info)
         }).catch(err => {
