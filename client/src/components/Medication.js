@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {  Container, Row, Col, Card, Button } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
+import MedsModal from './medsSubComps/MedsModal'
 import Local from '../utils/localStorage'
 import API from '../utils/API'
 import { useAuth } from '../contexts/AuthContext'
@@ -121,6 +122,7 @@ export default function Medication() {
                     </Col>
                 </Row>
             </Container>
+            <MedsModal />
      
         </div>
     )
