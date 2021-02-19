@@ -7,6 +7,7 @@ import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
 import API from "../utils/API";
 import Local from "../utils/localStorage"
+import FooterComp from "../components/SharedComponents/Footer"
 
 
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
@@ -72,7 +73,7 @@ export default function BloodSugarPage() {
 
     return (
         <div>
-            <NavbarComponent />
+             <NavbarComponent />
             <br />
             <Container>
                 <Row>
@@ -145,10 +146,12 @@ export default function BloodSugarPage() {
                     <Button variant="primary" onClick={addBloodSugar}>Enter</Button>
                 </Modal.Footer>
             </Modal>
+           
 
 
-
+            <FooterComp />
            
         </div>
+        
     )
 }

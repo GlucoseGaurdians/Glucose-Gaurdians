@@ -51,7 +51,7 @@ export default function Dashboard() {
     console.log(lastBS)
 
     return (
-        <div>
+        <div> 
             <NavbarComponent />
             <Container className="justify-content-around align-items-center">
                 <Row>
@@ -59,6 +59,7 @@ export default function Dashboard() {
                     <Col><DataRangeCard /></Col>
                 </Row>
             </Container>
+           
             <FooterComp />
         </div>
     )
