@@ -3,43 +3,60 @@ import { useAuth } from '../contexts/AuthContext'
 import { Container, Row, Col } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
 import DataRangeCard from './SharedComponents/DataRangeCard'
-import BottomMenuList from './SharedComponents/BottomMenuList'
+
 import API from '../utils/API'
 import Local from "../utils/localStorage"
+
 
 
 export default function Dashboard() {
 
     const [error, setError] = useState("")
+    const [lastBS, setLastBS] = useState()
     const { currentUser } = useAuth()
 
-    useEffect(() => {
+    function getLastBS() {
 
-        const id = currentUser.uid
-        const email = currentUser.email
-        API.userLookUp(id).then(({ data }) => {
+        const testArr = Local.getTestsArr()
 
-            if (!data) {
-                console.log("person not in data base")
-                API.newUserCreate(id, email)
-                    .then(() => { return setError('') })
-                    .catch(err => {
-                        console.log(err)
-                        setError('Unable to create new account')
-                    })
+        if(testArr.length > 0){
+           setLastBS(testArr[(testArr.length -1)].glucose)
+        } else {
+            setLastBS("No Blood Sugars Entered Yet")
+        }
+        
+    }
+
+    useEffect(()=> {
+        console.log(currentUser.displayName)
+
+        API.userLookUp(currentUser.uid).then(({data}) => {
+            
+            if(!data) {
+
+                API.newUserCreate(currentUser.uid)
+                .then((info) => {
+
+                    Local.setTestsArr(info.data.tests)
+                    Local.setMedsArr(info.data.meds)
+
+                    getLastBS()
+                })
+                .catch(err => {
+                    console.log(err)
+                    setError('Unable to create new account')
+                })
+            } else{
+
+                Local.setTestsArr(data.tests)
+                Local.setMedsArr(data.meds)
+
+                getLastBS()
+                
             }
-
-            Local.setTestsArr(data.tests)
-            Local.setMedsArr(data.meds)
         })
+    },[currentUser])
 
-
-    }, [currentUser])
-
-    const testArr = Local.getTestsArr()
-    console.log(testArr)
-    const lastBS = testArr[(testArr.length - 1)].glucose
-    console.log(lastBS)
 
     return (
         <div>

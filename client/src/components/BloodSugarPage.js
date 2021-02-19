@@ -1,11 +1,10 @@
 import React, { useState, useRef } from 'react'
 import DataRangeCard from './SharedComponents/DataRangeCard'
-import BottomMenuList from './SharedComponents/BottomMenuList'
+
 import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
-// import { UseData } from '../contexts/DataContext'
 import API from "../utils/API";
 import Local from "../utils/localStorage"
 import LineChart from './SharedComponents/Chart'
@@ -19,7 +18,6 @@ export default function BloodSugarPage() {
 
     const bsRef = useRef()
     const commentsRef = useRef()
-    // const { testsArr, setTestsArr } = UseData()
 
     const { currentUser } = useAuth()
 
@@ -46,7 +44,6 @@ export default function BloodSugarPage() {
     }
     const handleShow = () => setShow(true);
 
-    // console.log(testsArr)
 
     function addBloodSugar(e) {
         e.preventDefault()
@@ -68,15 +65,14 @@ export default function BloodSugarPage() {
         }
 
         API.saveBloodSugar(payload, currentUser.uid)
-            .then(({ data }) => {
-                console.log(data.tests)
-                Local.setTestsArr(data.tests)
-                handleClose()
-            })
-            .catch(err => {
-                console.log(err)
-                setModalError("Unable to save blood sugar")
-            })
+        .then(({data}) => {
+            Local.setTestsArr(data.tests)
+            handleClose()
+        })
+        .catch(err => {
+            console.log(err)
+            setModalError("Unable to save blood sugar")
+        })
     }
 
 
