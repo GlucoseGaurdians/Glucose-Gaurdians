@@ -50,6 +50,14 @@ export default function Medication() {
             .catch(err => console.log(err))
     }
 
+    function handleDeleteMed(medName) {
+        API.removeMed(currentUser.uid, medName)
+        .then(({data}) => {
+            Local.setMedsArr(data.meds)
+        })
+        .catch(err => console.log(err))  
+    }
+
     return (
         <div>
             <NavbarComponent />
