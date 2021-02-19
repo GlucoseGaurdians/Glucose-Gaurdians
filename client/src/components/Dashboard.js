@@ -29,6 +29,7 @@ export default function Dashboard() {
 
     useEffect(()=> {
         console.log(currentUser.displayName)
+        console.log(currentUser.photoURL)
 
         API.userLookUp(currentUser.uid).then(({data}) => {
             
