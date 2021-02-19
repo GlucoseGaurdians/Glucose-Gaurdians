@@ -18,7 +18,7 @@ export default function UpdateProfile() {
     async function handleSubmit(event) {
         event.preventDefault()
 
-        if (passwordRef.current.value.length < 6) {
+        if ((passwordRef.current.value.length < 6) && (passwordRef.current.value)) {
             return setError('password must be at least 6 characters long')
         }
 
@@ -38,6 +38,10 @@ export default function UpdateProfile() {
 
         if(passwordRef.current.value) {
             promises.push(updatePassword(passwordRef.current.value))
+        }
+
+        if(userNameRef.current.value !== currentUser.displayName) {
+            promises.push(currentUser.updateProfile({displayName: userNameRef.current.value}))
         }
         
         Promise.all(promises).then(() => {
