@@ -14,7 +14,7 @@ export default function Signup({children}) {
                 <img src="./Images/signinlogo.png"
                  alt ="logo"
                   
-                    className="img-fluid mb-3 d-none d-md-block"
+                    className="img-fluid mb-3 d-md-block"
                 />{' '}
                 
                     <h1>Sign In to your Glucose Guardian Account</h1>
