@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react'
-import DataRangeCard from './SharedComponents/LastTestCard'
-import AverageTestCard from './SharedComponents/AverageTestCard'
-import BottomMenuList from './SharedComponents/BottomMenuList'
+import DataRangeCard from './SharedComponents/DataRangeCard'
+
 import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
 import API from "../utils/API";
 import Local from "../utils/localStorage"
+import LineChart from './SharedComponents/Chart'
 
 
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
@@ -23,10 +23,16 @@ export default function BloodSugarPage() {
 
     const stylings = {
         mainBtnDiv: {
-            backgroundColor: 'blue',
+            backgroundColor: '#DC3545',
+            color: 'white',
+
         },
         btn: {
-            width: '80vw'
+            width: '80vw',
+            backgroundColor: '#DC3545',
+            color: 'white',
+            borderColor: '#DC3545',
+            fontWeight: 'bold'
         }
     }
 
@@ -59,15 +65,14 @@ export default function BloodSugarPage() {
         }
 
         API.saveBloodSugar(payload, currentUser.uid)
-            .then(({ data }) => {
-                console.log(data.tests)
-                Local.setTestsArr(data.tests)
-                handleClose()
-            })
-            .catch(err => {
-                console.log(err)
-                setModalError("Unable to save blood sugar")
-            })
+        .then(({data}) => {
+            Local.setTestsArr(data.tests)
+            handleClose()
+        })
+        .catch(err => {
+            console.log(err)
+            setModalError("Unable to save blood sugar")
+        })
     }
 
 
@@ -77,41 +82,22 @@ export default function BloodSugarPage() {
             <br />
             {/* <Container>
                 <Row>
-                    <Col>Add Blood Sugar</Col>
-                </Row>
-            </Container> */}
-
-            <Container>
-                <Row>
                     <Col>
-                        <DataRangeCard />
-                    </Col>
-                    <Col>
-                        <AverageTestCard />
-                    </Col>
-                </Row>
-            </Container>
-
-            <Container className='align-items-center justify-content-center' style={stylings.mainBtnDiv}>
-                <Row>
-                    <Col>
-                        <Button style={stylings.btn} onClick={handleShow}>
-                            Add Blood Sugar
+                        <LineChart />
+                        <Row style={{ padding: '50px', justifyContent: 'center', maxWidth: '510px' }}>
+                            <Col>
+                                <Button style={stylings.btn} onClick={handleShow}>
+                                    Add Blood Sugar
                         </Button>
-                    </Col>
-                    <Col>
-                        <Link to='/bloodsugar/graph'>
-                            <Button style={stylings.btn}>
-                                Blood Sugar Chart
+                            </Col>
+                            <Col>
+                                <Link to='/medication'>
+                                    <Button style={stylings.btn}>
+                                        Take Medication
                         </Button>
-                        </Link>
-                    </Col>
-                    <Col>
-                        <Link to='/medication'>
-                            <Button style={stylings.btn}>
-                                Take Medication
-                        </Button>
-                        </Link>
+                                </Link>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </Container>
@@ -146,10 +132,6 @@ export default function BloodSugarPage() {
                     <Button variant="primary" onClick={addBloodSugar}>Enter</Button>
                 </Modal.Footer>
             </Modal>
-
-
-
-            <BottomMenuList />
         </div>
     )
 }

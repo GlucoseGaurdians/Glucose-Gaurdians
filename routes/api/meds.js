@@ -2,8 +2,9 @@ const router = require("express").Router();
 const medsController = require('../../controller/medsController')
 
 router.route("/")
-    .post()
-router.route("/:id")
-    .get()
+    .delete(medsController.removeMed)
+    .post(medsController.addNewMedication)
+router.route("/dose")
+    .post(medsController.takeMedication)
 
 module.exports = router;

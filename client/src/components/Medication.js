@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+import {  Container, Row, Col, Card, Button } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
-import BottomMenuList from './SharedComponents/BottomMenuList'
+import Local from '../utils/localStorage'
+import API from '../utils/API'
+import { useAuth } from '../contexts/AuthContext'
 
 const styles = {
     button:{
@@ -13,7 +15,52 @@ const styles = {
     }
 }
 
+  
+ 
+
+
 export default function Medication() {
+
+    const { currentUser } = useAuth()
+    // grabs the meds array for user
+    const medsArr = Local.getMedsArr()
+
+    function handleAddMed(med) {
+        // med should be an object and should have a name key
+        // name: String,
+        // type: {
+        //     type: String,
+        // },
+        // doses: [{
+        //     date: {
+        //         type: Date,
+        //         default: Date.now
+        //     },
+        //     amount: String
+        // }]
+        API.addNewMed(currentUser.uid, med)
+            .then(({data}) => {
+                Local.setMedsArr(data.meds)
+            })
+            .catch(err => console.log(err))
+    }
+
+    function handleAddDose(medName, dose) {
+        API.takeMedDose(currentUser.uid, medName, dose)
+            .then(({data}) => {
+                Local.setMedsArr(data.meds)
+            })
+            .catch(err => console.log(err))
+    }
+
+    function handleDeleteMed(medName) {
+        API.removeMed(currentUser.uid, medName)
+        .then(({data}) => {
+            Local.setMedsArr(data.meds)
+        })
+        .catch(err => console.log(err))  
+    }
+
     return (
         <div>
             <NavbarComponent />
@@ -62,16 +109,19 @@ export default function Medication() {
                         <Card>
                             <Card.Body>
                                 <Link to='/logmeds'>
+                                    
                                     <Button style={styles.button}>
                                         Log medication
                                     </Button>
                                 </Link>
+
+        
                             </Card.Body>
                         </Card>
                     </Col>
                 </Row>
             </Container>
-        <BottomMenuList/>
+     
         </div>
     )
 }
