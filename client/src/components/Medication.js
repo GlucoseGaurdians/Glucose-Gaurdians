@@ -42,6 +42,14 @@ export default function Medication() {
             .catch(err => console.log(err))
     }
 
+    function handleAddDose(medName, dose) {
+        API.takeMedDose(currentUser.uid, medName, dose)
+            .then(({data}) => {
+                Local.setMedsArr(data.meds)
+            })
+            .catch(err => console.log(err))
+    }
+
     return (
         <div>
             <NavbarComponent />
