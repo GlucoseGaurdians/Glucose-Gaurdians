@@ -80,7 +80,7 @@ export default function BloodSugarPage() {
         <div>
             <NavbarComponent />
             <br />
-            <Container>
+            {/* <Container>
                 <Row>
                     <Col>
                         <LineChart />
