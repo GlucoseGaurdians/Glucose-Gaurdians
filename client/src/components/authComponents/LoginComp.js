@@ -1,57 +1,43 @@
 import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
-import LoginSignupContainer from './LoginSignupComp/LoginSignupContainer'
+import LoginSignupContainer from '../LoginSignupComp/LoginSignupContainer'
+import ThirdPartyBtns from './ThirdPartyBtns'
 
-export default function Signup() {
+export default function Login() {
     const emailRef = useRef()
     const passwordRef = useRef()
-    const confirmPasswordRef = useRef()
-    const {signup, currentUser} = useAuth()
+    const { login } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
 
     async function handleSubmit(event) {
+        console.log("handleSubmit is running")
         event.preventDefault()
 
-        if (passwordRef.current.value !== confirmPasswordRef.current.value) {
-            return setError('passwords do not match')
-        }
-
         try {
+            console.log("sending login request")
             setError('')
             setLoading(true)
-            await signup(emailRef.current.value, passwordRef.current.value )
-            
+            await login(emailRef.current.value, passwordRef.current.value )
+            history.push("/")
         } catch {
-            setError('Failed to create an account')
+            console.log("failed log in request")
+            setError('Failed to sign in')
         }
 
-        
-        try {
-            const id = currentUser.uid
-
-            fetch('https://api.glucose-guardians.herokuapp.com/api/bloodsugar',{
-            method: 'POST',
-            body: id
-            }).then((res)=> {
-                console.log(res)
-            })
-            history.push('/')
-        } catch {
-            
-        }
         setLoading(false)
     }
 
     return (
+        
         <LoginSignupContainer>
             <Card>
                 <Card.Body>
-                    <h2 className="text-center mb-4">Sign Up</h2>
+                    <h2 className="text-center mb-4">Login</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group id="email">
@@ -62,16 +48,17 @@ export default function Signup() {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" ref={passwordRef} required />
                         </Form.Group>
-                        <Form.Group id="confirmPassword">
-                            <Form.Label>Confirm Password</Form.Label>
-                            <Form.Control type="password" ref={confirmPasswordRef} required />
-                        </Form.Group>
-                        <Button disabled={loading} className="w-100" type="submit">Sign Up</Button>
+                        <Button disabled={loading} className="w-100 btn-danger" type="submit">Log In</Button>
                     </Form>
+                    <div className="w-1000 text-center mt-3">
+                        <Link to="/reset-password">Forgot Password?</Link>
+                    </div>
+                    <br></br>
+                    <ThirdPartyBtns />
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">
-                Already have an account? <Link to='/login'>Login Here</Link>
+                Need an account? <Link to='/signup'>Sign Up Here</Link>
             </div>
         </LoginSignupContainer>
     )

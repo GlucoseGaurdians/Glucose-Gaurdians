@@ -1,36 +1,73 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Container, Row, Col } from 'react-bootstrap'
-import { Link, useHistory } from 'react-router-dom'
 import NavbarComponent from './SharedComponents/Navbar'
 import DataRangeCard from './SharedComponents/DataRangeCard'
-import BottomMenuList from './SharedComponents/BottomMenuList'
-import { UseData } from '../contexts/DataContext'
-import { getBloodSugar } from '../utils/API'
+
+import API from '../utils/API'
+import Local from "../utils/localStorage"
+
 
 
 export default function Dashboard() {
-    const history = useHistory()
+
     const [error, setError] = useState("")
+    const [lastBS, setLastBS] = useState()
     const { currentUser } = useAuth()
-    const { bloodSugars, setBloodSugars } = UseData()
 
-    // this doesn't work yet
+    function getLastBS() {
+
+        const testArr = Local.getTestsArr()
+
+        if(testArr.length > 0){
+           setLastBS(testArr[(testArr.length -1)].glucose)
+        } else {
+            setLastBS("No Blood Sugars Entered Yet")
+        }
+        
+    }
+
     useEffect(()=> {
-        const id = currentUser.uid
-        getBloodSugar(id)
+        console.log(currentUser.displayName)
 
+        API.userLookUp(currentUser.uid).then(({data}) => {
+            
+            if(!data) {
+
+                API.newUserCreate(currentUser.uid)
+                .then((info) => {
+
+                    Local.setTestsArr(info.data.tests)
+                    Local.setMedsArr(info.data.meds)
+
+                    getLastBS()
+                })
+                .catch(err => {
+                    console.log(err)
+                    setError('Unable to create new account')
+                })
+            } else{
+
+                Local.setTestsArr(data.tests)
+                Local.setMedsArr(data.meds)
+
+                getLastBS()
+                
+            }
+        })
     },[currentUser])
+
 
     return (
         <div>
             <NavbarComponent />
-            <Container className="justify-content-around align-items-center">
-                <Row>
-                    <Col><DataRangeCard /></Col>
-                    <Col><DataRangeCard /></Col>
+            <Container>
+                <Row style={{textAlign: "center"}}>
+                    <Col style= {{paddingTop: '50px'}}>
+                    <DataRangeCard  style={{width: '100%'}} title="Last Blood Sugar" value={lastBS} />
+                    <DataRangeCard/>
+                    </Col>
                 </Row>
-                <Row><BottomMenuList/></Row>
             </Container>
         </div>
     )

@@ -1,50 +1,79 @@
 import React, { useState, useRef } from 'react'
 import DataRangeCard from './SharedComponents/DataRangeCard'
-import BottomMenuList from './SharedComponents/BottomMenuList'
-import { Container, Row, Col, Button, Form, Modal } from 'react-bootstrap'
+
+import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
-import { UseData } from '../contexts/DataContext'
-import { addNewBloodSugar} from '../utils/API'
+import API from "../utils/API";
+import Local from "../utils/localStorage"
+import LineChart from './SharedComponents/Chart'
+
 
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
 export default function BloodSugarPage() {
 
     const [show, setShow] = useState(false);
+    const [modalError, setModalError] = useState('')
 
     const bsRef = useRef()
     const commentsRef = useRef()
 
-    const data = UseData()
     const { currentUser } = useAuth()
 
-    const handleClose = () => setShow(false);
+    const stylings = {
+        mainBtnDiv: {
+            backgroundColor: '#DC3545',
+            color: 'white',
+
+        },
+        btn: {
+            width: '80vw',
+            backgroundColor: '#DC3545',
+            color: 'white',
+            borderColor: '#DC3545',
+            fontWeight: 'bold'
+        }
+    }
+
+    const handleClose = () => {
+        bsRef.current.value = ''
+        commentsRef.current.value = ''
+        setModalError('')
+        setShow(false)
+    }
     const handleShow = () => setShow(true);
+
 
     function addBloodSugar(e) {
         e.preventDefault()
 
+        setModalError('')
+
+        if (!(bsRef.current.value)) {
+            return setModalError("Must input blood sugar reading")
+        }
+
+        const bs = parseInt(bsRef.current.value)
+        if (isNaN(bs)) {
+            return setModalError("Blood sugar must be a number")
+        }
+
         const payload = {
-            bloodSugar: bsRef.current.value,
-            comment: commentsRef.current.value,
-            id: currentUser.uid
+            glucose: bs,
+            comment: commentsRef.current.value
         }
 
-        addNewBloodSugar(payload)
+        API.saveBloodSugar(payload, currentUser.uid)
+        .then(({data}) => {
+            Local.setTestsArr(data.tests)
+            handleClose()
+        })
+        .catch(err => {
+            console.log(err)
+            setModalError("Unable to save blood sugar")
+        })
     }
-
-    const stylings = {
-        mainBtnDiv: {
-            backgroundColor: 'blue',
-
-        },
-        btn: {
-            width: '80vw'
-        }
-    }
-
-    
 
 
     return (
@@ -53,41 +82,22 @@ export default function BloodSugarPage() {
             <br />
             <Container>
                 <Row>
-                    <Col>Add Blood Sugar</Col>
-                </Row>
-            </Container>
-
-            <Container>
-                <Row>
                     <Col>
-                        <DataRangeCard />
-                    </Col>
-                    <Col>
-                        <DataRangeCard />
-                    </Col>
-                </Row>
-            </Container>
-
-            <Container className='align-items-center justify-content-center' style={stylings.mainBtnDiv}>
-                <Row>
-                    <Col>
-                        <Button style={stylings.btn} onClick={handleShow}>
-                            Add Blood Sugar
+                        <LineChart />
+                        <Row style={{ padding: '50px', justifyContent: 'center', maxWidth: '510px' }}>
+                            <Col>
+                                <Button style={stylings.btn} onClick={handleShow}>
+                                    Add Blood Sugar
                         </Button>
-                    </Col>
-                    <Col>
-                        <Link to='/bloodsugar/graph'>
-                        <Button style={stylings.btn}>
-                            Blood Sugar Chart
+                            </Col>
+                            <Col>
+                                <Link to='/medication'>
+                                    <Button style={stylings.btn}>
+                                        Take Medication
                         </Button>
-                        </Link>
-                    </Col>
-                    <Col>
-                        <Link to='/medication'>
-                        <Button style={stylings.btn}>
-                            Take Medication
-                        </Button>
-                        </Link>
+                                </Link>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </Container>
@@ -100,8 +110,9 @@ export default function BloodSugarPage() {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>Add Blood Sugar Reading</Modal.Title>
                 </Modal.Header>
+                {modalError && <Alert variant="danger">{modalError}</Alert>}
                 <Modal.Body>
                     <Form>
                         <Form.Group>
@@ -110,21 +121,17 @@ export default function BloodSugarPage() {
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Comments</Form.Label>
-                            <Form.Control type='text' placeholder='Blood Sugar' maxLength='180'ref={commentsRef} />
+                            <Form.Control type='text' placeholder='Comments' maxLength='180' ref={commentsRef} />
                         </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                    Close
+                        Close
                     </Button>
-                    <Button variant="primary" onClick={addBloodSugar}>Understood</Button>
+                    <Button variant="primary" onClick={addBloodSugar}>Enter</Button>
                 </Modal.Footer>
             </Modal>
-
-
-
-            <BottomMenuList />
         </div>
     )
 }

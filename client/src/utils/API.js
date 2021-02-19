@@ -1,45 +1,41 @@
-import { UseData } from '../contexts/DataContext'
+import axios from "axios";
 
-// const data = UseData()
+export default {
 
-// adds a new blood sugar
-// ? we are sending a test object 
-export function addNewBloodSugar(test) {
+  userLookUp: function(id) {
+    return axios.get("/api/user/"+id)
+  },
 
-    fetch('http://localhost:3001/api/bloodsugar',{
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-        body: JSON.stringify(test)
-    }).then((res)=> res.json()).then((theData) => {
-        const { bloodSugars, setBloodSugars } = UseData()
-        setBloodSugars([...bloodSugars, theData])
+  newUserCreate: function(id) {
+    return axios.post("/api/user", {
+      _id: id,
     })
+  },
 
-}
-
-export function addNewMedication(med) {
-
-    fetch('/api/addmed', {
-        method: "POST",
-        body: med
-    }).then((res)=> {
-        console.log(res)
+  addNewMed: function(id, med) {
+    return axios.post("/api/meds/", {
+      id: id,
+      med: med
     })
-}
+  },
 
-
-// thi will get alll the user's blood sugars in an object
-
-export function getBloodSugar(id) {
-    fetch("http://localhost:3001/api/bloodsugar/"+id)
-    .then(res => res.json())
-    .then((data) => {
-        const { setBloodSugars } = UseData()
-        setBloodSugars(data)
+  takeMedDose: function(id, medName, dose) {
+    return axios.post("/api/meds/dose", {
+      id: id,
+      medName: medName,
+      dose: dose
     })
-    .catch(err => console.log(err))
-}
+  },
 
+  removeMed: function(id, medName) {
+    return axios.delete("api/med/", {
+      id: id,
+      med: medName
+    })
+  },
+  
+  // Saves a blood sugar to the database
+  saveBloodSugar: function(bloodSugarData, id) {
+    return axios.post("/api/bloodsugar/", {test: bloodSugarData, id: id});
+  }
+};
