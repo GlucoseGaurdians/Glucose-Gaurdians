@@ -8,6 +8,7 @@ export default function UpdateProfile() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const confirmPasswordRef = useRef()
+    const userNameRef = useRef()
     const {updatePassword, updateEmail, currentUser} = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
@@ -59,6 +60,11 @@ export default function UpdateProfile() {
                     <h2 className="text-center mb-4">Update Profile</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form onSubmit={handleSubmit}>
+                        <Form.Group id="userName">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control type="text" ref={userNameRef} required 
+                            defaultValue={currentUser.displayName} />
+                        </Form.Group>
                         <Form.Group id="email">
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="email" ref={emailRef} required 
