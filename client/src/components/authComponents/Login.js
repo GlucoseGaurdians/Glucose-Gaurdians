@@ -1,75 +1,39 @@
-import React, { useRef, useState } from 'react'
-import { Form, Button, Card, Alert } from 'react-bootstrap'
-import { useAuth } from '../../contexts/AuthContext'
-import { Link, useHistory } from 'react-router-dom'
-import LoginSignupContainer from '../LoginSignupComp/LoginSignupContainer'
-import ThirdPartyBtns from './ThirdPartyBtns'
+import React from 'react'
+import { Container, Row } from 'react-bootstrap'
+import LoginComp from "./LoginComp"
 
-export default function Login() {
-    const emailRef = useRef()
-    const passwordRef = useRef()
-    const { login, signInWithGoogle } = useAuth()
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
-    const history = useHistory()
 
-    // async function googleX(){
-    //     try {
-    //         setError('')
-    //         setLoading(true)
-    //         await signInWithGoogle()
-    //         history.push('/')
-    //     } catch {
-    //         setError('Failed to login')
-    //     }
 
-    // }
 
-    async function handleSubmit(event) {
-        console.log("handleSubmit is running")
-        event.preventDefault()
-
-        try {
-            console.log("sending login request")
-            setError('')
-            setLoading(true)
-            await login(emailRef.current.value, passwordRef.current.value )
-            history.push("/")
-        } catch {
-            console.log("failed log in request")
-            setError('Failed to sign in')
-        }
-
-        setLoading(false)
-    }
-
+export default function Signup({children}) {
     return (
-        <LoginSignupContainer>
-            <Card>
-                <Card.Body>
-                    <h2 className="text-center mb-4">Login</h2>
-                    {error && <Alert variant="danger">{error}</Alert>}
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group id="email">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" ref={emailRef} required />
-                        </Form.Group>
-                        <Form.Group id="password">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" ref={passwordRef} required />
-                        </Form.Group>
-                        <Button disabled={loading} className="w-100" type="submit">Log In</Button>
-                    </Form>
-                    <div className="w-1000 text-center mt-3">
-                        <Link to="/reset-password">Forgot Password?</Link>
-                    </div>
-                    <br></br>
-                    <ThirdPartyBtns />
-                </Card.Body>
-            </Card>
-            <div className="w-100 text-center mt-2">
-                Need an account? <Link to='/signup'>Sign Up Here</Link>
-            </div>
-        </LoginSignupContainer>
+        <Container> 
+            <Row className="row py-5 mt-4 align-items-center">
+                <div className="col-md-5 pr-lg-5 mb-5 mb-md-0">
+
+                <img src="./Images/signinlogo.png"
+                 alt ="logo"
+                  
+                    className="img-fluid mb-3 d-none d-md-block"
+                />{' '}
+                
+                    <h1>Sign In to your Glucose Guardian Account</h1>
+                    <p>Stay on track with your glucose health!</p>
+                   
+
+                </div>
+                <div className="col-md-7 col-lg-6 ml-auto">
+                    <LoginComp />
+
+
+                </div>
+
+            </Row>
+
+        
+      </Container>
     )
 }
+
+
+

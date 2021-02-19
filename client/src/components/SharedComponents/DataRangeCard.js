@@ -3,7 +3,7 @@ import { Card, Container, Row } from 'react-bootstrap'
 
 export default function DataRangeCard(props) {
     return (
-        <Card style={{ width: '18rem' }}>
+        <Card className="p-1 my-5" style={{ width: '24 rem' }}>
             <Card.Body>
                 <Card.Title>{props.title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
@@ -13,7 +13,7 @@ export default function DataRangeCard(props) {
                     the card's content.
                 </Card.Text>
                 <Card.Text> {props.range} </Card.Text>
-                <div style={{backgroundColor: "orange", height: "50px", width: "50px"}}className="rounded-circle"></div>
+                <div style={{backgroundColor: "red", height: "100px", width: "100px"}}className="rounded-circle justify-content-center"></div>
             </Card.Body>
         </Card>
     )

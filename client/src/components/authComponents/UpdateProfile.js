@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react'
-import { Form, Button, Card, Alert } from 'react-bootstrap'
+import { Container, Form, Button, Card, Alert } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
+import Navbar from "../SharedComponents/Navbar"
 
 export default function UpdateProfile() {
     const emailRef = useRef()
@@ -51,6 +52,8 @@ export default function UpdateProfile() {
 
     return (
         <>
+        <Navbar />
+        <Container className="p-5">
             <Card>
                 <Card.Body>
                     <h2 className="text-center mb-4">Update Profile</h2>
@@ -71,13 +74,14 @@ export default function UpdateProfile() {
                             <Form.Control type="password" ref={confirmPasswordRef}
                             placeholder="Leave blank to keep the same password" />
                         </Form.Group>
-                        <Button disabled={loading} className="w-100" type="submit">Update</Button>
+                        <Button variant="outline-danger" disabled={loading} className="" type="submit">Update</Button>
                     </Form>
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">
                 Already have an account? <Link to='/'>Cancel</Link>
             </div>
+            </Container>
         </>
     )
 }
