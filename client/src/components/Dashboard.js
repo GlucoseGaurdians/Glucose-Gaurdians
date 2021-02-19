@@ -61,10 +61,12 @@ export default function Dashboard() {
     return (
         <div>
             <NavbarComponent />
-            <Container className="justify-content-around align-items-center">
-                <Row>
-                    <Col><DataRangeCard title="Last Blood Sugar" value={lastBS} /></Col>
-                    <Col><DataRangeCard /></Col>
+            <Container>
+                <Row style={{textAlign: "center"}}>
+                    <Col style= {{paddingTop: '50px'}}>
+                    <DataRangeCard  style={{width: '100%'}} title="Last Blood Sugar" value={lastBS} />
+                    <DataRangeCard/>
+                    </Col>
                 </Row>
             </Container>
         </div>
