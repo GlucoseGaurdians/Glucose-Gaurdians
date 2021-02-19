@@ -18,7 +18,7 @@ export default function Signup({children}) {
                 />{' '}
                 
                     <h1>Create an Account</h1>
-                    <p>Track your blood sugar and medication with the Glucose Guardians App!</p>
+                    <p>Track your blood sugar and medication with the Glucose Guardian App!</p>
                    
 
                 </div>

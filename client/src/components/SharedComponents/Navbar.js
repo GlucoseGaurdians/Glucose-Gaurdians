@@ -18,7 +18,7 @@ export default function NavbarComponent() {
                     height="40"
                     className="d-inline-block"
                 />{' '}
-                      Glucose Guardians
+                      The Glucose Guardian
                  </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

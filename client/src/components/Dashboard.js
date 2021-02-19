@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext'
 import { Container, Row, Col } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
 import DataRangeCard from './SharedComponents/DataRangeCard'
+import FooterComp from "././SharedComponents/Footer"
 
 import API from '../utils/API'
 import Local from "../utils/localStorage"
@@ -58,6 +59,7 @@ export default function Dashboard() {
                     <Col><DataRangeCard /></Col>
                 </Row>
             </Container>
+            <FooterComp />
         </div>
     )
 }
