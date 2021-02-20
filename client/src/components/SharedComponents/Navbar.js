@@ -2,12 +2,15 @@ import React from 'react'
 import { Button, Navbar, Nav, NavDropdown, Form } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import "./Navbar.css"
+import { useHistory } from 'react-router-dom'
 
 export default function NavbarComponent() {
     const { logout } = useAuth()
+    const history = useHistory()
 
     function handleLogOut() {
         logout()
+        history.push('/login')
     }
 
     return (

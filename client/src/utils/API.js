@@ -27,10 +27,13 @@ export default {
     })
   },
 
-  removeMed: function(id, medName) {
-    return axios.delete("api/med/", {
-      id: id,
-      med: medName
+  removeMed: function(id, medicationName) {
+    return axios.delete("api/meds/", {
+      data: {
+        id: id,
+        med: medicationName
+
+      }
     })
   },
   
