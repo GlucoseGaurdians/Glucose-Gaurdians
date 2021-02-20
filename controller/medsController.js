@@ -18,12 +18,14 @@ module.exports = {
     },
 
     takeMedication: function(req, res) {
-        Users.updateOne(
+        console.log("recived call")
+        Users.findOneAndUpdate(
             {"_id": req.body.id,
             "meds.name":req.body.medName},
             { "$push": { "meds.$.doses": req.body.dose } },
-            // {new: true}
+            {new: true}
         ).then(info => {
+            console.log("worked")
             res.json(info)
         }).catch(err => {
         console.log(err)

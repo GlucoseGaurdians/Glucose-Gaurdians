@@ -100,6 +100,7 @@ export default function MedsModal(props) {
         if(medNameRef.current.value === "Other") {
             setNeedText(true)
         } else {
+            setModalError('')
             setNeedText(false)
         }
     }
@@ -116,6 +117,7 @@ export default function MedsModal(props) {
         })
             .then(({data}) => {
                 Local.setMedsArr(data.meds)
+                handleClose()
             })
             .catch(err => console.log(err))
     }

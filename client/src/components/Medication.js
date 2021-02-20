@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import {  Container, Row, Col, Card, Button } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
 import MedsModal from './medsSubComps/MedsModal'
+import AddMedDose from './medsSubComps/AddMedDose'
 import Local from '../utils/localStorage'
 import API from '../utils/API'
 import { useAuth } from '../contexts/AuthContext'
@@ -16,19 +17,18 @@ const styles = {
     }
 }
 
-  
- 
-
 
 export default function Medication() {
 
     const { currentUser } = useAuth()
-    const [show, setShow] = useState(false);
+    const [showMedModal, setShowMedModal] = useState(false);
+    const [showDoseModal, setShowDoseModal] = useState(false);
     // const [modalError, setModalError] = useState('')
     // grabs the meds array for user
     const medsArr = Local.getMedsArr()
 
-    const handleShow = () => setShow(true);
+    const handleShowMedModal = () => setShowMedModal(true);
+    const handleShowDoseModal = () => setShowDoseModal(true);
 
     function handleAddMed(med) {
         // med should be an object and should have a name key
@@ -74,11 +74,9 @@ export default function Medication() {
                     <Col>
                         <Card>
                             <Card.Body>
-                                <Link to='/addnewmeds'>
-                                    <Button style={styles.button}>
-                                        Log Medication Dose
-                                    </Button>
-                                </Link>
+                                <Button style={styles.button} onClick={handleShowDoseModal}>
+                                    Log Medication Dose
+                                </Button>
                             </Card.Body>
                         </Card>
                     </Col>
@@ -88,7 +86,7 @@ export default function Medication() {
                         <Card>
                             <Card.Body>
                                 
-                                    <Button style={styles.button} onClick={handleShow}>
+                                    <Button style={styles.button} onClick={handleShowMedModal}>
                                         Add new medication
                                     </Button>
                             </Card.Body>
@@ -125,7 +123,8 @@ export default function Medication() {
                     </Col>
                 </Row>
             </Container>
-            <MedsModal show={show} setShow={setShow}/>
+            <MedsModal show={showMedModal} setShow={setShowMedModal}/>
+            <AddMedDose show={showDoseModal} setShow={setShowDoseModal}/>
      
         </div>
     )
