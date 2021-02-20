@@ -8,6 +8,7 @@ import DeleteMedModal from './medsSubComps/DeleteMedModal'
 import Local from '../utils/localStorage'
 import API from '../utils/API'
 import { useAuth } from '../contexts/AuthContext'
+import FooterComp from "../components/SharedComponents/Footer"
 
 const styles = {
     button:{
@@ -94,6 +95,7 @@ export default function Medication() {
                     </Col>
                 </Row>
             </Container>
+            <FooterComp />
             <MedsModal show={showMedModal} setShow={setShowMedModal}/>
             <AddMedDose show={showDoseModal} setShow={setShowDoseModal}/>
             <DeleteMedModal show={showDeleteModal} setShow={setShowDeleteModal} />

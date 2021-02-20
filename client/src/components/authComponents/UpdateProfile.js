@@ -3,6 +3,7 @@ import { Container, Form, Button, Card, Alert } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import Navbar from "../SharedComponents/Navbar"
+import FooterComp from "../SharedComponents/Footer"
 
 export default function UpdateProfile() {
     const emailRef = useRef()
@@ -61,7 +62,8 @@ export default function UpdateProfile() {
         <Container className="p-5">
             <Card>
                 <Card.Body>
-                    <h2 className="text-center mb-4">Update Profile</h2>
+                    <h3 className="text-center mb-4"> Welcome {currentUser.displayName}</h3> 
+                    <h2 className="text-center mb-4">Update your profile here!</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group id="userName">
@@ -92,6 +94,7 @@ export default function UpdateProfile() {
                 Already have an account? <Link to='/'>Cancel</Link>
             </div>
             </Container>
+            <FooterComp />
         </>
     )
 }
