@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {  Container, Row, Col, Card, Button } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
@@ -23,8 +23,12 @@ const styles = {
 export default function Medication() {
 
     const { currentUser } = useAuth()
+    const [show, setShow] = useState(false);
+    // const [modalError, setModalError] = useState('')
     // grabs the meds array for user
     const medsArr = Local.getMedsArr()
+
+    const handleShow = () => setShow(true);
 
     function handleAddMed(med) {
         // med should be an object and should have a name key
@@ -83,11 +87,10 @@ export default function Medication() {
                     <Col>
                         <Card>
                             <Card.Body>
-                                <Link to='/addnewmeds'>
-                                    <Button style={styles.button}>
+                                
+                                    <Button style={styles.button} onClick={handleShow}>
                                         Add new medication
                                     </Button>
-                                </Link>
                             </Card.Body>
                         </Card>
                     </Col>
@@ -122,7 +125,7 @@ export default function Medication() {
                     </Col>
                 </Row>
             </Container>
-            <MedsModal />
+            <MedsModal show={show} setShow={setShow}/>
      
         </div>
     )

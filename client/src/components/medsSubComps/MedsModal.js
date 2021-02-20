@@ -1,9 +1,14 @@
 import React, { useRef } from 'react'
-import { Form } from 'react-bootstrap'
+import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap'
+import Local from '../../utils/localStorage'
+import API from '../../utils/API'
+import { useAuth } from '../../contexts/AuthContext'
 
-export default function MedsModal() {
+export default function MedsModal(props) {
 
     const medNameRef = useRef()
+    const typeRef = useRef()
+    const { currentUser } = useAuth()
 
     const potentialMeds = [
         "Humulin",
@@ -81,52 +86,70 @@ export default function MedsModal() {
         "Actos",
         "Actoplus Met",
         "Actoplus Met XR",
-        "other"
 
     ]
+
+    const handleClose = () => {
+        // bsRef.current.value = ''
+        // commentsRef.current.value = ''
+        // setModalError('')
+        props.setShow(false)
+    }
+
+    function handleAddMed() {
+
+        API.addNewMed(currentUser.uid, {
+            name: medNameRef.current.value,
+            type: typeRef.current.value
+        })
+            .then(({data}) => {
+                Local.setMedsArr(data.meds)
+            })
+            .catch(err => console.log(err))
+    }
+
     return (
-        <Form>
-            <Form.Group controlId="exampleForm.ControlSelect1">
-                <Form.Label>Example select</Form.Label>
-                <Form.Control as="select" ref={medNameRef} onChange={()=> console.log(medNameRef.current.value)}>
-                    {potentialMeds.map(med => (<option>{med}</option>))}
-                    <option>Other</option>
-                </Form.Control>
-            </Form.Group>
-        </Form>
+
+        <Modal
+        show={props.show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        centered
+        >
+        <Modal.Header closeButton>
+            <Modal.Title>Add New Medication</Modal.Title>
+        </Modal.Header>
+        {/* {modalError && <Alert variant="danger">{modalError}</Alert>} */}
+        <Modal.Body>
+            <Form>
+                <Form.Group>
+                    <Form.Label>Medication Name</Form.Label>
+                    <Form.Control as="select" ref={medNameRef} onChange={()=> console.log(medNameRef.current.value)}>
+                        {potentialMeds.map(med => (<option>{med}</option>))}
+                        <option>Other</option>
+                    </Form.Control>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Medication Type</Form.Label>
+                    <Form.Control as='select' ref={typeRef} >
+                        <option>Injection</option>
+                        <option>Oral</option>
+                    </Form.Control>
+                </Form.Group>
+                {/* <Form.Group>
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control type='text' placeholder='Description' maxLength='180' />
+                </Form.Group> */}
+            </Form>
+        </Modal.Body>
+        <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+                Close
+            </Button>
+            <Button variant="primary" onClick={handleAddMed}>Enter</Button>
+        </Modal.Footer>
+        </Modal>
+
     )
 }
-
-
-
-
-// <Modal
-// show={show}
-// onHide={handleClose}
-// backdrop="static"
-// keyboard={false}
-// centered
-// >
-// <Modal.Header closeButton>
-//     <Modal.Title>Add Blood Sugar Reading</Modal.Title>
-// </Modal.Header>
-// {modalError && <Alert variant="danger">{modalError}</Alert>}
-// <Modal.Body>
-//     <Form>
-//         <Form.Group>
-//             <Form.Label>Blood Sugar Reading</Form.Label>
-//             <Form.Control type='text' placeholder='Blood Sugar' ref={bsRef} />
-//         </Form.Group>
-//         <Form.Group>
-//             <Form.Label>Comments</Form.Label>
-//             <Form.Control type='text' placeholder='Comments' maxLength='180' ref={commentsRef} />
-//         </Form.Group>
-//     </Form>
-// </Modal.Body>
-// <Modal.Footer>
-//     <Button variant="secondary" onClick={handleClose}>
-//         Close
-//     </Button>
-//     <Button variant="primary" onClick={addBloodSugar}>Enter</Button>
-// </Modal.Footer>
-// </Modal>
