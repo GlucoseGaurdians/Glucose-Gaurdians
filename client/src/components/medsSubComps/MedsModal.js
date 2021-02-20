@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap'
 import Local from '../../utils/localStorage'
 import API from '../../utils/API'
@@ -6,8 +6,11 @@ import { useAuth } from '../../contexts/AuthContext'
 
 export default function MedsModal(props) {
 
+    const [needText, setNeedText] = useState()
+    const [modalError, setModalError] = useState()
     const medNameRef = useRef()
     const typeRef = useRef()
+    const otherNameRef = useRef()
     const { currentUser } = useAuth()
 
     const potentialMeds = [
@@ -90,13 +93,22 @@ export default function MedsModal(props) {
     ]
 
     const handleClose = () => {
-        // bsRef.current.value = ''
-        // commentsRef.current.value = ''
-        // setModalError('')
         props.setShow(false)
     }
 
+    function needTextBox() {
+        if(medNameRef.current.value === "Other") {
+            setNeedText(true)
+        } else {
+            setNeedText(false)
+        }
+    }
+
     function handleAddMed() {
+
+        if(needText && otherNameRef.current.value === "") {
+            return setModalError("Medication must have a name")
+        }
 
         API.addNewMed(currentUser.uid, {
             name: medNameRef.current.value,
@@ -120,16 +132,22 @@ export default function MedsModal(props) {
         <Modal.Header closeButton>
             <Modal.Title>Add New Medication</Modal.Title>
         </Modal.Header>
-        {/* {modalError && <Alert variant="danger">{modalError}</Alert>} */}
         <Modal.Body>
+        {modalError && <Alert variant="danger">{modalError}</Alert>}
             <Form>
                 <Form.Group>
                     <Form.Label>Medication Name</Form.Label>
-                    <Form.Control as="select" ref={medNameRef} onChange={()=> console.log(medNameRef.current.value)}>
+                    <Form.Control as="select" ref={medNameRef} onChange={needTextBox}>
                         {potentialMeds.map(med => (<option>{med}</option>))}
                         <option>Other</option>
                     </Form.Control>
                 </Form.Group>
+                {needText && (
+                <Form.Group>
+                    <Form.Label>Enter In Other Name</Form.Label>
+                    <Form.Control type='text' ref={otherNameRef} placeholder="medication name"/>
+                </Form.Group>
+                )}
                 <Form.Group>
                     <Form.Label>Medication Type</Form.Label>
                     <Form.Control as='select' ref={typeRef} >
@@ -137,10 +155,6 @@ export default function MedsModal(props) {
                         <option>Oral</option>
                     </Form.Control>
                 </Form.Group>
-                {/* <Form.Group>
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control type='text' placeholder='Description' maxLength='180' />
-                </Form.Group> */}
             </Form>
         </Modal.Body>
         <Modal.Footer>
