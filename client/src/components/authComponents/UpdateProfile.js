@@ -3,11 +3,13 @@ import { Container, Form, Button, Card, Alert } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import Navbar from "../SharedComponents/Navbar"
+import FooterComp from "../SharedComponents/Footer"
 
 export default function UpdateProfile() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const confirmPasswordRef = useRef()
+    const userNameRef = useRef()
     const {updatePassword, updateEmail, currentUser} = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
@@ -17,7 +19,7 @@ export default function UpdateProfile() {
     async function handleSubmit(event) {
         event.preventDefault()
 
-        if (passwordRef.current.value.length < 6) {
+        if ((passwordRef.current.value.length < 6) && (passwordRef.current.value)) {
             return setError('password must be at least 6 characters long')
         }
 
@@ -38,6 +40,10 @@ export default function UpdateProfile() {
         if(passwordRef.current.value) {
             promises.push(updatePassword(passwordRef.current.value))
         }
+
+        if(userNameRef.current.value !== currentUser.displayName) {
+            promises.push(currentUser.updateProfile({displayName: userNameRef.current.value}))
+        }
         
         Promise.all(promises).then(() => {
             history.push('/')
@@ -56,9 +62,15 @@ export default function UpdateProfile() {
         <Container className="p-5">
             <Card>
                 <Card.Body>
-                    <h2 className="text-center mb-4">Update Profile</h2>
+                    <h3 className="text-center mb-4"> Welcome {currentUser.displayName}</h3> 
+                    <h2 className="text-center mb-4">Update your profile here!</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form onSubmit={handleSubmit}>
+                        <Form.Group id="userName">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control type="text" ref={userNameRef} required 
+                            defaultValue={currentUser.displayName} />
+                        </Form.Group>
                         <Form.Group id="email">
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="email" ref={emailRef} required 
@@ -82,6 +94,7 @@ export default function UpdateProfile() {
                 Already have an account? <Link to='/'>Cancel</Link>
             </div>
             </Container>
+            <FooterComp />
         </>
     )
 }

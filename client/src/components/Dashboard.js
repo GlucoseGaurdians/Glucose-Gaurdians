@@ -3,6 +3,9 @@ import { useAuth } from '../contexts/AuthContext'
 import { Container, Row, Col } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
 import DataRangeCard from './SharedComponents/DataRangeCard'
+import DataRangeCard2 from './SharedComponents/DataRangeCard2'
+import DataRangeCard3 from './SharedComponents/DataRangeCard3'
+import FooterComp from "././SharedComponents/Footer"
 
 import API from '../utils/API'
 import Local from "../utils/localStorage"
@@ -29,6 +32,7 @@ export default function Dashboard() {
 
     useEffect(()=> {
         console.log(currentUser.displayName)
+        console.log(currentUser.photoURL)
 
         API.userLookUp(currentUser.uid).then(({data}) => {
             
@@ -59,16 +63,20 @@ export default function Dashboard() {
 
 
     return (
-        <div>
+        <div> 
             <NavbarComponent />
             <Container>
                 <Row style={{textAlign: "center"}}>
                     <Col style= {{paddingTop: '50px'}}>
-                    <DataRangeCard  style={{width: '100%'}} title="Last Blood Sugar" value={lastBS} />
-                    <DataRangeCard/>
+                    {/* <DataRangeCard3  style={{width: '100%'}} title="Last Blood Sugar" value={lastBS} /> */}
+                    <DataRangeCard3  style={{width: '100%'}} title="Projected A1C" />
+                    <DataRangeCard2/>
                     </Col>
                 </Row>
             </Container>
+           
+            <FooterComp />
         </div>
+         
     )
 }
