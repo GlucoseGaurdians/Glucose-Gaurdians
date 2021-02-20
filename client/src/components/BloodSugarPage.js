@@ -7,6 +7,7 @@ import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
 import API from "../utils/API";
 import Local from "../utils/localStorage"
+import FooterComp from "../components/SharedComponents/Footer"
 import LineChart from './SharedComponents/Chart'
 
 
@@ -78,7 +79,7 @@ export default function BloodSugarPage() {
 
     return (
         <div>
-            <NavbarComponent />
+             <NavbarComponent />
             <br />
             <Container>
                 <Row>
@@ -133,5 +134,6 @@ export default function BloodSugarPage() {
                 </Modal.Footer>
             </Modal>
         </div>
+        
     )
 }
