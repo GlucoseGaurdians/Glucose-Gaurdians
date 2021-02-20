@@ -3,6 +3,8 @@ import { useAuth } from '../contexts/AuthContext'
 import { Container, Row, Col } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
 import DataRangeCard from './SharedComponents/DataRangeCard'
+import DataRangeCard2 from './SharedComponents/DataRangeCard2'
+import DataRangeCard3 from './SharedComponents/DataRangeCard3'
 import FooterComp from "././SharedComponents/Footer"
 
 import API from '../utils/API'
@@ -66,8 +68,9 @@ export default function Dashboard() {
             <Container>
                 <Row style={{textAlign: "center"}}>
                     <Col style= {{paddingTop: '50px'}}>
-                    <DataRangeCard  style={{width: '100%'}} title="Last Blood Sugar" value={lastBS} />
-                    <DataRangeCard/>
+                    {/* <DataRangeCard3  style={{width: '100%'}} title="Last Blood Sugar" value={lastBS} /> */}
+                    <DataRangeCard3  style={{width: '100%'}} title="Projected A1C" />
+                    <DataRangeCard2/>
                     </Col>
                 </Row>
             </Container>
