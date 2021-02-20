@@ -18,7 +18,6 @@ module.exports = {
     },
 
     takeMedication: function(req, res) {
-        console.log("recived call")
         Users.findOneAndUpdate(
             {"_id": req.body.id,
             "meds.name":req.body.medName},
@@ -34,11 +33,14 @@ module.exports = {
     },
 
     removeMed: function(req, res) {
-        Users.updateOne(
+        console.log("recived call")
+        console.log(req.body.med)
+        console.log(req.body)
+        Users.findOneAndUpdate(
             {"_id": req.body.id,
-            "meds.name": req.body.medName },
-            {"$pull": {"meds": { "name": req.body.medName } } },
-            // {new: true}
+            "meds.name": req.body.med},
+            {"$pull": {"meds": { "name": req.body.med } } },
+            {new: true}
         ).then(info => {
             res.json(info)
         }).catch(err => {
