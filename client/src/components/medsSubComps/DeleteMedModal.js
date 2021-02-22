@@ -10,7 +10,7 @@ export default function DeleteMedModal(props) {
     const medNameRef = useRef()
     const { currentUser } = useAuth()
 
-    const potentialMeds = Local.getMedsArr()
+    let potentialMeds = Local.getMedsArr()
 
     const handleClose = () => {
         props.setShow(false)

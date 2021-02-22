@@ -16,9 +16,14 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(routes);
 
+app.get("/service-worker.js", (req, res) => {
+  console.log("this path triggered")
+  res.sendFile(path.resolve(__dirname, "public", "/service-worker.js"));
+});
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {
+  console.log("the wrong path triggered")
   res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
 
