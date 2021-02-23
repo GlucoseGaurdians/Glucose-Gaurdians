@@ -17,6 +17,8 @@ export default function Dashboard() {
     const [error, setError] = useState("")
     const [lastBS, setLastBS] = useState()
     const { currentUser } = useAuth()
+    const [avgBS, setAvgBS] = useState()
+    const [a1C, setA1c] = useState()
 
     function getLastBS() {
 
@@ -29,6 +31,35 @@ export default function Dashboard() {
         }
         
     }
+
+    function avgBloodS(){
+        const testArr = Local.getTestsArr();
+        let avgBSugar=0;
+        for(let i=0; i < testArr.length; i++){
+           avgBSugar+=testArr[i].glucose
+           console.log(testArr[i].glucose)
+           console.log(avgBSugar)
+
+        }
+        setAvgBS(Math.floor(avgBSugar/testArr.length));
+        console.log(avgBSugar);
+    }
+
+    function a1Cfunct(){
+        const testArr = Local.getTestsArr();
+        let avgBSugar=0;
+        let finalAvg=0
+        for(let i=0; i < testArr.length; i++){
+           avgBSugar+=testArr[i].glucose
+           console.log(testArr[i].glucose)
+           console.log(avgBSugar)
+
+        }
+        finalAvg = (avgBSugar/testArr.length);
+        console.log(avgBSugar);
+        setA1c(((finalAvg+46.7)/28.7).toFixed(1));
+    }
+
 
     useEffect(()=> {
         console.log(currentUser.displayName)
@@ -45,6 +76,9 @@ export default function Dashboard() {
                     Local.setMedsArr(info.data.meds)
 
                     getLastBS()
+                    avgBloodS()
+                    a1Cfunct()
+                    
                 })
                 .catch(err => {
                     console.log(err)
@@ -56,6 +90,9 @@ export default function Dashboard() {
                 Local.setMedsArr(data.meds)
 
                 getLastBS()
+                avgBloodS()
+                a1Cfunct()
+
                 
             }
         })
@@ -68,14 +105,14 @@ export default function Dashboard() {
             <Container>
                 <Row style={{textAlign: "center"}}>
                     <Col style= {{paddingTop: '50px'}}>
-                    {/* <DataRangeCard3  style={{width: '100%'}} title="Last Blood Sugar" value={lastBS} /> */}
-                    <DataRangeCard3  style={{width: '100%'}} title="Projected A1C" />
-                    <DataRangeCard2/>
+                    <DataRangeCard2  style={{width: '100%'}} title="Last Blood Sugar" value={lastBS} />
+                    {/* <DataRangeCard3  style={{width: '100%'}} title="Projected A1C" /> */}
+                    <DataRangeCard3  style={{width: '100%'}} title="Average Blood Sugar" value={a1C}/>
                     </Col>
                 </Row>
             </Container>
            
-            <FooterComp />
+            {/* <FooterComp /> */}
         </div>
          
     )
