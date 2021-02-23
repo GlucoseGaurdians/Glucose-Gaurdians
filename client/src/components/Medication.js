@@ -99,6 +99,7 @@ export default function Medication() {
                     </Col>
                 </Row>
             </Container>
+            <FooterComp />
             <MedsModal show={showMedModal} setShow={setShowMedModal}/>
             <AddMedDose show={showDoseModal} setShow={setShowDoseModal}/>
             <DeleteMedModal show={showDeleteModal} setShow={setShowDeleteModal} />

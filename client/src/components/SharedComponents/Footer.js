@@ -2,7 +2,7 @@ import React from "react";
 import "./Footer.css"
 
 const FooterComp = () => (
-  <div className="footer p-3  bg-dark text-white">
+  <div className="footer bg-dark text-white">
     <div className="row">
    
 

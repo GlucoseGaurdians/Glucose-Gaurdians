@@ -1,0 +1,15 @@
+.cardColorGood {
+background: radial-gradient(circle, #1a6e27, #083d10, #041c07 );
+
+}
+
+.cardColorWarning{
+    background: radial-gradient(circle, #c4ba1d, #756f10, #1c1c07 );
+}
+
+.cardColorDanger{
+    background: radial-gradient(circle, #c41d1d, #781212, #330808 );
+}
+.textColor{
+    color: seashell;
+}
