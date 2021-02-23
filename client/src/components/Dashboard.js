@@ -14,7 +14,7 @@ import Local from "../utils/localStorage"
 
 export default function Dashboard() {
 
-    const [error, setError] = useState("")
+    // const [error, setError] = useState("")
     const [lastBS, setLastBS] = useState()
     const { currentUser } = useAuth()
     const [avgBS, setAvgBS] = useState()
@@ -62,8 +62,6 @@ export default function Dashboard() {
 
 
     useEffect(()=> {
-        console.log(currentUser.displayName)
-        console.log(currentUser.photoURL)
 
         API.userLookUp(currentUser.uid).then(({data}) => {
             
@@ -82,7 +80,7 @@ export default function Dashboard() {
                 })
                 .catch(err => {
                     console.log(err)
-                    setError('Unable to create new account')
+                    // setError('Unable to create new account')
                 })
             } else{
 

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import DataRangeCard from './SharedComponents/DataRangeCard'
+// import DataRangeCard from './SharedComponents/DataRangeCard'
 
 import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -7,7 +7,7 @@ import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
 import API from "../utils/API";
 import Local from "../utils/localStorage"
-import FooterComp from "../components/SharedComponents/Footer"
+// import FooterComp from "../components/SharedComponents/Footer"
 import LineChart from './SharedComponents/Chart'
 
 
@@ -33,7 +33,8 @@ export default function BloodSugarPage() {
             backgroundColor: '#DC3545',
             color: 'white',
             borderColor: '#DC3545',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            marginBottom: '10px'
         }
     }
 
@@ -133,6 +134,14 @@ export default function BloodSugarPage() {
                     <Button variant="primary" onClick={addBloodSugar}>Enter</Button>
                 </Modal.Footer>
             </Modal>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
         
     )
