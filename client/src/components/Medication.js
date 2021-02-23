@@ -6,6 +6,7 @@ import MedsModal from './medsSubComps/MedsModal'
 import AddMedDose from './medsSubComps/AddMedDose'
 import DeleteMedModal from './medsSubComps/DeleteMedModal'
 import Local from '../utils/localStorage'
+import FooterComp from './SharedComponents/Footer'
 // import API from '../utils/API'
 // import { useAuth } from '../contexts/AuthContext'
 

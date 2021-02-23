@@ -33,7 +33,8 @@ export default function BloodSugarPage() {
             backgroundColor: '#DC3545',
             color: 'white',
             borderColor: '#DC3545',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            marginBottom: '10px'
         }
     }
 
@@ -133,6 +134,14 @@ export default function BloodSugarPage() {
                     <Button variant="primary" onClick={addBloodSugar}>Enter</Button>
                 </Modal.Footer>
             </Modal>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
         
     )
