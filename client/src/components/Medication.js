@@ -6,9 +6,9 @@ import MedsModal from './medsSubComps/MedsModal'
 import AddMedDose from './medsSubComps/AddMedDose'
 import DeleteMedModal from './medsSubComps/DeleteMedModal'
 import Local from '../utils/localStorage'
-import API from '../utils/API'
-import { useAuth } from '../contexts/AuthContext'
-import FooterComp from "../components/SharedComponents/Footer"
+import FooterComp from './SharedComponents/Footer'
+// import API from '../utils/API'
+// import { useAuth } from '../contexts/AuthContext'
 
 const styles = {
     button:{
@@ -22,26 +22,31 @@ const styles = {
 
 export default function Medication() {
 
-    const { currentUser } = useAuth()
+    // const { currentUser } = useAuth()
     const [showMedModal, setShowMedModal] = useState(false);
     const [showDoseModal, setShowDoseModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [error, setError] = useState(false);
-    // const [modalError, setModalError] = useState('')
-    // grabs the meds array for user
+
     const medsArr = Local.getMedsArr()
 
     const handleShowMedModal = () => setShowMedModal(true);
     const handleShowDoseModal = () => {
-        console.log(medsArr)
         if(medsArr.length > 0){
+            setError('')
             setShowDoseModal(true);
         } else {
             setError("Add a medication to add a dose")
         }
     }
-    const handleShowDeleteModal = () => setShowDeleteModal(true)
-
+    const handleShowDeleteModal = () => {
+        if(medsArr.length > 0){
+            setError('')
+            setShowDeleteModal(true);
+        } else {
+            setError("No Medications to Delete")
+        }
+    }
     return (
         <div>
             <NavbarComponent />

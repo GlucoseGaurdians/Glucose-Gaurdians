@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Container, Row } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 
 // switch(props) {
 //     case props.value < 80:
