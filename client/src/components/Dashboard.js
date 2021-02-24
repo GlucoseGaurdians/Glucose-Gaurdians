@@ -38,32 +38,40 @@ export default function Dashboard() {
         
         }
 
-        if (lastBs < 80 || (121 < lastBs && lastBs < 161)) {
+        if  (121 < lastBs && lastBs < 161) {
 
             setTestColorL("cardColorWarning");
-            setStatementL(0);
+            setStatementL("Blood sugar is a little high.  You're doing well, just make sure you test often and keep an eye on your carbs.");
              
 
-            console.log("Card Warning", lastBs)
+            
+        }
+       else if (lastBs < 80 ) {
+
+            setTestColorL("cardColorWarning");
+            setStatementL("You tested pretty low, make sure you are eating throughout the day and test often.");
+             
+
+            
         }
         else if (80 < lastBs && lastBs < 121) {
             setTestColorL("cardColorGood")
-            setStatementL(1)
+            setStatementL("Nicely done!  This test was in range, and that's the goal!  Make sure to test often to track your progress.")
              
-            console.log("Card Good", lastBs)
+            
         }
 
         else if (lastBs >= 161) {
             setTestColorL("cardColorDanger")
-            setStatementL(3)
+            setStatementL("That test was pretty high.  Make sure you are watching what you eat, taking your meds on time and testing often.  You'll get where you need to be, just keep at it.")
              
-            console.log("Card Danger", lastBs)
+            
         }
         else{
             setTestColorL("cardColorGood")
-            setStatementL(4)
+            setStatementL("Not enough information.  Test more often.")
              
-            console.log("Card Default", lastBs)
+            
         }
 
     }
@@ -101,28 +109,26 @@ export default function Dashboard() {
         if (finalA1C < 4.4 || (5.9 < finalA1C && finalA1C < 7.2)) {
 
             setTestColorC("cardColorWarning");
-            setStatementC(0);
+            setStatementC("Your Projected A1C is just out of range. Try taking more blood sugar tests and keep an eye on sugar intake.");
 
-            console.log("Card Warning", finalA1C)
         }
         else if (4.4 < finalA1C && finalA1C < 5.8) {
             setTestColorC("cardColorGood")
-            setStatementC(1)
+            setStatementC("Your projected A1C is in a good range.  Keep up the good work and make sure to test often to ensure accurate projections.")
              
-            console.log("Card Good", finalA1C)
         }
 
         else if (finalA1C >= 7.2) {
             setTestColorC("cardColorDanger")
-            setStatementC(3)
+            setStatementC("Your projected A1C is pretty high.  Make sure to test often and be aware of carb and sugar intake.")
              
-            console.log("Card Danger", finalA1C)
+            
         }
         else{
             setTestColorC("cardColorGood")
-            setStatementC(4)
+            setStatementC("Not enough information.  Test more often.")
              
-            console.log("Card Default", finalA1C)
+            
         }
 
     }
@@ -142,28 +148,24 @@ export default function Dashboard() {
         if (finalAvg < 80 || (121 < finalAvg && finalAvg < 161)) {
 
             setTestColorA("cardColorWarning");
-            setStatementA(0);
+            setStatementA("Your blood sugar is a little out of range.  Be sure to test often and track what you eat.");
 
-            console.log("Card Warning", finalAvg)
         }
         else if (80 < finalAvg && finalAvg < 121) {
             setTestColorA("cardColorGood")
-            setStatementA(1)
+            setStatementA("Your blood sugar readings are looking good!  Keep up the good work and test often for the most accurate blood sugar average.")
              
-            console.log("Card Good", finalAvg)
         }
 
         else if (finalAvg >= 161) {
             setTestColorA("cardColorDanger")
-            setStatementA(3)
+            setStatementA("Your blood sugar average is a little high.  Make sure you are testing often and tracking any carbs or sugar you are eating.")
              
-            console.log("Card Danger", finalAvg)
         }
         else{
             setTestColorA("cardColorGood")
-            setStatementA(4)
+            setStatementA("Not enough information. Test more often.")
              
-            console.log("Card Default", finalAvg)
         }
 
     }
