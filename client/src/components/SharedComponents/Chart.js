@@ -28,7 +28,7 @@ export default function LineChart() {
                 // put in the blood sugars 
                 data: tests,
                 fill: false,
-                backgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgb(207, 4, 47)',
                 borderColor: 'rgba(255, 99, 132, 0.2)',
             },
         ],
@@ -49,15 +49,15 @@ export default function LineChart() {
     return (
         <>
             <div className='header'>
-                <h1 className='title'>{user.currentUser.email}</h1>
-                <div className='links'>
+                <h1 className='title'>{user.currentUser.displayName} Blood Sugar Levels</h1>
+                {/* <div className='links'>
                     <a
                         className='btn btn-gh'
                         href='https://github.com/reactchartjs/react-chartjs-2/blob/react16/example/src/charts/Line.js'
                     >
                         Github Source
                     </a>
-                </div>
+                </div> */}
             </div>
             <Line data={data} options={options} />
         </>
