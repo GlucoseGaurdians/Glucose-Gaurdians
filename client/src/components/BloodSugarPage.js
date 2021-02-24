@@ -13,7 +13,7 @@ import LineChart from './SharedComponents/Chart'
 
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
 export default function BloodSugarPage() {
-
+    
     const [show, setShow] = useState(false);
     const [modalError, setModalError] = useState('')
 
