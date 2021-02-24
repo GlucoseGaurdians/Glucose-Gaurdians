@@ -95,7 +95,7 @@ function Contact() {
 
   <Form.Group as={Row}>
     <Col sm={{ span: 10, offset: 2 }}>
-      <Button className="btn-danger" type="submit">Submit</Button>
+      <Button className="logout" type="submit">Submit</Button>
     </Col>
   </Form.Group>
 </Form>

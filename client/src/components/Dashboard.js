@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Form, Row, Col, Button } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
 import DataRangeCard from './SharedComponents/DataRangeCard'
 import DataRangeCard2 from './SharedComponents/DataRangeCard2'
@@ -13,6 +13,8 @@ import Local from "../utils/localStorage"
 
 
 export default function Dashboard() {
+
+    
 
     // const [error, setError] = useState("")
     const [lastBS, setLastBS] = useState()
@@ -100,6 +102,15 @@ export default function Dashboard() {
     return (
         <div> 
             <NavbarComponent />
+
+            <Container>
+                <Row style={{textAlign: "center"}}>
+                    <Col className="col-md-6" style= {{paddingTop: '50px'}}>
+                    <Form>This is a btton</Form>
+                    </Col>
+                </Row>
+
+            </Container>
             <Container>
                 <Row style={{textAlign: "center"}}>
                     <Col style= {{paddingTop: '50px'}}>

@@ -5,8 +5,6 @@ body {
 }
 
 
-
-
 /* For mobile phones: */
 [class*="col-"] {
   width: 100%;
@@ -30,14 +28,19 @@ body {
 
 
 
-/* footer styling */
+/* color buttons for login sign up page */
+.signup {
+  background-color: #C8171E !important;
+  border: #C8171E !important;
+}
 
-.footer{
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: rgb(235, 195, 64);
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+.login {
+  background-color: #C8171E !important;
+  border: #C8171E !important;
+}
+
+.logout {
+  background-color: #C8171E !important;
+  border: #C8171E !important;
+
 }
