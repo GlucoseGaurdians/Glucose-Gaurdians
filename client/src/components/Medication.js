@@ -1,13 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import {  Container, Row, Col, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button, Accordion } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
 import Local from '../utils/localStorage'
 import API from '../utils/API'
 import { useAuth } from '../contexts/AuthContext'
+import LineChart from "../components/SharedComponents/Chart.js"
 
 const styles = {
-    button:{
+    button: {
         width: "100%"
     },
     row: {
@@ -15,8 +15,8 @@ const styles = {
     }
 }
 
-  
- 
+
+
 
 
 export default function Medication() {
@@ -39,7 +39,7 @@ export default function Medication() {
         //     amount: String
         // }]
         API.addNewMed(currentUser.uid, med)
-            .then(({data}) => {
+            .then(({ data }) => {
                 Local.setMedsArr(data.meds)
             })
             .catch(err => console.log(err))
@@ -47,7 +47,7 @@ export default function Medication() {
 
     function handleAddDose(medName, dose) {
         API.takeMedDose(currentUser.uid, medName, dose)
-            .then(({data}) => {
+            .then(({ data }) => {
                 Local.setMedsArr(data.meds)
             })
             .catch(err => console.log(err))
@@ -55,73 +55,36 @@ export default function Medication() {
 
     function handleDeleteMed(medName) {
         API.removeMed(currentUser.uid, medName)
-        .then(({data}) => {
-            Local.setMedsArr(data.meds)
-        })
-        .catch(err => console.log(err))  
+            .then(({ data }) => {
+                Local.setMedsArr(data.meds)
+            })
+            .catch(err => console.log(err))
     }
 
     return (
         <div>
             <NavbarComponent />
             <Container className="justify-content-around align-items-center">
-                <Row style={styles.row}>
-                    <Col>
-                        <Card>
-                            <Card.Body>
-                                <Link to='/addnewmeds'>
-                                    <Button style={styles.button}>
-                                        Log Medication Dose
-                                    </Button>
-                                </Link>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-                <Row style={styles.row}>
-                    <Col>
-                        <Card>
-                            <Card.Body>
-                                <Link to='/addnewmeds'>
-                                    <Button style={styles.button}>
-                                        Add new medication
-                                    </Button>
-                                </Link>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-                <Row style={styles.row}>
-                    <Col>
-                        <Card>
-                            <Card.Body>
-                                <Link to='/medschart'>
-                                    <Button style={styles.button}>
-                                        Medication chart
-                                    </Button>
-                                </Link>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-                <Row style={styles.row}>
-                    <Col>
-                        <Card>
-                            <Card.Body>
-                                <Link to='/logmeds'>
-                                    
-                                    <Button style={styles.button}>
-                                        Log medication
-                                    </Button>
-                                </Link>
-
-        
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
+                <Accordion defaultActiveKey="0">
+                    <Card>
+                        <Card.Header>
+                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                 Medication Options
+                        </Accordion.Toggle>
+                        </Card.Header>
+                        <Accordion.Collapse eventKey="0">
+                            <Row>
+                            <Card.Body onClick={} as={Button}>Add new medication</Card.Body>
+                            <Card.Body as={Button}>Add new medication</Card.Body>
+                            <Card.Body as={Button}>Add new medication</Card.Body>
+                            </Row>
+                        </Accordion.Collapse>
+                    </Card>
+                </Accordion>
+                <Container>
+                    <LineChart />
+                </Container>
             </Container>
-     
         </div>
     )
 }
