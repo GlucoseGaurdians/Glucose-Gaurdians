@@ -5,7 +5,7 @@ import NavbarComponent from './SharedComponents/Navbar'
 import AvgTestCard from './SharedComponents/AvgTestCard'
 import LastTestCard from './SharedComponents/LastTestCard'
 import A1cCard from './SharedComponents/A1cCard'
-
+import ReferenceCard from './SharedComponents/ReferenceCard'
 
 import API from '../utils/API'
 import Local from "../utils/localStorage"
@@ -220,6 +220,7 @@ export default function Dashboard() {
             <Container>
                 <Row style={{ textAlign: "center" }}>
                     <Col style={{ paddingTop: '50px' }}>
+                        <ReferenceCard/>
                         <LastTestCard style={{ width: '100%' }} title="Last Blood Sugar" value={lastBS} color={testColorL} statement={statementL}/>
                         <AvgTestCard style={{ width: '100%' }} title="Average Blood Sugar" value={avgBS} color={testColorA} statement={statementA}/>
                         <A1cCard style={{ width: '100%' }} title="Projected A1C" value={a1C} color={testColorC} statement={statementC}/>
