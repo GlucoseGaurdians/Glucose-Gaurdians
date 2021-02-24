@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Navbar, Nav, NavDropdown, Form } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import "./Navbar.css"
+import Logo from '../../Images/logo.png'
 import { useHistory } from 'react-router-dom'
 
 export default function NavbarComponent() {
@@ -16,7 +17,7 @@ export default function NavbarComponent() {
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Navbar.Brand href="/">
-                <img src="./Images/logo.png"
+                <img src={Logo}
                  alt ="logo"
                     width="40"
                     height="40"
