@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
 import AvgTestCard from './SharedComponents/AvgTestCard'
 import LastTestCard from './SharedComponents/LastTestCard'
-import A1cCard from './SharedComponents/A1cCard'
+import A1cCard from './SharedComponents/A1Ccard'
 
 
 import API from '../utils/API'
