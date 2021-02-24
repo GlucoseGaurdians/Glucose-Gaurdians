@@ -51,11 +51,11 @@ const API = {
     })
   },
 
-  takeMedDose: function(id, medName, dose) {
+  takeMedDose: function(payload) {
     return axios.post("/api/meds/dose", {
-      id: id,
-      medName: medName,
-      dose: dose
+      id: payload.id,
+      medName: payload.medName,
+      dose: payload.dose
     })
   },
 

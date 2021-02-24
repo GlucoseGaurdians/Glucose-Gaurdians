@@ -21,7 +21,6 @@ export default function DeleteMedModal(props) {
         API.removeMed(payload)
         .then(({data}) => {
             Local.setMedsArr(data.meds)
-            potentialMeds = Local.getMedsArr()
             handleClose()
         })
         .catch(err => {
