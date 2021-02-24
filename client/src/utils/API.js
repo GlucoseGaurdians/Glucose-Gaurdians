@@ -8,6 +8,7 @@ request.onerror = (e) => console.log("offline transactions unavailable")
 request.onsuccess = (e) => {
   console.log("opened db successfuly")
   db = request.result
+  checkPendingTransactions()
 
 }
 
@@ -58,11 +59,11 @@ const API = {
     })
   },
 
-  removeMed: function(id, medicationName) {
+  removeMed: function(payload) {
     return axios.delete("api/meds/", {
       data: {
-        id: id,
-        med: medicationName
+        id: payload.id,
+        med: payload.med
 
       }
     })
@@ -90,14 +91,18 @@ function checkPendingTransactions() {
     console.log(pendingTransactionsArr.result)
     if(pendingTransactionsArr.result) {
       pendingTransactionsArr.result.forEach(trans => {
-        console.log(trans)  
+        console.log(trans) 
         API[trans.apiName](trans.payload)
       })
+
+      objStore.clear()
     }
   }
 
 }
 
 window.addEventListener('online', checkPendingTransactions)
+
+
 
 

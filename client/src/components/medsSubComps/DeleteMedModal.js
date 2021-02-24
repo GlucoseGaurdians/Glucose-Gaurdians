@@ -17,8 +17,8 @@ export default function DeleteMedModal(props) {
     }
 
     function handleDeleteMed() {
-        console.log("bout to call db")
-        API.removeMed(currentUser.uid, medNameRef.current.value)
+        const payload = {id: currentUser.uid, med: medNameRef.current.value}
+        API.removeMed(payload)
         .then(({data}) => {
             Local.setMedsArr(data.meds)
             potentialMeds = Local.getMedsArr()
@@ -27,6 +27,11 @@ export default function DeleteMedModal(props) {
         .catch(err => {
             console.log(err)
             setModalError("unable to delete medication")
+            API.saveTransaction({
+                apiName: 'removeMed',
+                payload: payload
+            })
+            Local.setMedsArr((Local.getMedsArr()).filter(med => med.name !== payload.med))
         })  
     }
 

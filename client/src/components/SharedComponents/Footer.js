@@ -5,7 +5,7 @@ const FooterComp = () => (
   <div className="footer bg-dark text-white">
     <div className="row">
    
-
+{/* 
                        <div className="col-xs-6 col-md-6">
                          <ul className="footer-links">
                          <img src="./Images/footerlogo.png"
@@ -18,7 +18,7 @@ const FooterComp = () => (
                               
                               
                           </ul>
-                      </div>
+                      </div> */}
 
                       {/* <div className="col-xs-6 col-md-3"> */}
                            <ul className="footer-links">

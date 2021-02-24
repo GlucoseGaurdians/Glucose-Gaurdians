@@ -81,6 +81,9 @@ export default function BloodSugarPage() {
                 apiName: "saveBloodSugar",
                 payload: payload 
             })
+            const tempTests = Local.getTestsArr()
+            tempTests.push(payload.test)
+            Local.setTestsArr(tempTests)
         })
     }
 
