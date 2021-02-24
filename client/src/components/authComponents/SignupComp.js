@@ -72,7 +72,7 @@ export default function SignupComp() {
                             <Form.Label>Confirm Password</Form.Label>
                             <Form.Control type="password" ref={confirmPasswordRef} required />
                         </Form.Group>
-                        <Button disabled={loading} className="w-100 btn-danger signup" type="submit">Sign Up</Button>
+                        <Button disabled={loading} className="w-100 signup" type="submit">Sign Up</Button>
                     </Form>
                     <br></br>
                     <ThirdPartyBtns />

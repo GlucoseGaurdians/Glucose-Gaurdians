@@ -44,9 +44,7 @@
   background-color: #C8171E !important;
   border: #C8171E !important;
 
-<<<<<<< HEAD
-=======
-.footer{
+/* .footer{
   margin-top: 1rem;
   padding: 1rem;
   background-color: rgb(235, 195, 64);
@@ -54,7 +52,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-}
+} */
 
 .medrow{
   justify-content: center !important;
@@ -67,5 +65,4 @@
   background-color: red !important;
   border-color: red !important;
 
->>>>>>> develop
 }
