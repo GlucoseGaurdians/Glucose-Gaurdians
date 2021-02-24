@@ -13,7 +13,7 @@ export default function SignupComp() {
     const passwordRef = useRef()
     const confirmPasswordRef = useRef()
     const userNameRef = useRef()
-    const {signup, currentUser} = useAuth()
+    const {signup} = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -37,9 +37,9 @@ export default function SignupComp() {
                 console.log(u.user)
                 u.user.updateProfile({
                     displayName: userNameRef.current.value
-                })
+                }).then(() => history.push("/"))
+            
             })
-            history.push("/")
             
         } catch {
             setError('Failed to create an account')

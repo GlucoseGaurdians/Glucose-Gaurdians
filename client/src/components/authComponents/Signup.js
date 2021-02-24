@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Container, Row } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import SignupComp from "./SignupComp"
 
 
@@ -14,11 +14,11 @@ export default function Signup({children}) {
                 <img src="./Images/loginlogo.png"
                  alt ="logo"
                   
-                    className="img-fluid mb-3 d-none d-md-block"
+                    className="img-fluid mb-3 d-md-block"
                 />{' '}
                 
                     <h1>Create an Account</h1>
-                    <p>Track your blood sugar and medication with the Glucose Guardians App!</p>
+                    <p>Track your blood sugar and medication with the Glucose Guardian App!</p>
                    
 
                 </div>

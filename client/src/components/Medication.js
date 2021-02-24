@@ -1,90 +1,96 @@
-import React from 'react'
-import { Container, Row, Col, Card, Button, Accordion } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Container, Accordion, Row, Col, Card, Button, Alert } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
+import MedsModal from './medsSubComps/MedsModal'
+import AddMedDose from './medsSubComps/AddMedDose'
+import DeleteMedModal from './medsSubComps/DeleteMedModal'
 import Local from '../utils/localStorage'
-import API from '../utils/API'
-import { useAuth } from '../contexts/AuthContext'
-import LineChart from "../components/SharedComponents/Chart.js"
-
-const styles = {
-    button: {
-        width: "100%"
-    },
-    row: {
-        marginTop: "50px"
-    }
-}
-
+import FooterComp from './SharedComponents/Footer'
+import LineChart from './SharedComponents/Chart'
 
 
 
 
 export default function Medication() {
 
-    const { currentUser } = useAuth()
-    // grabs the meds array for user
+    // const { currentUser } = useAuth()
+    const [showMedModal, setShowMedModal] = useState(false);
+    const [showDoseModal, setShowDoseModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [error, setError] = useState(false);
+
     const medsArr = Local.getMedsArr()
 
-    function handleAddMed(med) {
-        // med should be an object and should have a name key
-        // name: String,
-        // type: {
-        //     type: String,
-        // },
-        // doses: [{
-        //     date: {
-        //         type: Date,
-        //         default: Date.now
-        //     },
-        //     amount: String
-        // }]
-        API.addNewMed(currentUser.uid, med)
-            .then(({ data }) => {
-                Local.setMedsArr(data.meds)
-            })
-            .catch(err => console.log(err))
+    const handleShowMedModal = () => setShowMedModal(true);
+    const handleShowDoseModal = () => {
+        if (medsArr.length > 0) {
+            setError('')
+            setShowDoseModal(true);
+        } else {
+            setError("Add a medication to add a dose")
+        }
     }
-
-    function handleAddDose(medName, dose) {
-        API.takeMedDose(currentUser.uid, medName, dose)
-            .then(({ data }) => {
-                Local.setMedsArr(data.meds)
-            })
-            .catch(err => console.log(err))
+    const handleShowDeleteModal = () => {
+        if (medsArr.length > 0) {
+            setError('')
+            setShowDeleteModal(true);
+        } else {
+            setError("No Medications to Delete")
+        }
     }
-
-    function handleDeleteMed(medName) {
-        API.removeMed(currentUser.uid, medName)
-            .then(({ data }) => {
-                Local.setMedsArr(data.meds)
-            })
-            .catch(err => console.log(err))
-    }
-
     return (
         <div>
             <NavbarComponent />
             <Container className="justify-content-around align-items-center">
+                {error && <Alert variant="danger">{error}</Alert>}
                 <Accordion defaultActiveKey="0">
                     <Card>
                         <Card.Header>
                             <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                 Medication Options
+                                Medication options
                         </Accordion.Toggle>
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
-                            <Row>
-                            <Card.Body onClick={} as={Button}>Add new medication</Card.Body>
-                            <Card.Body as={Button}>Add new medication</Card.Body>
-                            <Card.Body as={Button}>Add new medication</Card.Body>
+                            <Row className="medrow">
+                                <Col className='col-md-4'>
+                                    <Button className='medbtn btn-block' onClick={handleShowDoseModal}>
+                                        Log Medication Dose
+                                    </Button>
+                                </Col>
+                                <Col className='col-md-4'>
+                                    <Button className='medbtn btn-block' onClick={handleShowMedModal}>
+                                        Add new medication
+                                    </Button>
+                                </Col>
+                                <Col className='col-md-4'>
+                                    <Button className='medbtn btn-block' onClick={handleShowDeleteModal}>
+                                        Delete Medication
+                                    </Button>
+                                </Col>
                             </Row>
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
-                <Container>
-                    <LineChart />
-                </Container>
+                <LineChart />
+                {/* <Button style={styles.button} onClick={handleShowDoseModal}>
+                                    Log Medication Dose
+                                </Button> */}
+
+
+                {/* <Button style={styles.button} onClick={handleShowMedModal}>
+                                        Add new medication
+                                    </Button> */}
+
+                {/* <Button style={styles.button} onClick={handleShowDeleteModal}>
+                                    Delete Medication
+                                </Button> */}
             </Container>
+            <FooterComp />
+            <MedsModal show={showMedModal} setShow={setShowMedModal} />
+            <AddMedDose show={showDoseModal} setShow={setShowDoseModal} />
+            <DeleteMedModal show={showDeleteModal} setShow={setShowDeleteModal} />
+
         </div>
     )
 }
