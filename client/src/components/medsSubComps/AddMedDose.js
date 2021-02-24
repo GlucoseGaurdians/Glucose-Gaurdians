@@ -12,6 +12,7 @@ export default function AddMedDose(props) {
     const { currentUser } = useAuth()
 
     const potentialMeds = Local.getMedsArr()
+    console.log(potentialMeds)
 
     const handleClose = () => {
         props.setShow(false)
@@ -42,15 +43,23 @@ export default function AddMedDose(props) {
                     apiName: 'takeMedDose',
                     payload: payload
                 })
-                const medArry = Local.getMedsArr()
+                let medArry = Local.getMedsArr()
+                console.log(medArry)
                 if(medArry.length > 1){
                     let targetMed = medArry.filter(med => med.name === payload.medName)
-                    let theRest = medArry.filter(med => med.name !== payload.medName)
-                    targetMed.dose.push(payload.dose)
-                    Local.setMedsArr(theRest.push(targetMed))
+                    let theRest = medArry.filter(med => med.name != payload.medName)
+                    console.log(targetMed[0])
+                    targetMed[0].doses.push(payload.dose)
+                    theRest.push(targetMed[0])
+                    console.log(theRest)
+                    // console.log(theRest.push(targetMed[0]))
+                    Local.setMedsArr(theRest)
+                    
+                    
                     
                 } else {
-                    Local.setMedsArr(medArry[0].dose.push(payload.dose))
+                    medArry[0].doses.push(payload.dose)
+                    Local.setMedsArr(medArry)
                 }
             })
     

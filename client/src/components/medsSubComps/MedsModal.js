@@ -12,6 +12,7 @@ export default function MedsModal(props) {
     const typeRef = useRef()
     const otherNameRef = useRef()
     const { currentUser } = useAuth()
+    
 
     const potentialMeds = [
         "Humulin",
@@ -125,6 +126,10 @@ export default function MedsModal(props) {
             })
             .catch(err => {
                 console.log(err)
+                API.saveTransaction({
+                    apiName: "addNewMed",
+                    payload: payload
+                })
                 Local.setMedsArr(Local.getMedsArr().push(payload.med))
             })
     }

@@ -40,6 +40,7 @@ export default function Dashboard() {
 
         }
         setAvgBS(Math.floor(avgBSugar/testArr.length));
+        console.log(avgBS)
     }
 
     function a1Cfunct(){
