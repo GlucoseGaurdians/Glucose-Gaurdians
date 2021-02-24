@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { Button, Form, Modal, Alert } from 'react-bootstrap'
-import Local from '../../utils/localStorage'
-import API from '../../utils/API'
-import { useAuth } from '../../contexts/AuthContext'
+import Local from '../../../utils/localStorage'
+import API from '../../../utils/API'
+import { useAuth } from '../../../contexts/AuthContext'
 
 export default function MedsModal(props) {
 

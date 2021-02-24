@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Accordion, Row, Col, Card, Button, Alert } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
-import MedsModal from './medsSubComps/MedsModal'
-import AddMedDose from './medsSubComps/AddMedDose'
-import DeleteMedModal from './medsSubComps/DeleteMedModal'
+import MedsModal from './medsSubComps/modals/AddMedsModal'
+import AddMedDose from './medsSubComps/modals/AddMedDoseModal'
+import DeleteMedModal from './medsSubComps/modals/DeleteMedModal'
 import Local from '../utils/localStorage'
 import FooterComp from './SharedComponents/Footer'
 import LineChart from './SharedComponents/Chart'
@@ -43,7 +43,7 @@ export default function Medication() {
         <div>
             <NavbarComponent />
             <Container className="justify-content-around align-items-center">
-                {error && <Alert variant="danger">{error}</Alert>}
+                {error && <Alert variant="danger" className="mt-2">{error}</Alert>}
                 <Accordion defaultActiveKey="0">
                     <Card>
                         <Card.Header>
@@ -87,9 +87,9 @@ export default function Medication() {
                                 </Button> */}
             </Container>
             <FooterComp />
-            <MedsModal show={showMedModal} setShow={setShowMedModal} />
-            <AddMedDose show={showDoseModal} setShow={setShowDoseModal} />
-            <DeleteMedModal show={showDeleteModal} setShow={setShowDeleteModal} />
+            <MedsModal show={showMedModal} setShow={setShowMedModal} setMedError={setError} />
+            <AddMedDose show={showDoseModal} setShow={setShowDoseModal} setMedError={setError} />
+            <DeleteMedModal show={showDeleteModal} setShow={setShowDeleteModal} setMedError={setError} />
 
         </div>
     )

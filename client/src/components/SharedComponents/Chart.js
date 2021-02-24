@@ -49,7 +49,7 @@ export default function LineChart() {
     return (
         <>
             <div className='header'>
-                <h1 className='title'>{user.currentUser.displayName} Blood Sugar Levels</h1>
+                <h1 className='title'>{user.currentUser.displayName}'s Blood Sugar Levels</h1>
                 {/* <div className='links'>
                     <a
                         className='btn btn-gh'
