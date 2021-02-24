@@ -62,11 +62,14 @@ export default function BloodSugarPage() {
         }
 
         const payload = {
-            glucose: bs,
-            comment: commentsRef.current.value
+            test: {
+                glucose: bs,
+                comment: commentsRef.current.value
+            },
+            id: currentUser.uid
         }
 
-        API.saveBloodSugar(payload, currentUser.uid)
+        API.saveBloodSugar(payload)
         .then(({data}) => {
             Local.setTestsArr(data.tests)
             handleClose()
@@ -74,6 +77,10 @@ export default function BloodSugarPage() {
         .catch(err => {
             console.log(err)
             setModalError("Unable to save blood sugar")
+            API.saveTransaction({
+                apiName: "saveBloodSugar",
+                payload: payload 
+            })
         })
     }
 

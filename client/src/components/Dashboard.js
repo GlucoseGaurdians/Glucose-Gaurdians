@@ -37,12 +37,9 @@ export default function Dashboard() {
         let avgBSugar=0;
         for(let i=0; i < testArr.length; i++){
            avgBSugar+=testArr[i].glucose
-           console.log(testArr[i].glucose)
-           console.log(avgBSugar)
 
         }
         setAvgBS(Math.floor(avgBSugar/testArr.length));
-        console.log(avgBSugar);
     }
 
     function a1Cfunct(){
@@ -51,12 +48,8 @@ export default function Dashboard() {
         let finalAvg=0
         for(let i=0; i < testArr.length; i++){
            avgBSugar+=testArr[i].glucose
-           console.log(testArr[i].glucose)
-           console.log(avgBSugar)
-
         }
         finalAvg = (avgBSugar/testArr.length);
-        console.log(avgBSugar);
         setA1c(((finalAvg+46.7)/28.7).toFixed(1));
     }
 
