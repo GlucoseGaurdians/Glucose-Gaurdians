@@ -2,17 +2,7 @@ import React from 'react'
 import { Card, Container, Row } from 'react-bootstrap'
 import "./card.css";
 
-// switch(props) {
-//     case props.value < 80:
-//         style= backgroundColor: 'orange'
-//       break;
-//     case props.value > 80 < 120:
-//         style= backgroundColor: 'green'
-//       break;
-//       case props.value >= 120:
-//         style= backgroundColor: 'red'
-//       break;
-//   }
+
 
 export default function A1cCard(props) {
     return (

@@ -21,7 +21,7 @@ export default function LastTestCard(props) {
                 <Card.Title className="textColor">Last Test</Card.Title>
                 <Card.Subtitle className="mb-2 d-flex justify-content-center textColor">Bloodsugar(mg/dl)</Card.Subtitle>
                 <Card.Text className="display-3 d-flex justify-content-center textColor">{props.value}</Card.Text>
-                <Card.Text className="textColor">{props.description}
+                <Card.Text className="textColor">{props.statement}
                 </Card.Text>
             </Card.Body>
         </Card>
