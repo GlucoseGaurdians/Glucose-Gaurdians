@@ -44,10 +44,10 @@ const API = {
     })
   },
 
-  addNewMed: function(id, med) {
+  addNewMed: function(payload) {
     return axios.post("/api/meds/", {
-      id: id,
-      med: med
+      id: payload.id,
+      med: payload.med
     })
   },
 

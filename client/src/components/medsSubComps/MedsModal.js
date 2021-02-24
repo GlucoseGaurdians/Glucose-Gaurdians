@@ -111,15 +111,22 @@ export default function MedsModal(props) {
             return setModalError("Medication must have a name")
         }
 
-        API.addNewMed(currentUser.uid, {
-            name: medNameRef.current.value,
-            type: typeRef.current.value
-        })
+        const payload = {
+            id: currentUser.uid,
+            med: {
+                name: medNameRef.current.value,
+                type: typeRef.current.value
+            }
+        }
+        API.addNewMed(payload )
             .then(({data}) => {
                 Local.setMedsArr(data.meds)
                 handleClose()
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                Local.setMedsArr(Local.getMedsArr().push(payload.med))
+            })
     }
 
     return (
