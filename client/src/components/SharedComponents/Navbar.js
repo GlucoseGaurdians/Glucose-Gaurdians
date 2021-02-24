@@ -26,8 +26,8 @@ export default function NavbarComponent() {
                  </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
+                <Nav className="mr-auto navbar-links">
+                    <Nav.Link classname="navbar-links" href="/">Home</Nav.Link>
                     <Nav.Link href="">    </Nav.Link>
                     <Nav.Link href="bloodsugar">Track Blood Sugar</Nav.Link>
                     <Nav.Link href="">    </Nav.Link>
@@ -44,7 +44,7 @@ export default function NavbarComponent() {
                 
                 </Nav>
                 <Form className="text-right">
-                    <Button className="float-right mr-auto align-right btn btn-danger my-2 my-sm-0" type="logout" onClick={handleLogOut}>Logout</Button>
+                    <Button className="float-right mr-auto align-right logout my-2 my-sm-0" type="logout" onClick={handleLogOut}>Logout</Button>
                     </Form>
             </Navbar.Collapse>
         </Navbar>

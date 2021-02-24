@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Form, Row, Col, Button } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
 import AvgTestCard from './SharedComponents/AvgTestCard'
 import LastTestCard from './SharedComponents/LastTestCard'
-import A1cCard from './SharedComponents/A1cCard'
+import A1cCard from './SharedComponents/A1Ccard'
 
 
 import API from '../utils/API'
@@ -13,6 +13,8 @@ import Local from "../utils/localStorage"
 
 
 export default function Dashboard() {
+
+    
 
     // const [error, setError] = useState("")
     const [lastBS, setLastBS] = useState()
@@ -217,6 +219,22 @@ export default function Dashboard() {
     return (
         <div>
             <NavbarComponent />
+
+            {/* <Container>
+                <Row style={{textAlign: "center"}}>
+                    <Col className="col-md-6" style= {{paddingTop: '50px'}}>
+                    <div className="card">
+  <h5 className="card-header">Featured</h5>
+  <div className="card-body">
+    <h5 className="card-title">Special title treatment</h5>
+    <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" className="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+                    </Col>
+                </Row>
+
+            </Container> */}
             <Container>
                 <Row style={{ textAlign: "center" }}>
                     <Col style={{ paddingTop: '50px' }}>
@@ -226,6 +244,12 @@ export default function Dashboard() {
                     </Col>
                 </Row>
             </Container>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
 
 
         </div>
