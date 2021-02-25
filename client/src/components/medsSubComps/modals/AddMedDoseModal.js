@@ -44,22 +44,24 @@ export default function AddMedDose(props) {
                     payload: payload
                 })
                 let medArry = Local.getMedsArr()
-                console.log(medArry)
+
                 if(medArry.length > 1){
                     let targetMed = medArry.filter(med => med.name === payload.medName)
                     let theRest = medArry.filter(med => med.name != payload.medName)
-                    console.log(targetMed[0])
+
                     targetMed[0].doses.push(payload.dose)
                     theRest.push(targetMed[0])
-                    console.log(theRest)
-                    // console.log(theRest.push(targetMed[0]))
                     Local.setMedsArr(theRest)
+                    handleClose()
+                    props.setMedError("No connection found.  Data will be stored when connection is reestablished.")
                     
                     
                     
                 } else {
                     medArry[0].doses.push(payload.dose)
                     Local.setMedsArr(medArry)
+                    handleClose()
+                    props.setMedError("No connection found.  Data will be stored when connection is reestablished.")
                 }
             })
     

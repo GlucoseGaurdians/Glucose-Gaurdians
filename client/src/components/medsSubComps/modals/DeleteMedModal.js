@@ -31,6 +31,8 @@ export default function DeleteMedModal(props) {
                 payload: payload
             })
             Local.setMedsArr((Local.getMedsArr()).filter(med => med.name !== payload.med))
+            handleClose()
+            props.setMedError("No connection found.  Data will be stored when connection is reestablished.")
         })  
     }
 
