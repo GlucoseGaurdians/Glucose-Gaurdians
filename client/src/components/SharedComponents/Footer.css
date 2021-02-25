@@ -19,8 +19,9 @@
   bottom: 0;
   width: 100%;
   /* overflow: hidden; */
-  overflow: hidden;
+  /* overflow: hidden; */
   /* Footer height */
+  height: 20%;
 }
 .footertext {
   font-size: small;
@@ -78,5 +79,12 @@
 }
 
 .copyright-text {
-  margin: 0;
+  /* margin: 0; */
+  float:left;
+  /* padding: 1rem; */
+}
+.dropdown{
+ overflow:visible;
+ float:right;
+
 }
