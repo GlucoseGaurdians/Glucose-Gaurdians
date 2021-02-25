@@ -61,6 +61,14 @@ export default function BloodSugarPage() {
             return setModalError("Blood sugar must be a number")
         }
 
+        if (bsRef.current.value > 500) {
+            return setModalError("Your Blood Sugar is too high!  If your blood sugar is higher than 500mg/dL SEEK IMMEDIATE MEDICAL ATTENTION")
+        }
+
+        if (bsRef.current.value < 40) {
+            return setModalError("Your Blood Sugar is too low!  If your blood sugar is lower than 40mg/dL SEEK IMMEDIATE MEDICAL ATTENTION")
+        }
+
         const payload = {
             test: {
                 glucose: bs,
