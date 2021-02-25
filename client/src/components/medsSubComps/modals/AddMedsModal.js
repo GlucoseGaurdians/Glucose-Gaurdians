@@ -116,7 +116,8 @@ export default function MedsModal(props) {
             id: currentUser.uid,
             med: {
                 name: medNameRef.current.value,
-                type: typeRef.current.value
+                type: typeRef.current.value,
+                doses:[]
             }
         }
         API.addNewMed(payload )
@@ -130,7 +131,11 @@ export default function MedsModal(props) {
                     apiName: "addNewMed",
                     payload: payload
                 })
-                Local.setMedsArr(Local.getMedsArr().push(payload.med))
+                let tempArr = Local.getMedsArr()
+                tempArr.push(payload.med)
+                Local.setMedsArr(tempArr)
+                handleClose()
+                props.setMedError("No connection found.  Data will be stored when connection is reestablished.")
             })
     }
 
