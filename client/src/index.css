@@ -5,8 +5,11 @@
   
 } */
 
-
-
+html,
+body {
+ height: 100%;
+ position: relative;
+}
 
 /* For mobile phones: */
 [class*="col-"] {
@@ -31,9 +34,22 @@
 
 
 
-/* footer styling */
+/* color buttons for login sign up page */
+.signup {
+  background-color: #C8171E !important;
+  border: #C8171E !important;
+}
 
-.footer{
+.login {
+  background-color: #C8171E !important;
+  border: #C8171E !important;
+}
+
+.logout {
+  background-color: #C8171E !important;
+  border: #C8171E !important;
+}
+/* .footer{
   margin-top: 1rem;
   padding: 1rem;
   background-color: rgb(235, 195, 64);
@@ -41,7 +57,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-}
+} */
 
 .medrow{
   justify-content: center !important;

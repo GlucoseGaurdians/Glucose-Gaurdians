@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row } from 'react-bootstrap'
 import LoginComp from "./LoginComp"
+import SignInLogo from '../../Images/signinlogo.png'
 
 
 
@@ -11,7 +12,7 @@ export default function Signup({children}) {
             <Row className="row py-5 mt-4 align-items-center">
                 <div className="col-md-5 pr-lg-5 mb-5 mb-md-0">
 
-                <img src="./Images/signinlogo.png"
+                <img src={SignInLogo}
                  alt ="logo"
                   
                     className="img-fluid mb-3 d-md-block"
