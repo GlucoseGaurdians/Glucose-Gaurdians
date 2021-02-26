@@ -28,12 +28,12 @@ const FooterComp = () =>
             variant="secondary"
             title={` SiteLinks `}
           >
-            <Dropdown.Item eventKey="1"><a href="/bloodsugar">Home</a></Dropdown.Item>
-            <Dropdown.Item eventKey="2"><a href="/login">Login</a></Dropdown.Item>
-            <Dropdown.Item eventKey="3"><a href="/signup">Sign Up</a></Dropdown.Item>
-            <Dropdown.Item eventKey="4"><a href="/questions">The Glucose Guardian</a></Dropdown.Item>
-            <Dropdown.Item eventKey="5"><a href="/contact">FAQ</a></Dropdown.Item>
-            <Dropdown.Item eventKey="6"><a href="/login">Logout</a></Dropdown.Item>
+            <Dropdown.Item eventKey="1"><a href="bloodsugar">Home</a></Dropdown.Item>
+            <Dropdown.Item eventKey="2"><a href="login">Login</a></Dropdown.Item>
+            <Dropdown.Item eventKey="3"><a href="signup">Sign Up</a></Dropdown.Item>
+            <Dropdown.Item eventKey="4"><a href="questions">The Glucose Guardian</a></Dropdown.Item>
+            <Dropdown.Item eventKey="5"><a href="contact">FAQ</a></Dropdown.Item>
+            <Dropdown.Item eventKey="6"><a href="login">Logout</a></Dropdown.Item>
           </DropdownButton>
         ))}
         <br></br>
