@@ -54,19 +54,19 @@ export default function Medication() {
                         <Accordion.Collapse eventKey="0">
                             <Row className="medrow">
                                 <Col className='col-md-4'>
-                                    <Button className='medbtn btn-block' onClick={handleShowDoseModal}>
+                                    <a className='btn medbtn btn-block' onClick={handleShowDoseModal}>
                                         Log Medication Dose
-                                    </Button>
+                                    </a>
                                 </Col>
                                 <Col className='col-md-4'>
-                                    <Button className='medbtn btn-block' onClick={handleShowMedModal}>
+                                    <a className='btn medbtn btn-block' onClick={handleShowMedModal}>
                                         Add new medication
-                                    </Button>
+                                    </a>
                                 </Col>
                                 <Col className='col-md-4'>
-                                    <Button className='medbtn btn-block' onClick={handleShowDeleteModal}>
+                                    <a className='btn medbtn btn-block' onClick={handleShowDeleteModal}>
                                         Delete Medication
-                                    </Button>
+                                    </a>
                                 </Col>
                             </Row>
                         </Accordion.Collapse>
