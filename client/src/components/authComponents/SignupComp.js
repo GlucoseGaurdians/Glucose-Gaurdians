@@ -40,6 +40,8 @@ export default function SignupComp() {
                     displayName: userNameRef.current.value
                 }).then(() => history.push("/"))
             
+            }).catch(err => {
+                setError(err.message)
             })
             
         } catch {

@@ -18,8 +18,6 @@ import Footer from "./SharedComponents/Footer"
 import Contact from "../components/Contact"
 
 
-
-
 function App() {
 
   return (
