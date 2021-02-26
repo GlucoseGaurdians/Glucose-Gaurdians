@@ -16,7 +16,7 @@ export default function TestMedChart() {
     let dates2 = []
     let tests2 = []
 
-
+    
     function handleAddChart() {
 
         
@@ -25,15 +25,18 @@ export default function TestMedChart() {
         tests2 = targetMed[0].doses.map(dose => parseInt(dose.amount))
         setDates(dates2)
         setTests(tests2)
+        console.log(dates2)
         // setActiveChart(true)
     }
 
+console.log(dates)
     const data = {
         // dates = lables
         labels: dates,
+        
         datasets: [
             {
-                // label: [medNameRef.current.value],
+                label: "Medication",
                 // put in the blood sugars 
                 data: tests,
                 fill: true,
