@@ -7,7 +7,7 @@ import AddMedDose from './medsSubComps/modals/AddMedDoseModal'
 import DeleteMedModal from './medsSubComps/modals/DeleteMedModal'
 import Local from '../utils/localStorage'
 import FooterComp from './SharedComponents/Footer'
-import LineChart from './SharedComponents/Chart'
+import LineChart from './medsSubComps/testMedChart'
 
 
 
@@ -96,7 +96,7 @@ export default function Medication() {
                                     Delete Medication
                                 </Button> */}
             </Container>
-            <FooterComp />
+            {/* <FooterComp /> */}
             <MedsModal show={showMedModal} setShow={setShowMedModal} setMedError={setError} />
             <AddMedDose show={showDoseModal} setShow={setShowDoseModal} setMedError={setError} />
             <DeleteMedModal show={showDeleteModal} setShow={setShowDeleteModal} setMedError={setError} />
