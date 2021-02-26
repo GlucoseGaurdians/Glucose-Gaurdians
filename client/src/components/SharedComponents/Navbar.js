@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Navbar, Nav, NavDropdown, Form } from 'react-bootstrap'
 import { useAuth } from '../../contexts/AuthContext'
 import "./Navbar.css"
+import Logo from '../../Images/logo.png'
 import { useHistory } from 'react-router-dom'
 
 export default function NavbarComponent() {
@@ -16,7 +17,7 @@ export default function NavbarComponent() {
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Navbar.Brand href="/">
-                <img src="./Images/logo.png"
+                <img src={Logo}
                  alt ="logo"
                     width="40"
                     height="40"
@@ -26,8 +27,8 @@ export default function NavbarComponent() {
                  </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
+                <Nav className="mr-auto navbar-links">
+                    <Nav.Link classname="navbar-links" href="/">Home</Nav.Link>
                     <Nav.Link href="">    </Nav.Link>
                     <Nav.Link href="bloodsugar">Track Blood Sugar</Nav.Link>
                     <Nav.Link href="">    </Nav.Link>
@@ -44,7 +45,7 @@ export default function NavbarComponent() {
                 
                 </Nav>
                 <Form className="text-right">
-                    <Button className="float-right mr-auto align-right btn btn-danger my-2 my-sm-0" type="logout" onClick={handleLogOut}>Logout</Button>
+                    <Button className="float-right mr-auto align-right logout my-2 my-sm-0" type="logout" onClick={handleLogOut}>Logout</Button>
                     </Form>
             </Navbar.Collapse>
         </Navbar>

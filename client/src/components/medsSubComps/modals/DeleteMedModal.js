@@ -1,37 +1,39 @@
 import React, { useRef, useState } from 'react'
 import { Button, Form, Modal, Alert } from 'react-bootstrap'
-import Local from '../../utils/localStorage'
-import API from '../../utils/API'
-import { useAuth } from '../../contexts/AuthContext'
+import Local from '../../../utils/localStorage'
+import API from '../../../utils/API'
+import { useAuth } from '../../../contexts/AuthContext'
 
-export default function AddMedDose(props) {
+export default function DeleteMedModal(props) {
 
     const [modalError, setModalError] = useState()
     const medNameRef = useRef()
-    const doseRef = useRef()
     const { currentUser } = useAuth()
 
-    const potentialMeds = Local.getMedsArr()
+    let potentialMeds = Local.getMedsArr()
 
     const handleClose = () => {
         props.setShow(false)
     }
 
-    function handleAddMed() {
-
-        if(doseRef.current.value === '') {
-            return setModalError("Please Enter Dosage")
-        } else {
-            setModalError('')
-        }
-
-        API.takeMedDose(currentUser.uid, medNameRef.current.value, {
-                amount: doseRef.current.value
-            }).then(({data}) => {
-                Local.setMedsArr(data.meds)
-                handleClose()
-            }).catch(err => console.log(err))
-    
+    function handleDeleteMed() {
+        const payload = {id: currentUser.uid, med: medNameRef.current.value}
+        API.removeMed(payload)
+        .then(({data}) => {
+            Local.setMedsArr(data.meds)
+            handleClose()
+        })
+        .catch(err => {
+            console.log(err)
+            setModalError("unable to delete medication")
+            API.saveTransaction({
+                apiName: 'removeMed',
+                payload: payload
+            })
+            Local.setMedsArr((Local.getMedsArr()).filter(med => med.name !== payload.med))
+            handleClose()
+            props.setMedError("No connection found.  Data will be stored when connection is reestablished.")
+        })  
     }
 
     return (
@@ -52,12 +54,7 @@ export default function AddMedDose(props) {
                 <Form.Group>
                     <Form.Label>Medication Name</Form.Label>
                     <Form.Control as="select" ref={medNameRef}>
-                        {potentialMeds.map(med => (<option>{med.name}</option>))}
-                    </Form.Control>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Dosage</Form.Label>
-                    <Form.Control type='text' ref={doseRef} >
+                        {potentialMeds.map(medication => (<option>{medication.name}</option>))}
                     </Form.Control>
                 </Form.Group>
             </Form>
@@ -66,7 +63,7 @@ export default function AddMedDose(props) {
             <Button variant="secondary" onClick={handleClose}>
                 Close
             </Button>
-            <Button variant="primary" onClick={handleAddMed}>Enter</Button>
+            <Button variant="danger" onClick={handleDeleteMed}>Delete</Button>
         </Modal.Footer>
         </Modal>
 
