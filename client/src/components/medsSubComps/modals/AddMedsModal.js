@@ -14,7 +14,7 @@ export default function MedsModal(props) {
     const { currentUser } = useAuth()
     
 
-    const potentialMeds = [
+    let potentialMeds = [
         "Humulin",
         "Novolin",
         "NovoLog",
@@ -93,8 +93,13 @@ export default function MedsModal(props) {
 
     ]
 
+    function trimPotentialMeds() {
+        Local.getMedsArr()
+    }
+
     const handleClose = () => {
-        props.setShow(false)
+        const medArr = Local.getMedsArr()
+        medArr.filter()
     }
 
     function needTextBox() {
