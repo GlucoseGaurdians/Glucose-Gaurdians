@@ -5,6 +5,11 @@
   
 } */
 
+html,
+body {
+ height: 100%;
+ position: relative;
+}
 
 /* For mobile phones: */
 [class*="col-"] {

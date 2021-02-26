@@ -4,7 +4,7 @@ import { Container, Form, Row, Col, Button } from 'react-bootstrap'
 import NavbarComponent from './SharedComponents/Navbar'
 import AvgTestCard from './SharedComponents/AvgTestCard'
 import LastTestCard from './SharedComponents/LastTestCard'
-import A1cCard from './SharedComponents/A1cCard'
+import A1cCard from './SharedComponents/A1Ccard'
 import ReferenceCard from './SharedComponents/ReferenceCard'
 
 import API from '../utils/API'
@@ -245,6 +245,11 @@ export default function Dashboard() {
                     </Col>
                 </Row>
             </Container>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <br />
             <br />
             <br />
