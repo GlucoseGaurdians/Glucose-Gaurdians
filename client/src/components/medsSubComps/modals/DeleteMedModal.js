@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { Button, Form, Modal, Alert } from 'react-bootstrap'
-import Local from '../../utils/localStorage'
-import API from '../../utils/API'
-import { useAuth } from '../../contexts/AuthContext'
+import Local from '../../../utils/localStorage'
+import API from '../../../utils/API'
+import { useAuth } from '../../../contexts/AuthContext'
 
 export default function DeleteMedModal(props) {
 
@@ -10,23 +10,29 @@ export default function DeleteMedModal(props) {
     const medNameRef = useRef()
     const { currentUser } = useAuth()
 
-    const potentialMeds = Local.getMedsArr()
+    let potentialMeds = Local.getMedsArr()
 
     const handleClose = () => {
         props.setShow(false)
     }
 
     function handleDeleteMed() {
-        console.log("bout to call db")
-        API.removeMed(currentUser.uid, medNameRef.current.value)
+        const payload = {id: currentUser.uid, med: medNameRef.current.value}
+        API.removeMed(payload)
         .then(({data}) => {
             Local.setMedsArr(data.meds)
-            potentialMeds = Local.getMedsArr()
             handleClose()
         })
         .catch(err => {
             console.log(err)
             setModalError("unable to delete medication")
+            API.saveTransaction({
+                apiName: 'removeMed',
+                payload: payload
+            })
+            Local.setMedsArr((Local.getMedsArr()).filter(med => med.name !== payload.med))
+            handleClose()
+            props.setMedError("No connection found.  Data will be stored when connection is reestablished.")
         })  
     }
 

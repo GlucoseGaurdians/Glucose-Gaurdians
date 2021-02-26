@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { Button, Form, Modal, Alert } from 'react-bootstrap'
-import Local from '../../utils/localStorage'
-import API from '../../utils/API'
-import { useAuth } from '../../contexts/AuthContext'
+import Local from '../../../utils/localStorage'
+import API from '../../../utils/API'
+import { useAuth } from '../../../contexts/AuthContext'
 
 export default function AddMedDose(props) {
 
@@ -12,6 +12,7 @@ export default function AddMedDose(props) {
     const { currentUser } = useAuth()
 
     const potentialMeds = Local.getMedsArr()
+    console.log(potentialMeds)
 
     const handleClose = () => {
         props.setShow(false)
@@ -25,12 +26,44 @@ export default function AddMedDose(props) {
             setModalError('')
         }
 
-        API.takeMedDose(currentUser.uid, medNameRef.current.value, {
+        const payload = {
+            id: currentUser.uid,
+            medName: medNameRef.current.value,
+            dose: {
                 amount: doseRef.current.value
-            }).then(({data}) => {
+            }
+        }
+        API.takeMedDose(payload)
+            .then(({data}) => {
                 Local.setMedsArr(data.meds)
                 handleClose()
-            }).catch(err => console.log(err))
+            }).catch(err => {
+                console.log(err)
+                API.saveTransaction({
+                    apiName: 'takeMedDose',
+                    payload: payload
+                })
+                let medArry = Local.getMedsArr()
+
+                if(medArry.length > 1){
+                    let targetMed = medArry.filter(med => med.name === payload.medName)
+                    let theRest = medArry.filter(med => med.name != payload.medName)
+
+                    targetMed[0].doses.push(payload.dose)
+                    theRest.push(targetMed[0])
+                    Local.setMedsArr(theRest)
+                    handleClose()
+                    props.setMedError("No connection found.  Data will be stored when connection is reestablished.")
+                    
+                    
+                    
+                } else {
+                    medArry[0].doses.push(payload.dose)
+                    Local.setMedsArr(medArry)
+                    handleClose()
+                    props.setMedError("No connection found.  Data will be stored when connection is reestablished.")
+                }
+            })
     
     }
 

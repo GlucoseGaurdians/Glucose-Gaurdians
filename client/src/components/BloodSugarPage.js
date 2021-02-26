@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import DataRangeCard from './SharedComponents/DataRangeCard'
+// import DataRangeCard from './SharedComponents/DataRangeCard'
 
 import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -7,13 +7,13 @@ import { useAuth } from '../contexts/AuthContext'
 import NavbarComponent from "./SharedComponents/Navbar";
 import API from "../utils/API";
 import Local from "../utils/localStorage"
-import FooterComp from "../components/SharedComponents/Footer"
+// import FooterComp from "../components/SharedComponents/Footer"
 import LineChart from './SharedComponents/Chart'
 
 
 // color coded range at the top : add sugar btn : blood sug chart btn : Take meds btn : Nav?
 export default function BloodSugarPage() {
-
+    
     const [show, setShow] = useState(false);
     const [modalError, setModalError] = useState('')
 
@@ -33,7 +33,8 @@ export default function BloodSugarPage() {
             backgroundColor: '#DC3545',
             color: 'white',
             borderColor: '#DC3545',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            marginBottom: '10px'
         }
     }
 
@@ -60,12 +61,23 @@ export default function BloodSugarPage() {
             return setModalError("Blood sugar must be a number")
         }
 
-        const payload = {
-            glucose: bs,
-            comment: commentsRef.current.value
+        if (bsRef.current.value > 500) {
+            return setModalError("Your Blood Sugar is too high!  If your blood sugar is higher than 500mg/dL SEEK IMMEDIATE MEDICAL ATTENTION")
         }
 
-        API.saveBloodSugar(payload, currentUser.uid)
+        if (bsRef.current.value < 40) {
+            return setModalError("Your Blood Sugar is too low!  If your blood sugar is lower than 40mg/dL SEEK IMMEDIATE MEDICAL ATTENTION")
+        }
+
+        const payload = {
+            test: {
+                glucose: bs,
+                comment: commentsRef.current.value
+            },
+            id: currentUser.uid
+        }
+
+        API.saveBloodSugar(payload)
         .then(({data}) => {
             Local.setTestsArr(data.tests)
             handleClose()
@@ -73,6 +85,13 @@ export default function BloodSugarPage() {
         .catch(err => {
             console.log(err)
             setModalError("Unable to save blood sugar")
+            API.saveTransaction({
+                apiName: "saveBloodSugar",
+                payload: payload 
+            })
+            const tempTests = Local.getTestsArr()
+            tempTests.push(payload.test)
+            Local.setTestsArr(tempTests)
         })
     }
 
@@ -133,6 +152,14 @@ export default function BloodSugarPage() {
                     <Button variant="primary" onClick={addBloodSugar}>Enter</Button>
                 </Modal.Footer>
             </Modal>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
         
     )

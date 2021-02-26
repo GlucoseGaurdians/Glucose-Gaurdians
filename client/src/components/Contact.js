@@ -2,6 +2,7 @@ import React from "react";
 import NavbarComponent from "../components/SharedComponents/Navbar"
 import { Container, Row, InputGroup, Col, Form, FormControl, Button, Card, Alert } from 'react-bootstrap'
 import FooterComp from "../components/SharedComponents/Footer"
+import SignInLogo from '../Images/signinlogo.png'
 
 
 function Contact() {
@@ -15,7 +16,7 @@ function Contact() {
             <Row className="row py-6 mt-4 align-items-center">
                 <div className="col-md-5 pr-lg-5 mb-5 ">
 {/* <Card> */}
-                <Card.Img className="img-fluid mb-3 d-md-block"  style={{opacity: 0.3}} src="./Images/signinlogo.png" alt="Card image" />
+                <Card.Img className="img-fluid mb-3 d-md-block"  style={{opacity: 0.3}} src={SignInLogo} alt="Card image" />
   <Card.ImgOverlay>
     <Card.Title>Drop Us a Line! We'd love to hear from you!</Card.Title>
     <Card.Text>
@@ -95,7 +96,7 @@ function Contact() {
 
   <Form.Group as={Row}>
     <Col sm={{ span: 10, offset: 2 }}>
-      <Button className="btn-danger" type="submit">Submit</Button>
+      <Button className="logout" type="submit">Submit</Button>
     </Col>
   </Form.Group>
 </Form>

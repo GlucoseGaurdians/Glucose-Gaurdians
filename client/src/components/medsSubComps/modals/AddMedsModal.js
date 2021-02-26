@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
-import { Container, Row, Col, Button, Form, Modal, Alert } from 'react-bootstrap'
-import Local from '../../utils/localStorage'
-import API from '../../utils/API'
-import { useAuth } from '../../contexts/AuthContext'
+import { Button, Form, Modal, Alert } from 'react-bootstrap'
+import Local from '../../../utils/localStorage'
+import API from '../../../utils/API'
+import { useAuth } from '../../../contexts/AuthContext'
 
 export default function MedsModal(props) {
 
@@ -12,6 +12,7 @@ export default function MedsModal(props) {
     const typeRef = useRef()
     const otherNameRef = useRef()
     const { currentUser } = useAuth()
+    
 
     const potentialMeds = [
         "Humulin",
@@ -111,15 +112,31 @@ export default function MedsModal(props) {
             return setModalError("Medication must have a name")
         }
 
-        API.addNewMed(currentUser.uid, {
-            name: medNameRef.current.value,
-            type: typeRef.current.value
-        })
+        const payload = {
+            id: currentUser.uid,
+            med: {
+                name: medNameRef.current.value,
+                type: typeRef.current.value,
+                doses:[]
+            }
+        }
+        API.addNewMed(payload )
             .then(({data}) => {
                 Local.setMedsArr(data.meds)
                 handleClose()
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                API.saveTransaction({
+                    apiName: "addNewMed",
+                    payload: payload
+                })
+                let tempArr = Local.getMedsArr()
+                tempArr.push(payload.med)
+                Local.setMedsArr(tempArr)
+                handleClose()
+                props.setMedError("No connection found.  Data will be stored when connection is reestablished.")
+            })
     }
 
     return (
