@@ -35,6 +35,7 @@ export default function BloodSugarPage() {
             borderColor: '#DC3545',
             fontWeight: 'bold',
             marginBottom: '10px'
+           
         }
     }
 
@@ -100,10 +101,41 @@ export default function BloodSugarPage() {
         <div>
              <NavbarComponent />
             <br />
+            <Container>
+            <Row style={{ padding: '50px', justifyContent: 'center' }}>
+                            <Col style={{ justifyContent: 'center' }}>
+                                <Button style={stylings.btn} onClick={handleShow}>
+                                    Add Blood Sugar
+                        </Button>
+                            </Col>
+                            <Col>
+                                <Link to='/medication'>
+                                    <Button style={stylings.btn}>
+                                        Take Medication
+                        </Button>
+                                </Link>
+                            </Col>
+                        </Row>
+            </Container>
             <Container style={{ justifyContent: 'center' }} >
                 <Row>
                     <Col>
+                
                         <LineChart />
+                        {/* <Row style={{ padding: '50px', justifyContent: 'center', }}>
+                            <Col className="col-md-6">
+                                <Button style={stylings.btn} onClick={handleShow}>
+                                    Add Blood Sugar
+                        </Button>
+                            </Col>
+                            <Col className="col-md-6">
+                                <Link to='/medication'>
+                                    <Button style={stylings.btn}>
+                                        Take Medication
+                        </Button>
+                                </Link>
+                            </Col>
+                        </Row> */}
                         {/* <Row style={{ padding: '50px', justifyContent: 'center', maxWidth: '510px' }}>
                             <Col>
                                 <Button style={stylings.btn} onClick={handleShow}>
@@ -118,11 +150,11 @@ export default function BloodSugarPage() {
                                 </Link>
                             </Col>
                         </Row> */}
-                    </Col>
+                        </Col>
                 </Row>
             </Container>
-            <Container>
-                  <Row style={{ padding: '50px', justifyContent: 'center', maxWidth: '510px' }}>
+           
+                  {/* <Row style={{ padding: '50px', justifyContent: 'center', }}>
                             <Col>
                                 <Button style={stylings.btn} onClick={handleShow}>
                                     Add Blood Sugar
@@ -135,8 +167,8 @@ export default function BloodSugarPage() {
                         </Button>
                                 </Link>
                             </Col>
-                        </Row>
-            </Container>
+                        </Row> */}
+           
 
             <Modal
                 show={show}
