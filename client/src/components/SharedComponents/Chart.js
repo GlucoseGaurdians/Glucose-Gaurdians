@@ -63,13 +63,8 @@ export default function LineChart() {
     return (
         <>
             <div className='header'>
-<<<<<<< HEAD
-                <h1 className='title'>{user.currentUser.displayName}</h1>
-                <div className='links'>
-=======
                 <h1 className='title'>{user.currentUser.displayName}'s Blood Sugar Levels</h1>
                 {/* <div className='links'>
->>>>>>> 228dc42ff0418dff704f5274abe439e4fdd73fb3
                     <a
                         className='btn btn-gh'
                         href='https://github.com/reactchartjs/react-chartjs-2/blob/react16/example/src/charts/Line.js'
