@@ -13,3 +13,14 @@ background: radial-gradient(circle, #1a6e27, #083d10, #041c07 );
 .textColor{
     color: seashell;
 }
+
+.circle {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.reference{
+/* height: 200px; */
+background: radial-gradient(circle, #1e8eb0, #145b70, #0a2d38 );
+}
