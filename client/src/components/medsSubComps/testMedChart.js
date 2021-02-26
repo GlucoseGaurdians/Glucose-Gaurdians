@@ -13,7 +13,7 @@ export default function TestMedChart() {
     // const { currentUser } = useAuth()
     const medArr = Local.getMedsArr()
     const medNameRef = useRef()
-    console.log(medArr)
+
     let dates2 = []
     let tests2 = []
 
@@ -65,6 +65,7 @@ export default function TestMedChart() {
                 <Form.Group>
                     <Form.Label>Medication Name</Form.Label>
                     <Form.Control as="select" ref={medNameRef} onChange={handleAddChart}>
+                        <option>-select a medication-</option>
                         {medArr.map(medication => (<option>{medication.name}</option>))}
                     </Form.Control>
                 </Form.Group>
