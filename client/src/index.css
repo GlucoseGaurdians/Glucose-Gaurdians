@@ -4,6 +4,86 @@
   font-family: sans-serif;
   
 } */
+body {
+	background: linear-gradient(-30deg, #dfe0e3, #caccd1, #b5b8bf);
+	background-size: 400% 400%;
+	animation: gradient 30s ease;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+/* body {
+  background: linear-gradient(120deg, #a7a7a7, #cfcfcf, #dad7d7);
+  background-size: 600% 600%;
+
+  -webkit-animation: AnimationName 50s ease infinite;
+  -moz-animation: AnimationName 50s ease infinite;
+  -o-animation: AnimationName 50s ease infinite;
+  animation: AnimationName 50s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 78%}
+  50%{background-position:100% 23%}
+  100%{background-position:0% 78%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 78%}
+  50%{background-position:100% 23%}
+  100%{background-position:0% 78%}
+}
+@-o-keyframes AnimationName {
+  0%{background-position:0% 78%}
+  50%{background-position:100% 23%}
+  100%{background-position:0% 78%}
+}
+@keyframes AnimationName {
+  0%{background-position:0% 78%}
+  50%{background-position:100% 23%}
+  100%{background-position:0% 78%}
+}
+
+.acordian {
+    background: linear-gradient(120deg, #a7a7a7, #cfcfcf, #dad7d7);
+    background-size: 600% 600%;
+  
+    -webkit-animation: AnimationName 50s ease infinite;
+    -moz-animation: AnimationName 50s ease infinite;
+    -o-animation: AnimationName 50s ease infinite;
+    animation: AnimationName 50s ease infinite;
+  }
+  
+  @-webkit-keyframes AnimationName {
+    0%{background-position:0% 78%}
+    50%{background-position:100% 23%}
+    100%{background-position:0% 78%}
+  }
+  @-moz-keyframes AnimationName {
+    0%{background-position:0% 78%}
+    50%{background-position:100% 23%}
+    100%{background-position:0% 78%}
+  }
+  @-o-keyframes AnimationName {
+    0%{background-position:0% 78%}
+    50%{background-position:100% 23%}
+    100%{background-position:0% 78%}
+  }
+  @keyframes AnimationName {
+    0%{background-position:0% 78%}
+    50%{background-position:100% 23%}
+    100%{background-position:0% 78%}
+  } */
+
+
 
 html,
 body {
@@ -67,7 +147,16 @@ body {
 }
 
 .medbtn{
-  background-color: red !important;
-  border-color: red !important;
+  background-color: #C8171E !important;
+  border-color: #C8171E !important;
+  color: white;
 
+}
+
+.acordian{
+  border: none;
+}
+
+.acordianbtn{
+  color: white;
 }

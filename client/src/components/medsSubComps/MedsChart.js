@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Container, Accordion, Button } from 'react-bootstrap'
 import NavbarComponent from "../SharedComponents/Navbar"
 import LineChart from "../SharedComponents/Chart.js"
-import BottomMenuList from "../SharedComponents/BottomMenuList.js"
+
 
 export default function MedsChart() {
     return (
@@ -22,7 +22,6 @@ export default function MedsChart() {
             </Accordion>
             <Container>
                 <LineChart />
-                <BottomMenuList />
             </Container>
 
         </div>

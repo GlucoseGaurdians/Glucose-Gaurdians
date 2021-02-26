@@ -54,10 +54,16 @@ export default function Medication() {
             <Container className="justify-content-around align-items-center">
                 {error && <Alert variant="danger" className="mt-2">{error}</Alert>}
                 {reconnect && <Alert variant="success" className="mt-2">{reconnect}</Alert>}
-                <Accordion defaultActiveKey="0">
-                    <Card>
-                        <Card.Header>
-                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                <br />
+
+                <Container>
+            
+            </Container>
+
+                {/* <Accordion className="acordian" defaultActiveKey="0">
+                    <Card className="acordian">
+                        <Card.Header className="acordian">
+                            <Accordion.Toggle className="acordianbtn" as={Button} variant="link" eventKey="0">
                                 Medication options
                         </Accordion.Toggle>
                         </Card.Header>
@@ -81,7 +87,7 @@ export default function Medication() {
                             </Row>
                         </Accordion.Collapse>
                     </Card>
-                </Accordion>
+                </Accordion> */}
                 <LineChart />
                 {/* <Button style={styles.button} onClick={handleShowDoseModal}>
                                     Log Medication Dose
