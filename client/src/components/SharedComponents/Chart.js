@@ -18,6 +18,8 @@ export default function LineChart() {
 
     const tests = testsArr.map(test => test.glucose )
     const dates = testsArr.map(test => test.date)
+    console.log(tests)
+    console.log(dates)
 
     const data = {
         // dates = lables

@@ -14,10 +14,8 @@ import Login from './authComponents/Login'
 import ResetPassword from './authComponents/ResetPassword'
 import UpdateProfile from './authComponents/UpdateProfile'
 import MedsChart from "./medsSubComps/MedsChart"
-// import Footer from "./SharedComponents/Footer"
+import Footer from "./SharedComponents/Footer"
 import Contact from "../components/Contact"
-
-
 
 
 function App() {
