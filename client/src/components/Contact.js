@@ -137,15 +137,8 @@ function Contact() {
         <br />
             </Container>
             <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+      
+          
             
 
             <FooterComp />
