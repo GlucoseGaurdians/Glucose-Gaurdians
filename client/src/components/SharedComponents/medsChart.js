@@ -4,10 +4,7 @@ import { useAuth } from '../../contexts/AuthContext.js'
 // import { UseData } from '../../contexts/DataContext'
 import Local from "../../utils/localStorage"
 
-
-
-export default function LineChart() {
-
+export default function MedsChart() {
     const user = useAuth()
     // const userData = UseData()
 
@@ -18,8 +15,6 @@ export default function LineChart() {
 
     const tests = testsArr.map(test => test.glucose)
     const dates = testsArr.map(test => test.date)
-    console.log(tests)
-    console.log(dates)
 
     const data = {
         // dates = lables
@@ -29,8 +24,8 @@ export default function LineChart() {
                 label: 'Blood Sugar Level',
                 // put in the blood sugars 
                 data: tests,
-                fill: true,
-                backgroundColor: 'rgb(207, 4, 47, 0.5)',
+                fill: false,
+                backgroundColor: 'rgb(207, 4, 47)',
                 borderColor: 'rgba(255, 99, 132, 0.2)',
             },
         ],
@@ -79,5 +74,6 @@ export default function LineChart() {
         </>
     )
 }
+
 
 
