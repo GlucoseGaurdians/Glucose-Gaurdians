@@ -96,7 +96,7 @@ export default function Medication() {
                                     Delete Medication
                                 </Button> */}
             </Container>
-            <FooterComp />
+            {/* <FooterComp /> */}
             <MedsModal show={showMedModal} setShow={setShowMedModal} setMedError={setError} />
             <AddMedDose show={showDoseModal} setShow={setShowDoseModal} setMedError={setError} />
             <DeleteMedModal show={showDeleteModal} setShow={setShowDeleteModal} setMedError={setError} />
