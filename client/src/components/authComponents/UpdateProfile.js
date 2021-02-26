@@ -94,7 +94,6 @@ export default function UpdateProfile() {
                 Already have an account? <Link to='/'>Cancel</Link>
             </div>
             </Container>
-            <FooterComp />
         </>
     )
 }

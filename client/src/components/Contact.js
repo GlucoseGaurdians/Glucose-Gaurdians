@@ -141,7 +141,7 @@ function Contact() {
           
             
 
-            <FooterComp />
+        
       </div>
   
   );

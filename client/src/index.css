@@ -7,7 +7,7 @@
 body {
 	background: linear-gradient(-30deg, #dfe0e3, #caccd1, #b5b8bf);
 	background-size: 400% 400%;
-	animation: gradient 30s ease;
+  animation: gradient 30s ease;
 }
 
 @keyframes gradient {
@@ -20,6 +20,16 @@ body {
 	100% {
 		background-position: 0% 50%;
 	}
+}
+
+
+main {
+  position: relative;
+  z-index: -2;
+  height: 1500px;
+ 
+
+  
 }
 /* body {
   background: linear-gradient(120deg, #a7a7a7, #cfcfcf, #dad7d7);

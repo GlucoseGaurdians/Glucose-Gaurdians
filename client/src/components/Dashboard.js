@@ -251,7 +251,7 @@ export default function Dashboard() {
         <div>
             <NavbarComponent />
 
-
+<main>
             <Container>
                 <Row style={{ textAlign: "center" }}>
                     <Col style={{ paddingTop: '50px' }}>
@@ -263,19 +263,7 @@ export default function Dashboard() {
                     </Col>
                 </Row>
             </Container>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-
-
+            </main>
         </div>
 
     )

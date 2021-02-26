@@ -2,6 +2,7 @@ import React from "react";
 import "./Footer.css"
 import { Navbar, Nav, NavDropdown, Button, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap'
 import FooterLogo from '../../Images/footerlogo.png'
+import login from "../authComponents/Login"
 
 
 const FooterComp = () =>
@@ -20,7 +21,7 @@ const FooterComp = () =>
 
 
 
-      {/* <div className="dropdown">
+      <div className="dropdown">
         {['up'].map((direction) => (
           <DropdownButton
             as={ButtonGroup}
@@ -30,19 +31,16 @@ const FooterComp = () =>
             variant="secondary"
             title={` SiteLinks `}
           >
-            <Dropdown.Item eventKey="1"><a href="bloodsugar">Home</a></Dropdown.Item>
-            <Dropdown.Item eventKey="2"><a href="login">Login</a></Dropdown.Item>
-            <Dropdown.Item eventKey="3"><a href="signup">Sign Up</a></Dropdown.Item>
-            <Dropdown.Item eventKey="4"><a href="questions">The Glucose Guardian</a></Dropdown.Item>
-            <Dropdown.Item eventKey="5"><a href="contact">FAQ</a></Dropdown.Item>
-            <Dropdown.Item eventKey="6"><a href="login">Logout</a></Dropdown.Item>
+            <Dropdown.Item eventKey="5"><p><a href="/questions">FAQ</a></p></Dropdown.Item>
+            <p><a href="/questions">FAQ</a></p>
+            <Dropdown.Item eventKey="6"><a href={login}>Logout</a></Dropdown.Item>
           </DropdownButton>
         ))}
         <br></br>
         <div>
         <p className="copyright-text">Copyright &copy; The Glucose Guardian</p>
         </div>
-      </div> */}
+      </div>
 
       <div className="row">
 
