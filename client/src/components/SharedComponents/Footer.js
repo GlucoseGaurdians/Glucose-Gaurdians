@@ -37,7 +37,9 @@ const FooterComp = () =>
           </DropdownButton>
         ))}
         <br></br>
+        <div>
         <p className="copyright-text">Copyright &copy; The Glucose Guardian</p>
+        </div>
       </div>
 
       <div className="row">
