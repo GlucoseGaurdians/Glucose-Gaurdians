@@ -212,6 +212,13 @@ export default function Dashboard() {
 
 
             }
+        }).catch(err => {
+            console.log(err)
+            getLastBS()
+            avgBloodS()
+            a1Cfunct()
+            backGround()
+
         })
     }, [currentUser])
 
