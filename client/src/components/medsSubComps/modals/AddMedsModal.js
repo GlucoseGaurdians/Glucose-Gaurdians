@@ -94,12 +94,12 @@ export default function MedsModal(props) {
     ]
 
     function trimPotentialMeds() {
-        Local.getMedsArr()
+       const medNames = Local.getMedsArr().map(med => med.name)
+       potentialMeds = potentialMeds.filter()
     }
 
     const handleClose = () => {
-        const medArr = Local.getMedsArr()
-        medArr.filter()
+        props.setShow(false)
     }
 
     function needTextBox() {
