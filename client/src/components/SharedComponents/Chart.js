@@ -16,7 +16,7 @@ export default function LineChart() {
     const testsArr = Local.getTestsArr()
     console.log(testsArr)
 
-    const tests = testsArr.map(test => test.glucose )
+    const tests = testsArr.map(test => test.glucose)
     const dates = testsArr.map(test => test.date)
 
     const data = {
@@ -33,13 +33,27 @@ export default function LineChart() {
             },
         ],
     }
-    
+
+
     const options = {
         scales: {
+            xAxes: [{
+                display: true,
+                type: 'time',
+                time: {
+                    parser: 'YYYY/MM/DD HH:mm',
+                    tooltipFormat: 'll HH:mm',
+                    unit: 'hour',
+                    unitStepSize: 1,
+                    displayFormats: {
+                        'hour': 'MM/DD HH:mm:ss'
+                    }
+                },
+            }],
             yAxes: [
                 {
                     ticks: {
-                        beginAtZero: true,
+                        min: 40,
                     },
                 },
             ],
@@ -49,7 +63,7 @@ export default function LineChart() {
     return (
         <>
             <div className='header'>
-                <h1 className='title'>{user.currentUser.email}</h1>
+                <h1 className='title'>{user.currentUser.displayName}</h1>
                 <div className='links'>
                     <a
                         className='btn btn-gh'
