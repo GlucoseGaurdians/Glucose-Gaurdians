@@ -6,9 +6,9 @@ import { Form } from "react-bootstrap"
 
 export default function TestMedChart() {
 
-    const [activeChart, setActiveChart] = useState(false)
-    const [dates, setDates] = useState()
-    const [tests, setTests ] = useState()
+    // const [activeChart, setActiveChart] = useState(false)
+    const [dates, setDates] = useState([])
+    const [tests, setTests ] = useState([])
 
     // const { currentUser } = useAuth()
     const medArr = Local.getMedsArr()
@@ -29,16 +29,8 @@ export default function TestMedChart() {
         console.log(dates2)
         setDates(dates2)
         setTests(tests2)
-        setActiveChart(true)
+        // setActiveChart(true)
     }
-    // useEffect(() => {
-
-    //     targetMed
-    // },[medNameRef])
-
-    // const dates = [1,2,3,4]
-    // const tests = [1,2,3,4]
-
 
     const data = {
         // dates = lables
@@ -77,7 +69,7 @@ export default function TestMedChart() {
                     </Form.Control>
                 </Form.Group>
             </Form>
-            {activeChart && <Line data={data} options={options} />}
+            <Line data={data} options={options} />
         </div>
     )
 }

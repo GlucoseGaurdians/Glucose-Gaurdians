@@ -95,8 +95,12 @@ export default function MedsModal(props) {
 
     function trimPotentialMeds() {
        const medNames = Local.getMedsArr().map(med => med.name)
-       potentialMeds = potentialMeds.filter()
+       medNames.forEach(name => {
+           potentialMeds.splice(potentialMeds.indexOf(name), 1)
+       })
     }
+
+    trimPotentialMeds()
 
     const handleClose = () => {
         props.setShow(false)
@@ -129,6 +133,7 @@ export default function MedsModal(props) {
             .then(({data}) => {
                 Local.setMedsArr(data.meds)
                 handleClose()
+                trimPotentialMeds()
             })
             .catch(err => {
                 console.log(err)
@@ -140,6 +145,7 @@ export default function MedsModal(props) {
                 tempArr.push(payload.med)
                 Local.setMedsArr(tempArr)
                 handleClose()
+                trimPotentialMeds()
                 props.setMedError("No connection found.  Data will be stored when connection is reestablished.")
             })
     }
