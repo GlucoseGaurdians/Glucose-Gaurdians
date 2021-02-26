@@ -61,12 +61,23 @@ export default function BloodSugarPage() {
             return setModalError("Blood sugar must be a number")
         }
 
-        const payload = {
-            glucose: bs,
-            comment: commentsRef.current.value
+        if (bsRef.current.value > 500) {
+            return setModalError("Your Blood Sugar is too high!  If your blood sugar is higher than 500mg/dL SEEK IMMEDIATE MEDICAL ATTENTION")
         }
 
-        API.saveBloodSugar(payload, currentUser.uid)
+        if (bsRef.current.value < 40) {
+            return setModalError("Your Blood Sugar is too low!  If your blood sugar is lower than 40mg/dL SEEK IMMEDIATE MEDICAL ATTENTION")
+        }
+
+        const payload = {
+            test: {
+                glucose: bs,
+                comment: commentsRef.current.value
+            },
+            id: currentUser.uid
+        }
+
+        API.saveBloodSugar(payload)
         .then(({data}) => {
             Local.setTestsArr(data.tests)
             handleClose()
@@ -74,6 +85,13 @@ export default function BloodSugarPage() {
         .catch(err => {
             console.log(err)
             setModalError("Unable to save blood sugar")
+            API.saveTransaction({
+                apiName: "saveBloodSugar",
+                payload: payload 
+            })
+            const tempTests = Local.getTestsArr()
+            tempTests.push(payload.test)
+            Local.setTestsArr(tempTests)
         })
     }
 

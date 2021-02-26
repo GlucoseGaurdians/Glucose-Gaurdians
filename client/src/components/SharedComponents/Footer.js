@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.css"
 import { Button, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap'
+import FooterLogo from '../../Images/footerlogo.png'
 
 
 const FooterComp = () =>
@@ -43,7 +44,7 @@ const FooterComp = () =>
 
         <div className="col-sm-12 col-md-6">
 
-          <img src="./Images/footerlogo.png"
+          <img src={FooterLogo}
             alt="logo"
             width="210"
             height="90"
