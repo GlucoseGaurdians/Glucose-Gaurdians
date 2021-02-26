@@ -18,7 +18,8 @@ export default function Medication() {
     const [showMedModal, setShowMedModal] = useState(false);
     const [showDoseModal, setShowDoseModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [error, setError] = useState(false);
+    const [error, setError] = useState(false)
+    const [reconnect, setReconnect] = useState(false)
 
     const medsArr = Local.getMedsArr()
 
@@ -37,13 +38,22 @@ export default function Medication() {
             setShowDeleteModal(true);
         } else {
             setError("No Medications to Delete")
+
         }
     }
+
+    window.addEventListener('online', () => {
+        if(error === "No connection found.  Data will be stored when connection is reestablished.") {
+            setError('')
+            setReconnect("Connection Reestablished")
+        }
+    })
     return (
         <div>
             <NavbarComponent />
             <Container className="justify-content-around align-items-center">
                 {error && <Alert variant="danger" className="mt-2">{error}</Alert>}
+                {reconnect && <Alert variant="success" className="mt-2">{reconnect}</Alert>}
                 <Accordion defaultActiveKey="0">
                     <Card>
                         <Card.Header>
