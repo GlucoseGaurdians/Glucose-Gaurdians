@@ -46,14 +46,7 @@ While the application isn’t in it’s final form, it hopes to provide some rel
             <br />
             <br />
             <br />
-            <br />  <br />
-            <br />
-            <br />
-            <br />  <br />
-            <br />
-            <br />
-            <br />
-            <FooterComp />
+            
         </div>
 
     );

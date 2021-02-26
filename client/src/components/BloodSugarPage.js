@@ -29,12 +29,13 @@ export default function BloodSugarPage() {
 
         },
         btn: {
-            width: '80vw',
+            width: '20vw',
             backgroundColor: '#DC3545',
             color: 'white',
             borderColor: '#DC3545',
             fontWeight: 'bold',
             marginBottom: '10px'
+           
         }
     }
 
@@ -101,11 +102,8 @@ export default function BloodSugarPage() {
              <NavbarComponent />
             <br />
             <Container>
-                <Row>
-                    <Col>
-                        <LineChart />
-                        <Row style={{ padding: '50px', justifyContent: 'center', maxWidth: '510px' }}>
-                            <Col>
+            <Row style={{ padding: '50px', justifyContent: 'center' }}>
+                            <Col style={{ justifyContent: 'center' }}>
                                 <Button style={stylings.btn} onClick={handleShow}>
                                     Add Blood Sugar
                         </Button>
@@ -118,9 +116,59 @@ export default function BloodSugarPage() {
                                 </Link>
                             </Col>
                         </Row>
-                    </Col>
+            </Container>
+            <Container style={{ justifyContent: 'center' }} >
+                <Row>
+                    <Col>
+                
+                        <LineChart />
+                        {/* <Row style={{ padding: '50px', justifyContent: 'center', }}>
+                            <Col className="col-md-6">
+                                <Button style={stylings.btn} onClick={handleShow}>
+                                    Add Blood Sugar
+                        </Button>
+                            </Col>
+                            <Col className="col-md-6">
+                                <Link to='/medication'>
+                                    <Button style={stylings.btn}>
+                                        Take Medication
+                        </Button>
+                                </Link>
+                            </Col>
+                        </Row> */}
+                        {/* <Row style={{ padding: '50px', justifyContent: 'center', maxWidth: '510px' }}>
+                            <Col>
+                                <Button style={stylings.btn} onClick={handleShow}>
+                                    Add Blood Sugar
+                        </Button>
+                            </Col>
+                            <Col>
+                                <Link to='/medication'>
+                                    <Button style={stylings.btn}>
+                                        Take Medication
+                        </Button>
+                                </Link>
+                            </Col>
+                        </Row> */}
+                        </Col>
                 </Row>
             </Container>
+           
+                  {/* <Row style={{ padding: '50px', justifyContent: 'center', }}>
+                            <Col>
+                                <Button style={stylings.btn} onClick={handleShow}>
+                                    Add Blood Sugar
+                        </Button>
+                            </Col>
+                            <Col>
+                                <Link to='/medication'>
+                                    <Button style={stylings.btn}>
+                                        Take Medication
+                        </Button>
+                                </Link>
+                            </Col>
+                        </Row> */}
+           
 
             <Modal
                 show={show}
