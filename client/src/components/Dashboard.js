@@ -261,10 +261,19 @@ export default function Dashboard() {
                         <A1cCard style={{ width: '100%' }} title="Projected A1C" value={a1C} color={testColorC} statement={statementC} />
                         <ReferenceCard />
                     </Col>
-                </Row>
+                </Row> <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
             </Container>
+            
             </main>
+           
         </div>
+        
 
     )
 }
