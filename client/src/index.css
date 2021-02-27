@@ -8,6 +8,7 @@ body {
 	background: linear-gradient(-30deg, #dfe0e3, #caccd1, #b5b8bf);
 	background-size: 400% 400%;
   animation: gradient 30s ease;
+  font-family: sans-serif;
 }
 
 @keyframes gradient {
