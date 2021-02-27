@@ -1,20 +1,21 @@
 import React from "react";
 import "./Footer.css"
+import { useAuth } from '../../contexts/AuthContext'
+import { useHistory } from 'react-router-dom'
 import { Navbar, Nav, NavDropdown, Button, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap'
 import FooterLogo from '../../Images/footerlogo.png'
 import login from "../authComponents/Login"
 
+export default function FooterComp() {
+  const { logout } = useAuth()
+  const history = useHistory()
 
-const FooterComp = () =>
-// {
-//   const { logout } = useAuth()
-//   const history = useHistory()
+  function handleLogOut() {
+      logout()
+      history.push('/login')
+  }
 
-//   function handleLogOut() {
-//       logout()
-//       history.push('/login')
-//   }
-(
+  return (
 
   <div className="site-footer footer">
     <div className="container">
@@ -29,11 +30,14 @@ const FooterComp = () =>
             id={`dropdown-button-drop-${direction}`}
             drop='up'
             variant="secondary"
-            title={` SiteLinks `}
+            title={` Site Links `}
           >
-            <Dropdown.Item eventKey="5"><p><a href="/questions">FAQ</a></p></Dropdown.Item>
+           
             <p><a href="/questions">FAQ</a></p>
-            <Dropdown.Item eventKey="6"><a href={login}>Logout</a></Dropdown.Item>
+            <p><a href="/Contact">Contact Us</a></p>
+            <p><a   onClick={handleLogOut} href="/login">Logout</a></p>
+          
+           
           </DropdownButton>
         ))}
         <br></br>
@@ -57,22 +61,7 @@ const FooterComp = () =>
         </div>
 
 
-        {/* <div className="col-xs-6 col-md-3">
-          <ul className="footer-links">
-            <li><a href="/bloodsugar">Home</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/signup">Sign Up</a></li>
-          </ul>
-        </div>
-
-        <div className="col-xs-6 col-md-3">
-          <ul className="footer-links">
-            <li><a href="/questions">The Glucose Guardian</a></li>
-            <li><a href="/contact">FAQ</a></li>
-            <li><a href="/login">Logout</a></li>
-
-          </ul>
-        </div> */}
+       
 
       </div>
 
@@ -80,7 +69,7 @@ const FooterComp = () =>
 
   </div>
 
-);
+)
+}
 
 
-export default FooterComp;
