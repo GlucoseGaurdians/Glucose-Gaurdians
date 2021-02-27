@@ -17,31 +17,30 @@ export default function TestMedChart() {
     let dates2 = []
     let tests2 = []
 
-
+    
     function handleAddChart() {
 
         
         const targetMed = medArr.filter(med => med.name === medNameRef.current.value)
-        console.log(targetMed[0].doses)
         dates2 = targetMed[0].doses.map(dose => dose.date)
         tests2 = targetMed[0].doses.map(dose => parseInt(dose.amount))
-        console.log(tests2)
-        console.log(dates2)
         setDates(dates2)
         setTests(tests2)
+        console.log(dates2)
         // setActiveChart(true)
     }
 
     const data = {
         // dates = lables
         labels: dates,
+        
         datasets: [
             {
-                // label: [medNameRef.current.value],
+                label: "Medication",
                 // put in the blood sugars 
                 data: tests,
-                fill: false,
-                backgroundColor: 'rgb(207, 4, 47)',
+                fill: true,
+                backgroundColor: 'rgb(52,58,64, 0.5)',
                 borderColor: 'rgba(255, 99, 132, 0.2)',
             },
         ],
@@ -49,11 +48,26 @@ export default function TestMedChart() {
     
     const options = {
         scales: {
+            xAxes: [{
+                display: true,
+                type: 'time',
+                time: {
+                    parser: 'YYYY/MM/DD HH:mm',
+                    tooltipFormat: 'll HH:mm',
+                    unit: 'hour',
+                    unitStepSize: 1,
+                    displayFormats: {
+                        'hour': 'MM/DD HH:mm:ss'
+                    }
+                },
+            }],
             yAxes: [
                 {
                     ticks: {
                         beginAtZero: true,
                     },
+                    backgroundColor: 'rgb(200,23,30)',
+                    fill: true,
                 },
             ],
         },
