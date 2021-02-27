@@ -14,7 +14,7 @@ import Login from './authComponents/Login'
 import ResetPassword from './authComponents/ResetPassword'
 import UpdateProfile from './authComponents/UpdateProfile'
 import MedsChart from "./medsSubComps/MedsChart"
-import Footer from "./SharedComponents/Footer"
+import FooterComp from "./SharedComponents/Footer"
 import Contact from "../components/Contact"
 
 
@@ -38,7 +38,7 @@ function App() {
                   <PrivateRoute exact path='/medschart' component={MedsChart} />
               </Switch>
           </Router>
-            <Footer/>
+            <FooterComp/>
         </ScreenSize>
       </AuthProvider>
   );
