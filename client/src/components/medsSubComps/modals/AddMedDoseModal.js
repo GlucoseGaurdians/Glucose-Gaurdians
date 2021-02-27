@@ -47,7 +47,7 @@ export default function AddMedDose(props) {
 
                 if(medArry.length > 1){
                     let targetMed = medArry.filter(med => med.name === payload.medName)
-                    let theRest = medArry.filter(med => med.name != payload.medName)
+                    let theRest = medArry.filter(med => med.name !== payload.medName)
 
                     targetMed[0].doses.push(payload.dose)
                     theRest.push(targetMed[0])

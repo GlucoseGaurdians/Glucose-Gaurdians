@@ -7,7 +7,7 @@ import AddMedDose from './medsSubComps/modals/AddMedDoseModal'
 import DeleteMedModal from './medsSubComps/modals/DeleteMedModal'
 import Local from '../utils/localStorage'
 import FooterComp from './SharedComponents/Footer'
-import LineChart from './SharedComponents/Chart'
+import LineChart from './medsSubComps/testMedChart'
 
 
 
@@ -54,10 +54,16 @@ export default function Medication() {
             <Container className="justify-content-around align-items-center">
                 {error && <Alert variant="danger" className="mt-2">{error}</Alert>}
                 {reconnect && <Alert variant="success" className="mt-2">{reconnect}</Alert>}
-                <Accordion defaultActiveKey="0">
-                    <Card>
-                        <Card.Header>
-                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                <br />
+
+                <Container>
+            
+            </Container>
+
+                <Accordion className="acordian" defaultActiveKey="0">
+                    <Card className="acordian">
+                        <Card.Header className="acordian">
+                            <Accordion.Toggle className="acordianbtn" as={Button} variant="link" eventKey="0">
                                 Medication options
                         </Accordion.Toggle>
                         </Card.Header>
@@ -96,7 +102,7 @@ export default function Medication() {
                                     Delete Medication
                                 </Button> */}
             </Container>
-            <FooterComp />
+            {/* <FooterComp /> */}
             <MedsModal show={showMedModal} setShow={setShowMedModal} setMedError={setError} />
             <AddMedDose show={showDoseModal} setShow={setShowDoseModal} setMedError={setError} />
             <DeleteMedModal show={showDeleteModal} setShow={setShowDeleteModal} setMedError={setError} />

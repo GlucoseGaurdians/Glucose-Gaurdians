@@ -18,15 +18,31 @@
   margin-bottom:50px;
 } */
 
-.footer {
-  position: fixed;
-  bottom: 0;
+/* .footer {
+ position: fixed; 
+  bottom: 0; 
   width: 100%;
   /* overflow: hidden; */
   /* overflow: hidden; */
   /* Footer height */
-  height: 20%;
-}
+  /* margin-top: 10vh;
+  height: 15vh;
+} */ */
+/* 
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 350px;  
+  padding-left: 50px;
+  background: #4B466F;
+  font-size: 100px;
+  color: #F56469;
+} */
+
+
+
+
 .footertext {
   font-size: small;
 }
@@ -37,6 +53,12 @@
   font-size: 15px;
   line-height: 24px;
   color: gray;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 140px;  
+  padding-left: 50px;
+  
 }
 .site-footer hr {
   border-top-color: #bbb;
